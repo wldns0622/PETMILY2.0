@@ -88,12 +88,10 @@
   <script src="/resources/js/owl.carousel.min.js"></script>
   <script src="/resources/js/jquery.magnific-popup.min.js"></script>
   <script src="/resources/js/scrollax.min.js"></script>
-  <script src="/resources/js/main.js"></script>
-  
+
   
   
     <!-- Mainly scripts -->
-    <script src="/resources/js/popper.min.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -142,6 +140,9 @@
     <script src="/resources/js/inspinia.js"></script>
     <script src="/resources/js/plugins/pace/pace.min.js"></script>
   	
+  	
+  	  <script src="/resources/js/main.js"></script>
+  
 
 </body>
 
