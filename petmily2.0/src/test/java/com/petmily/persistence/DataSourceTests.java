@@ -1,4 +1,4 @@
-package org.zerock.persistence;
+package com.petmily.persistence;
 
 import static org.junit.Assert.fail;
 
@@ -18,7 +18,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml") //¼³Á¤ÆÄÀÏÀÌ ¾îµðÀÖ´ÂÁö ¾Ë·ÁÁÜ
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml") //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½
 @Log4j
 public class DataSourceTests {
 

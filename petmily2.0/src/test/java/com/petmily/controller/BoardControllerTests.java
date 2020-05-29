@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.petmily.controller;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,8 +41,8 @@ public class BoardControllerTests {
 	public void testRegister() throws Exception {
 		String resultPage = mockMvc
 				.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "ев╫╨ф╝ ╩У╠ш а╕╦Я")
-				.param("content", "ев╫╨ф╝ ╩У╠ш Ё╩©К")
+				.param("title", "О©╫в╫О©╫ф╝ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫")
+				.param("content", "О©╫в╫О©╫ф╝ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫")
 				.param("writer", "user00"))
 				.andReturn().getModelAndView().getViewName();
 
