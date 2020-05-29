@@ -1,149 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    </div>
+</section>
+<section id="contact" class="gray-section contact">
+    <div class="container">
+        <div class="row m-b-lg">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>Contact Us</h1>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+            </div>
+        </div>
+        <div class="row m-b-lg justify-content-center">
+            <div class="col-lg-3 ">
+                <address>
+                    <strong><span class="navy">Company name, Inc.</span></strong><br/>
+                    795 Folsom Ave, Suite 600<br/>
+                    San Francisco, CA 94107<br/>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
+            </div>
+            <div class="col-lg-4">
+                <p class="text-color">
+                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
+                <p class="m-t-sm">
+                    Or follow us on social platform
+                </p>
+                <ul class="list-inline social-icon">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center m-t-lg m-b-lg">
+                <p><strong>&copy; 2015 Company Name</strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-						<h2 class="footer-heading"><a href="#" class="logo">Vacation Rental</a></h2>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<a href="#">Read more <span class="fa fa-chevron-right" style="font-size: 11px;"></span></a>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-						<h2 class="footer-heading">Services</h2>
-						<ul class="list-unstyled">
-              <li><a href="#" class="py-1 d-block">Map Direction</a></li>
-              <li><a href="#" class="py-1 d-block">Accomodation Services</a></li>
-              <li><a href="#" class="py-1 d-block">Great Experience</a></li>
-              <li><a href="#" class="py-1 d-block">Perfect central location</a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-						<h2 class="footer-heading">Tag cloud</h2>
-						<div class="tagcloud">
-	            <a href="#" class="tag-cloud-link">apartment</a>
-	            <a href="#" class="tag-cloud-link">home</a>
-	            <a href="#" class="tag-cloud-link">vacation</a>
-	            <a href="#" class="tag-cloud-link">rental</a>
-	            <a href="#" class="tag-cloud-link">rent</a>
-	            <a href="#" class="tag-cloud-link">house</a>
-	            <a href="#" class="tag-cloud-link">place</a>
-	            <a href="#" class="tag-cloud-link">drinks</a>
-	          </div>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-						<h2 class="footer-heading">Subcribe</h2>
-						<form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control rounded-left" placeholder="Enter email address">
-                <button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="fa fa-paper-plane"></i></button>
-              </div>
-            </form>
-            <h2 class="footer-heading mt-5">Follow us</h2>
-            <ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-					</div>
-				</div>
-			</div>
-			<div class="w-100 mt-5 border-top py-5">
-				<div class="container">
-					<div class="row">
-	          <div class="col-md-6 col-lg-8">
-
-	            <p class="copyright mb-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-	          </div>
-	          <div class="col-md-6 col-lg-4 text-md-right">
-	          	<p class="mb-0 list-unstyled">
-	          		<a class="mr-md-3" href="#">Terms</a>
-	          		<a class="mr-md-3" href="#">Privacy</a>
-	          		<a class="mr-md-3" href="#">Compliances</a>
-	          	</p>
-	          </div>
-	        </div>
-				</div>
-			</div>
-		</footer>
-    
-  
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script src="/resources/js/jquery.min.js"></script>
-  <script src="/resources/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/resources/js/popper.min.js"></script>
-  <script src="/resources/js/bootstrap.min.js"></script>
-  <script src="/resources/js/jquery.easing.1.3.js"></script>
-  <script src="/resources/js/jquery.waypoints.min.js"></script>
-  <script src="/resources/js/jquery.stellar.min.js"></script>
-  <script src="/resources/js/jquery.animateNumber.min.js"></script>
-  <script src="/resources/js/bootstrap-datepicker.js"></script>
-  <script src="/resources/js/jquery.timepicker.min.js"></script>
-  <script src="/resources/js/owl.carousel.min.js"></script>
-  <script src="/resources/js/jquery.magnific-popup.min.js"></script>
-  <script src="/resources/js/scrollax.min.js"></script>
-
-  
-  
-    <!-- Mainly scripts -->
-    <script src="/resources/js/bootstrap.js"></script>
-    <script src="/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Flot -->
-    <script src="/resources/js/plugins/flot/jquery.flot.js"></script>
-    <script src="/resources/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="/resources/js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="/resources/js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="/resources/js/plugins/flot/jquery.flot.pie.js"></script>
-
-    <!-- Peity -->
-    <script src="/resources/js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="/resources/js/demo/peity-demo.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="/resources/js/inspinia.js"></script>
-    <script src="/resources/js/plugins/pace/pace.min.js"></script>
-
-    <!-- jQuery UI -->
-    <script src="/resources/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <!-- GITTER -->
-    <script src="/resources/js/plugins/gritter/jquery.gritter.min.js"></script>
-
-    <!-- Sparkline -->
-    <script src="/resources/js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="/resources/js/demo/sparkline-demo.js"></script>
-
-    <!-- ChartJS-->
-    <script src="/resources/js/plugins/chartJs/Chart.min.js"></script>
-
-    <!-- Toastr -->
-    <script src="/resources/js/plugins/toastr/toastr.min.js"></script>
-    <script src="/resources/js/popper.min.js"></script>
-    <script src="/resources/js/bootstrap.js"></script>
-    <script src="/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- FooTable -->
-    <script src="/resources/js/plugins/footable/footable.all.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="/resources/js/inspinia.js"></script>
-    <script src="/resources/js/plugins/pace/pace.min.js"></script>
-  	
-  	
-  	  <script src="/resources/js/main.js"></script>
-  
-
+<script src="/resources/js/jquery-2.1.1.js"></script>
+<script src="/resources/js/pace.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/classie.js"></script>
+<script src="/resources/js/cbpAnimatedHeader.js"></script>
+<script src="/resources/js/wow.min.js"></script>
+<script src="/resources/js/inspinia.js"></script>
 </body>
-
 </html>

@@ -1,25 +1,68 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-
-<html>
-
-<%@include file="includes/header.jsp" %>
-
-
-
-
-    <!-- Mainly scripts -->
-
-    <!-- Page-Level Scripts -->
-    <script>
-        $(document).ready(function() {
-
-            $('.footable').footable();
-            $('.footable2').footable();
-
-        });
-
-    </script>
-
-<%@include file="includes/footer.jsp" %>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
+<section id="features" class="container services">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>6 Charts Library</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>tests</h2>
+        </div>
+    </div>
+</section>
+<section id="features" class="container services">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>6 Charts Library</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>tests</h2>
+        </div>
+    </div>
+</section>
+<section id="features" class="container services">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>6 Charts Library</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>tests</h2>
+        </div>
+    </div>
+</section>
+<section id="features" class="container services">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>test</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>6 Charts Library</h2>
+        </div>
+        <div class="col-sm-3">
+            <h2>tests</h2>
+        </div>
+    </div>
+</section>	
+<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
