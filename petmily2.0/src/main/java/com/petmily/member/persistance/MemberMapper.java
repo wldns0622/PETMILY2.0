@@ -1,6 +1,6 @@
-package com.petmily.persistance;
+package com.petmily.member.persistance;
 
-import com.petmily.domain.MemberVO;
+import com.petmily.member.domain.MemberVO;
 
 public interface MemberMapper {
 	

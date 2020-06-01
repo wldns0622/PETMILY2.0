@@ -1,10 +1,10 @@
-package com.petmily.service;
+package com.petmily.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.petmily.domain.MemberVO;
-import com.petmily.persistance.MemberMapper;
+import com.petmily.member.domain.MemberVO;
+import com.petmily.member.persistance.MemberMapper;
 
 import lombok.Setter;
 

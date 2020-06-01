@@ -1,4 +1,4 @@
-package com.petmily.domain;
+package com.petmily.member.domain;
 
 import lombok.Data;
 

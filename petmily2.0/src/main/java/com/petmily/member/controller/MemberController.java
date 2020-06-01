@@ -1,4 +1,4 @@
-package com.petmily.controller;
+package com.petmily.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.petmily.domain.MemberVO;
-import com.petmily.service.MemberService;
+import com.petmily.member.domain.MemberVO;
+import com.petmily.member.service.MemberService;
 
 @RequestMapping("/member/*")
 @Controller
