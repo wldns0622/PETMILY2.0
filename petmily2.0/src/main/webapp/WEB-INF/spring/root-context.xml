@@ -38,9 +38,10 @@
 	
 	 	<mybatis-spring:scan
 		base-package="com.petmily.pettalk.persistance" />
+	<mybatis-spring:scan base-package="com.petmily.member.persistance"/>
 	 
 	<context:component-scan
 		base-package="com.petmily.pettalk.service"/>
-	
+	<context:component-scan base-package="com.petmily.member.service"/>
 	
 </beans>
