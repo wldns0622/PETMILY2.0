@@ -12,9 +12,9 @@ public class MemberVO {
 	private String phoneNo;
 	private String birth;
 	private String nicknm;
-	private String code;
+	//private String code;
 	private String address;
-	private char emailCheck;
-	private char smsCheck;
+	//private char emailCheck;
+	//private char smsCheck;
 	
 }

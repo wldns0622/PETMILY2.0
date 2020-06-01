@@ -35,7 +35,7 @@
             <!--// 모달창 -->
             <hr/>
             <!-- 본문 들어가는 부분 -->
-            <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
+            <form class="form-horizontal" role="form" method="post" action="/member/memberSignUp">
                 <div class="form-group">
                     <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                     <div class="col-lg-10" id="provision">
