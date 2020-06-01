@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.SearchVO;
-import com.petmily.pettalk.persistance.PettalkMapper;
+import com.petmily.pettalk.persistence.PettalkMapper;
 
 import lombok.AllArgsConstructor;
 

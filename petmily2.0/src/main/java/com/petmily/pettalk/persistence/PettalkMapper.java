@@ -1,4 +1,4 @@
-package com.petmily.pettalk.persistance;
+package com.petmily.pettalk.persistence;
 
 
 import java.util.List;
