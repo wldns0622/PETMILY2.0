@@ -299,7 +299,7 @@
                             <input type="radio" id="emailReceiveYn" name="emailCheck" value="Y" checked> 동의합니다. <!-- name="emailReceiveYn" -->
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" id="emailReceiveYn" name="emailCheck " value="N"> 동의하지 않습니다. <!-- name="emailReceiveYn" -->
+                            <input type="radio" id="emailReceiveYn" name="emailCheck" value="N"> 동의하지 않습니다. <!-- name="emailReceiveYn" -->
                         </label>
                     </div>
                 </div>
