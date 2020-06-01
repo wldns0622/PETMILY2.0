@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <!-- Add Your favicon here -->
     <!--<link rel="icon" href="img/favicon.ico">-->
 
@@ -15,7 +16,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-
+	<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css"
+	rel="stylesheet">
     <!-- Animation CSS -->
     <link href="/resources/css/animate.css" rel="stylesheet">
 
@@ -29,8 +32,9 @@
 
     <!-- Custom styles for this template -->
     <link href="/resources/css/style.css" rel="stylesheet">
+    <script src="/resources/js/jquery-3.3.1.min.js"></script>
 </head>
-<script src="/resources/js/jquery-3.3.1.min.js"></script>
+
 <body id="page-top" class="landing-page">
 <div class="navbar-wrapper">
     <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">

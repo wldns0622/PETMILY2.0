@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +28,7 @@ public class PettalkController {
 	private PettalkService service;
 	
 	@GetMapping("/list")
-	public String pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
+	public void pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
 		
 		searchVO.setCodeSelect(code);
 		
@@ -36,13 +37,35 @@ public class PettalkController {
 		Collections.sort(sortList, new CompareNameDesc());
 		model.addAttribute("sortList", sortList);
 		model.addAttribute("codeList", service.listPettalkCode());
+	
 		
 		
 		
-		
-		
-		return "/pettalk/list";
 	}
+	
+	@GetMapping("/insertform")
+	public void pettalkInsertForm(Model model) {
+		model.addAttribute("codeList", service.listPettalkCode());
+		
+	}
+	
+	@PostMapping("/insertform")
+	public String pettalkInsertForm(BoardVO boardVO) {
+		
+		service.insertBoard(boardVO);
+		
+		return "redirect:/pettalk/list";
+		
+	}
+	
+	
+	@GetMapping("/detail")
+	public void pettalkDetail(@RequestParam("seq")int seq, Model model) {
+		System.out.println( service.detailBoard(seq));
+		model.addAttribute("board", service.detailBoard(seq));
+		
+	}
+	
 	
 }
 	

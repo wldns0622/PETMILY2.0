@@ -41,6 +41,7 @@ public class MemberController {
 	
 	@PostMapping("/memberSignUp")
 	public String memberSignUp(MemberVO member) {
+		System.out.println("member : " + member);
 		 memberService.memberLogin(member);
 		 
 		 return "redirect:/member/login";
