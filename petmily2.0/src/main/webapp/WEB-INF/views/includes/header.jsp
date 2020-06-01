@@ -30,6 +30,7 @@
     <!-- Custom styles for this template -->
     <link href="/resources/css/style.css" rel="stylesheet">
 </head>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
 <body id="page-top" class="landing-page">
 <div class="navbar-wrapper">
     <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
