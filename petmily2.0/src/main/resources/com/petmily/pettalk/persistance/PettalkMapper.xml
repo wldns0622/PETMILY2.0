@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petmily.pettalk.persistance.PettalkMapper">
+
+
+	<resultMap id="BoardVO" type="com.petmily.pettalk.domain.BoardVO">
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+		<result column="LIKE_CNT" property="likeCnt" />
+		<result column="CREATE_DT" property="createDt" />
+		<result column="MEM_ID" property="memId" />
+		<result column="MEM_NM" property="memNm" />
+		<result column="BOARD_CD" property="boardCd"/>
+		<result column="MODIFICATION_DT" property="modificationDt" />
+		<result column="BOARD_HITCOUNT" property="boardHitcount" />
+	</resultMap>
+	<resultMap id="CodeVO" type="com.petmily.common.domain.CodeVO">
+		<result column="CODE" property="code" />
+		<result column="CODE_TYPE" property="codeType" />
+		<result column="CODE_NM" property="codeNm" />
+		<result column="CODE_ENG" property="codeEng" />
+	</resultMap>
+
+
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getListPettalk" parameterType="com.petmily.pettalk.domain.SearchVO" resultMap="BoardVO">
+		select
+			t.BOARD_NO,
+			t.BOARD_TITLE,
+			t.BOARD_CONTENT,
+			b.LIKE_CNT,
+			t.CREATE_DT,
+			t.MEM_ID,
+			t.MEM_NM,
+			t.BOARD_CD,
+			t.MODIFICATION_DT,
+			t.BOARD_HITCOUNT,
+			r.REPLYCNT
+		from
+			board_community_tb t,
+			(select board_no,count(*) as LIKE_CNT from LIKE_TB group by board_no) b,
+			(select board_no,count(*) as REPLYCNT from reply_tb group by board_no)r
+		where
+		t.BOARD_no = b.board_no(+) AND t.board_no = r.board_no(+)
+			<if test="codeSelect != null and codeSelect !=''">
+				AND BOARD_CD = #{codeSelect}
+			</if>
+		 order by board_no desc
+	</select>
+	
+		<!-- 코드 리스트 출력 -->
+	<select id="listPettalkCode" resultMap="CodeVO">
+		select * from code_tb where code_type = 100
+	</select>
+
+</mapper>
