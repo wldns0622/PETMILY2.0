@@ -11,6 +11,9 @@
         <script src="http://code.jquery.com/jquery.js"></script><!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들 포함하기 -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화 (https://github.com/scottjehl/Respond) -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -659,6 +662,7 @@
                 });
                 
             });
+            
             
         </script>
                 <!--// 본문 들어가는 부분 -->

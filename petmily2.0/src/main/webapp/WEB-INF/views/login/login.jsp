@@ -46,7 +46,7 @@
 						<input type="submit" class="login100-form-btn" value="Login"/>
 					</div>
 				</form>
-				<a href="#" class="signUp btn btn-info" id="member-sign-up">일반 회원 가입하기</a>
+				<a href="/member/memberSignUp" class="signUp btn btn-info" id="member-sign-up">일반 회원 가입하기</a>
 				<a href="#" class="signUp btn btn-info" id="hospital-sign-up">병원 회원 가입하기</a>
 				</div>
 			</div>
