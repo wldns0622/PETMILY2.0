@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petmily.member.domain.MemberVO;
-import com.petmily.member.persistance.MemberMapper;
+import com.petmily.member.persistence.MemberMapper;
 
 import lombok.Setter;
 

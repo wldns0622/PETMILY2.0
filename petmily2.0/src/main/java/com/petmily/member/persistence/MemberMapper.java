@@ -1,4 +1,4 @@
-package com.petmily.member.persistance;
+package com.petmily.member.persistence;
 
 import com.petmily.member.domain.MemberVO;
 
