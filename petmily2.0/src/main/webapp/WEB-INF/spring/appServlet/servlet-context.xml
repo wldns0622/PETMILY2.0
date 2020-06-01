@@ -24,6 +24,7 @@
 	<context:component-scan base-package="com.petmily.member.controller" />
 	<context:component-scan base-package="com.petmily.mypet.controller" />
 	<context:component-scan base-package="com.petmily.pettalk.controller" />
+	<context:component-scan base-package="com.petmily.reservation.controller"/>
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 	
