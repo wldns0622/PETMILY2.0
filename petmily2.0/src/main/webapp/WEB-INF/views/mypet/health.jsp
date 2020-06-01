@@ -10,7 +10,7 @@
 		<div class="col-md-3">
 
 			<div class="profile-image">
-				<img src="img/cute_bori.jpg"
+				<img src="/petmily2.0/src/main/webapp/WEB-INF/views/mypet/img/cute_bori.jpg"
 					class="rounded-circle circle-border m-b-md" alt="profile">
 			</div>
 			<div class="profile-info">

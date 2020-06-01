@@ -1,4 +1,4 @@
-package com.petmily.controller;
+package com.petmily.mypet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
