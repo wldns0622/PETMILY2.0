@@ -30,4 +30,18 @@ public class PettalkServiceImpl implements PettalkService {
 		return pettalkMapper.listPettalkCode();
 	}
 
+
+	@Override
+	public void insertBoard(BoardVO board) {
+	
+		pettalkMapper.insertBoard(board);
+		
+	}
+
+
+	@Override
+	public BoardVO detailBoard(int seq) {
+		return pettalkMapper.detailBoard(seq);
+	}
+
 }

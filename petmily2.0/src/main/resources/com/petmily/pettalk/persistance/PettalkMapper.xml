@@ -75,5 +75,14 @@
 	<select id="listPettalkCode" resultMap="CodeVO">
 		select * from code_tb where code_type = 100
 	</select>
+	
+	<insert id="insertBoard" parameterType="com.petmily.pettalk.domain.BoardVO">
+		insert into BOARD_COMMUNITY_TB values (BOARD_SEQ.nextval, #{boardTitle}, #{boardContent}, sysdate, #{memId}, #{memNm},#{boardCd},sysdate,null)
+	</insert>
+	
+	
+	<select id="detailBoard" resultMap="BoardVO">
+		select * from board_community_tb where BOARD_NO = #{seq}
+	</select>
 
 </mapper>

@@ -15,12 +15,14 @@ public interface PettalkService {
 	public List<BoardVO> listBoard(SearchVO cmd);
 	public List<CodeVO> listPettalkCode();
 	
+	public void insertBoard(BoardVO board);
+	public BoardVO detailBoard(int seq);
+	
 
 	
 	/*
 	codeListService
 	detailBoard
-	insertBoardService
 	insertReplyService
 	listBoardService
 	listNotiService
