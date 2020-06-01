@@ -5,7 +5,12 @@
 <%@ page session="false"%>
 <div>
 	<div class="row">
-	<h1>동물 병원 예약 목록</h1>
+		<div class="col-lg-12">
+			<h2><strong>동물 병원 예약 목록</strong></h2>
+		</div>
+	</div>
+	<div class="row">
+
 		<div class="col-lg-12">
 			<div class="ibox">
 				<div class="ibox-content">

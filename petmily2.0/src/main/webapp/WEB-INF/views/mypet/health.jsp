@@ -5,13 +5,26 @@
 <%@ page session="false"%>
 
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
+
+<style>
+.row{
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+#pet-info-box {
+	border-radius: 2px;
+	box-shadow: rgba(0, 0, 0, 0.227451) 3px 3px 8px 0px;
+	background-color: rgb(250, 250, 250);
+}
+</style>
+
 <div class="wrapper wrapper-content animated fadeInRight">
-	<div class="row m-b-lg m-t-lg">
+	<div class="row m-b-lg m-t-lg" id="pet-info-box">
 		<div class="col-md-3">
 
 			<div class="profile-image">
-				<img src="/petmily2.0/src/main/webapp/WEB-INF/views/mypet/img/cute_bori.jpg"
-					class="rounded-circle circle-border m-b-md" alt="profile">
+				<img src="/resources/img/mypet/cute_bori.jpg"
+					class="rounded-circle circle-border m-b-md" alt="프로필 사진">
 			</div>
 			<div class="profile-info">
 				<div class="">
@@ -86,16 +99,16 @@
 		<div class="col-lg-12">
 			<div class="tabs-container">
 				<ul class="nav nav-tabs" role="tablist">
-					<li><a class="nav-link active" data-toggle="tab" href="#tab-1">
+					<li><a class="nav-link" id="tablist-1" data-toggle="tab" href="#tab-1" >
 							진료</a></li>
-					<li><a class="nav-link" data-toggle="tab" href="#tab-2">
+					<li><a class="nav-link" id="tablist-2" data-toggle="tab" href="#tab-2">
 							접종</a></li>
-					<li><a class="nav-link" data-toggle="tab" href="#tab-3">
+					<li><a class="nav-link" id="tablist-3" data-toggle="tab" href="#tab-3">
 							체중</a></li>
 				</ul>
 				<div class="tab-content">
 					<!-- Tab 1 -->
-					<div role="tabpanel" id="tab-1" class="tab-pane active">
+					<div role="tabpanel" id="tab-1" class="tab-pane">
 						<div class="panel-body">
 
 							<%@include file="/WEB-INF/views/mypet/consultation.jsp"%>
@@ -103,7 +116,7 @@
 						</div>
 					</div>
 					<!-- Tab 2 -->
-					<div role="tabpanel" id="tab-2" class="tab-pane">
+					<div role="tabpanel" id="tab-2" class="tab-pane" >
 						<div class="panel-body">
 
 							<%@include file="/WEB-INF/views/mypet/immunization.jsp"%>

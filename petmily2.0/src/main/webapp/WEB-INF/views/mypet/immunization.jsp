@@ -5,12 +5,16 @@
 <%@ page session="false"%>
 <div>
 	<div class="row">
-		<div class="col-lg-12">접종 기록</div>
+		<div class="col-lg-12">
+			<img src="/resources/img/mypet/dogdoc_inj.jpg"
+				class="rounded-circle circle-border m-b-md" alt="독닥">
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<img src="img/dogdoc_inj.jpg"
-				class="rounded-circle circle-border m-b-md" alt="독닥">
+			<h2>
+				<strong>접종 기록</strong>
+			</h2>
 		</div>
 	</div>
 	<div class="row">
