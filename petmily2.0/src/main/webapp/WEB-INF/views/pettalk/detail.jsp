@@ -6,16 +6,13 @@
 	request.setAttribute("selectCd", code);
 %>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
-	<div id="content" class="container">
-		<div id="content-body" class="col-12 product-shop">
-			<div class="content-inner">
+	<div id="content" class="container ">
+		<div id="content-body" class="col-12 ibox border m-t-xl">
+			<div class="content-inner ibox-content">
 				<div class="card col">
 					<div class="row">
-						<div class="img-container align-self-center">
-							<img style="margin-left: 12px" class="align-self-center" alt="" src="/PETMILYPROJECT/assets/img/profile_img.jpg">
-						</div>
 						<div class="card-body">
-							<h5 class="card-title col-lg-10">${board.boardTitle }</h5>
+							<h2 class="card-title col-lg-10">${board.boardTitle }</h2>
 							<span class="card-subtitle mb-3 text-muted col-lg-3">${board.memNm }</span>
 							<span class="card-subtitle mb-2 text-muted">${board.createDt }</span>
 							<span style="text-align: right;" class="likeCount">0</span>
@@ -29,7 +26,7 @@
 				</div>
 
 				<div class="form-group">
-					<form action="/PETMILYPROJECT/comunity/insertReply.do"
+					<form action="insertReply"
 						method="post">
 						<input type="hidden" id="boardNo" name="boardNo" value="${board.boardNo}">
 						<input type="hidden" name="writerNm" value="${member.name}">
@@ -59,9 +56,9 @@
 
 
 			</div>
+ 			<a style="color: black;"href="list"><button type="button" class="btn btn-w-m btn-default float-right m-md">목록</button></a>
 		</div>
 	</div>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

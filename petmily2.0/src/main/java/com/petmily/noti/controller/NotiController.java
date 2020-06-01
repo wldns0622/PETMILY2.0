@@ -1,4 +1,4 @@
-package com.petmily.pettalk.controller;
+package com.petmily.noti.controller;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.CompareNameDesc;
-import com.petmily.pettalk.domain.ReplyVO;
-import com.petmily.pettalk.domain.ReportVO;
 import com.petmily.pettalk.domain.SearchVO;
 import com.petmily.pettalk.service.PettalkService;
 
@@ -23,9 +21,9 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/pettalk/*")
+@RequestMapping("/noti/*")
 @AllArgsConstructor
-public class PettalkController {
+public class NotiController {
 	
 	private PettalkService service;
 	
@@ -39,41 +37,10 @@ public class PettalkController {
 		Collections.sort(sortList, new CompareNameDesc());
 		model.addAttribute("sortList", sortList);
 		model.addAttribute("codeList", service.listPettalkCode());
-		
-		
-		
-		
-	}
 	
-	@GetMapping("/insertform")
-	public void pettalkInsertForm(Model model) {
-		model.addAttribute("codeList", service.listPettalkCode());
 		
-	}
-	
-	@PostMapping("/insertform")
-	public String pettalkInsertForm(BoardVO boardVO) {
 		
-		service.insertBoard(boardVO);
 		
-		return "redirect:/pettalk/list";
-	}
-	
-	@GetMapping("/detail")
-	public void pettalkDetail(@RequestParam("seq")int seq, Model model) {
-		System.out.println( service.detailBoard(seq));
-		model.addAttribute("board", service.detailBoard(seq));
-		model.addAttribute("replys", service.listReply(seq));
-	}
-	
-	@PostMapping("/insertReply")
-	public String insertReply(ReplyVO replyVO){
-		service.insertReply(replyVO);
-		return "redirect:/pettalk/detail?seq="+replyVO.getBoardNo();
-	}
-
-	@PostMapping("/reportAction")
-	public void reportAction(ReportVO reportVO){
 	}
 	
 	

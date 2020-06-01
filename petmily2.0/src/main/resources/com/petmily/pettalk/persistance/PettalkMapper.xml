@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.petmily.pettalk.persistance.PettalkMapper">
+<mapper namespace="com.petmily.pettalk.persistence.PettalkMapper">
 
 
 	<resultMap id="BoardVO" type="com.petmily.pettalk.domain.BoardVO">
@@ -83,6 +83,38 @@
 	
 	<select id="detailBoard" resultMap="BoardVO">
 		select * from board_community_tb where BOARD_NO = #{seq}
+	</select>
+	
+	<!-- 리플 목록 -->
+	<select id="listReply" parameterType="int" resultType="com.petmily.pettalk.domain.ReplyVO">
+		select * from REPLY_TB where board_no = #{seq} order by REPLY_NO DESC
+	</select>
+	
+	
+	<!-- 리플 등록 -->
+	<insert id="insertReply" parameterType="com.petmily.pettalk.domain.ReplyVO">
+		insert into reply_tb values(#{boardNo},reply_seq.nextval,#{ReplyContent},#{WriterNm},#{WriterId},sysdate)
+	</insert>
+	
+	
+		<!-- 동일 게시글 추천 여부 검색 -->
+	<select id="likeCheck" parameterType="map" resultType="int">
+		select count(*) from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
+	</select>
+
+	<!-- 게시글 추천 -->
+	<insert id="likeUpdate" parameterType="map">
+		insert into LIKE_TB values(#{boardNo}, #{memId})
+	</insert>
+
+	<!-- 게시글 추천 취소 -->
+	<delete id="likeDelete" parameterType="map">
+		delete from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
+	</delete>
+
+	<!-- 게시글 추천수 -->
+	<select id="likeCount" parameterType="int" resultType="int">
+		select count(*) from LIKE_TB where board_no = #{boardNo}
 	</select>
 
 </mapper>

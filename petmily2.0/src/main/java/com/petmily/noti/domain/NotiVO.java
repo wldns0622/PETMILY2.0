@@ -1,4 +1,4 @@
-package com.petmily.pettalk.domain;
+package com.petmily.noti.domain;
 
 import java.io.Serializable;
 

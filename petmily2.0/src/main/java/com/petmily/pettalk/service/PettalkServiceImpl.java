@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.petmily.common.domain.CodeVO;
 import com.petmily.pettalk.domain.BoardVO;
+import com.petmily.pettalk.domain.ReplyVO;
 import com.petmily.pettalk.domain.SearchVO;
-import com.petmily.pettalk.persistance.PettalkMapper;
+import com.petmily.pettalk.persistence.PettalkMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -42,6 +43,17 @@ public class PettalkServiceImpl implements PettalkService {
 	@Override
 	public BoardVO detailBoard(int seq) {
 		return pettalkMapper.detailBoard(seq);
+	}
+	@Override
+	public List<ReplyVO> listReply(int seq) {
+		return pettalkMapper.listReply(seq);
+	}
+
+
+	@Override
+	public void insertReply(ReplyVO replyVO) {
+		pettalkMapper.insertReply(replyVO);
+		
 	}
 
 }
