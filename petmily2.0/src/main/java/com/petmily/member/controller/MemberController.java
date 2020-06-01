@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petmily.member.domain.MemberVO;
-import com.petmily.member.persistance.MemberMapper;
+import com.petmily.member.persistence.MemberMapper;
 import com.petmily.member.service.MemberService;
 
 import lombok.Setter;

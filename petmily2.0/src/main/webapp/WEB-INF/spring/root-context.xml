@@ -39,6 +39,7 @@
 	
 	 	<mybatis-spring:scan
 		base-package="com.petmily.pettalk.persistence" />
+	
 	<mybatis-spring:scan base-package="com.petmily.member.persistence"/>
 	 
 	<context:component-scan
