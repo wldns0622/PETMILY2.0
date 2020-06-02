@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.ReplyVO;
+import com.petmily.pettalk.domain.ReportVO;
 import com.petmily.pettalk.domain.SearchVO;
 
 @Mapper
@@ -20,7 +21,7 @@ public interface PettalkMapper {
 	public void insertBoard(BoardVO boardVO);
 	public List<ReplyVO> listReply(int seq);
 	public void insertReply(ReplyVO replyVO);
-	
+	public void insertReport(ReportVO reportVO);
 	
 	
 	/*

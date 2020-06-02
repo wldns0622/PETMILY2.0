@@ -69,7 +69,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-     <form action="reportAction" method="post">
+     <form action="/pettalk/reportAction" method="post">
       <div class="modal-body">
     	 <table class="table">
 					<tr>

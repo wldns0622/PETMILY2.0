@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.ReplyVO;
+import com.petmily.pettalk.domain.ReportVO;
 import com.petmily.pettalk.domain.SearchVO;
 
 public interface PettalkService {
@@ -18,6 +19,7 @@ public interface PettalkService {
 	
 	public void insertBoard(BoardVO board);
 	public void insertReply(ReplyVO replyVO);
+	public void insertReport(ReportVO reportVO);
 	public BoardVO detailBoard(int seq);
 	public List<ReplyVO> listReply(int seq);
 	

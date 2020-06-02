@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petmily.pettalk.persistence.NotiMapper">
+
+	<insert id="insertNoti" parameterType="com.petmily.noti.domain.NotiVO">
+		INSERT INTO alert_tb VALUES (NOTI_SEQ.nextval,sysdate,null,#{alertCode},#{memId},#{boardNo},#{memToId})
+	</insert>
+
+
+	<select id="listNoti" parameterType="com.petmily.noti.domain.NotiVO" resultType="com.petmily.noti.domain.NotiVO">
+		select * from alert_tb where MEM_ID=#{memId} ORDER BY ALERT_NO
+
+	</select>
+
+	<delete id="deleteNoti" parameterType="com.petmily.noti.domain.NotiVO">
+		delete from alert_tb where MEM_ID=#{memId} <if test="alertNo != null and alertNo !=''">
+		AND ALERT_NO = #{alertNo}
+		</if>
+	</delete>
+
+</mapper>

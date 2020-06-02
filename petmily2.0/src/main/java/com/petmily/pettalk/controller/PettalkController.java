@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.petmily.noti.domain.NotiVO;
+import com.petmily.noti.service.NotiService;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.CompareNameDesc;
 import com.petmily.pettalk.domain.ReplyVO;
@@ -27,8 +29,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class PettalkController {
 	
+	private NotiService notiService;
 	private PettalkService service;
-	
 	@GetMapping("/list")
 	public void pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
 		
@@ -39,7 +41,6 @@ public class PettalkController {
 		Collections.sort(sortList, new CompareNameDesc());
 		model.addAttribute("sortList", sortList);
 		model.addAttribute("codeList", service.listPettalkCode());
-		
 		
 		
 		
@@ -55,6 +56,7 @@ public class PettalkController {
 	public String pettalkInsertForm(BoardVO boardVO) {
 		
 		service.insertBoard(boardVO);
+
 		
 		return "redirect:/pettalk/list";
 	}
@@ -69,11 +71,25 @@ public class PettalkController {
 	@PostMapping("/insertReply")
 	public String insertReply(ReplyVO replyVO){
 		service.insertReply(replyVO);
+		
+		NotiVO noti = new NotiVO();
+		
+		BoardVO boardVO = service.detailBoard(replyVO.getBoardNo());
+		noti.setBoardNo(replyVO.getBoardNo());
+		noti.setAlertCode(2003);
+		noti.setMemId(boardVO.getMemId());
+		noti.setMemToId("은행운");
+		notiService.insertNoti(noti);
+		
 		return "redirect:/pettalk/detail?seq="+replyVO.getBoardNo();
 	}
 
 	@PostMapping("/reportAction")
-	public void reportAction(ReportVO reportVO){
+	public String reportAction(ReportVO reportVO){
+		reportVO.setMemId("hu");//테스트
+		service.insertReport(reportVO);
+		
+		return "redirect:/pettalk/detail?seq="+reportVO.getBoardNo();
 	}
 	
 	
