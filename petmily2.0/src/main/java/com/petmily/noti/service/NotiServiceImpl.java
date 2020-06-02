@@ -17,13 +17,14 @@ public class NotiServiceImpl implements NotiService {
 	private NotiMapper notiMapper;
 
 	@Override
-	public List<NotiVO> listNoti() {
-		// TODO Auto-generated method stub
-		return notiMapper.listNoti();
+	public List<NotiVO> listNoti(NotiVO notiVO) {
+		return notiMapper.listNoti(notiVO);
 	}
 
 	@Override
 	public void insertNoti(NotiVO notiVO) {
+		
+		System.out.println("어디서나는널포이느야");
 		notiMapper.insertNoti(notiVO);
 		
 	}

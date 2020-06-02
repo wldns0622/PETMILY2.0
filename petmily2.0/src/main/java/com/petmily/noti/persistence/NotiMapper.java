@@ -6,7 +6,7 @@ import com.petmily.noti.domain.NotiVO;
 
 public interface NotiMapper {
 
-	public List<NotiVO> listNoti();
+	public List<NotiVO> listNoti(NotiVO notiVO);
 	public void insertNoti(NotiVO notiVO);
 	public void deleteNoti(NotiVO notiVO);
 	

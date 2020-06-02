@@ -1,20 +1,21 @@
 package com.petmily.noti.controller;
 
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.petmily.member.domain.MemberVO;
+import com.petmily.noti.domain.NotiVO;
 import com.petmily.noti.service.NotiService;
-import com.petmily.pettalk.domain.SearchVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RestController
+@Controller
 @Log4j
 @RequestMapping("/noti/*")
 @AllArgsConstructor
@@ -22,14 +23,23 @@ public class NotiController {
 	
 	private NotiService service;
 	
-	@GetMapping("/notilist")
-	public void pettalkList(@SessionAttribute("member")MemberVO vo, @RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
+	@ResponseBody
+	@PostMapping("/notiList")
+	public List<NotiVO> notiList(Model model) {
 
+		NotiVO notiVO = new NotiVO();
+		notiVO.setMemId("skgoddns");
 		
-		service.listNoti();
+		return service.listNoti(notiVO);
 		
+	}
+	
+	@GetMapping("/notiList")
+	public String notiList() {
 		
+		System.out.println("けい焼たけい焼");
 		
+		return "/pettalk/notiList";
 	}
 	
 	

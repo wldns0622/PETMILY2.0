@@ -72,9 +72,10 @@ public class PettalkController {
 	public String insertReply(ReplyVO replyVO){
 		service.insertReply(replyVO);
 		
-		NotiVO noti = new NotiVO();
 		
 		BoardVO boardVO = service.detailBoard(replyVO.getBoardNo());
+		
+		NotiVO noti = new NotiVO();
 		noti.setBoardNo(replyVO.getBoardNo());
 		noti.setAlertCode(2003);
 		noti.setMemId(boardVO.getMemId());

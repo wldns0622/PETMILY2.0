@@ -3,8 +3,6 @@ package com.petmily.pettalk.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.petmily.common.domain.CodeVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.ReplyVO;

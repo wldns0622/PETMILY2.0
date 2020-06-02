@@ -33,6 +33,20 @@
     <!-- Custom styles for this template -->
     <link href="/resources/css/style.css" rel="stylesheet">
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    
+    <style type="text/css">
+    .dropdown-item div{
+    color: black;
+    box-sizing: 
+    }
+    
+    .dropdown-menu .dropdown-item .link-block{
+    background-color: gray;
+    }
+    .landing-page .navbar-default .nav li a strong{
+      color: black;
+    }
+    </style>
 </head>
 
 <body id="page-top" class="landing-page">
@@ -53,10 +67,61 @@
                     <li><a class="nav-link page-scroll" href="#testimonials">Testimonials</a></li>
                     <li><a class="nav-link page-scroll" href="#pricing">Pricing</a></li>
                     <li><a class="nav-link page-scroll" href="#contact">Contact</a></li>
+                    <li><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-bell"></i><span style="position:relative;" class="label label-primary">0</span>
+                    </a><ul style="left: auto;"class="dropdown-menu dropdown-alerts">
+                    </ul></li>
                 </ul>
+                
             </div>
         </div>
     </nav>
 </div>
 
+
+
 <section id="title" style="background-image: url('/resources/img/sansam02.jpg'); background-size: cover; justify-content: center; display: flex; height: auto; min-height: 270px; background-position: center;"></section>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	noTiList();
+	
+})
+
+
+$('.dropdown-toggle').on('click',function(){
+	noTiList();
+})
+
+function noTiList() {
+	$.ajax({
+		url : "/noti/notiList",
+		type : "POST",
+		dataType:"json",
+		success : function(data) {
+			$('.dropdown-alerts').children().remove();
+			
+			for (var i = 0; i < data.length; i++) {
+				if(data[i].memToId == null){
+					data[i].memToId = "(이름없음)"
+				}
+				if(data[i].alertCode == 2001){
+					data[i].msg= "'"+data[i].memToId+"' 님에게 " + data[i].boardNo+"번 게시물이 '좋아요'를 받았습니다."
+				}else if(data[i].alertCode == 2003){
+					data[i].msg= "'"+data[i].memToId+"' 님이 "+data[i].boardNo+"번 게시물에 '댓글'을 달았습니다."
+				}
+			}
+
+			for (var i = 0; i < data.length; i++) {
+				$('.dropdown-alerts').append('<li><a href="mailbox.html" class="dropdown-item"><div><i class="fa fa-envelope fa-fw"></i>'+data[i].msg+'<br><span class="float-right text-muted small">'+data[i].alertCreateDt+'</span></div></a></li>')
+			}
+			$('.dropdown-alerts').append('<br><br><div class="text-center link-block"><a href="/noti/notiList" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">See All Alerts</strong><i class="fa fa-angle-right"></i></a></div>')
+			
+			len = data.length;
+
+			$('.label-primary').text(len);
+		},
+	})
+};
+
+</script>
