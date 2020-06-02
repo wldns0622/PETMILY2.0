@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.petmily.mypet.domain.BreedVO;
 import com.petmily.mypet.domain.PetVO;
 import com.petmily.mypet.persistence.MypetMapper;
 
@@ -22,7 +23,9 @@ public class MypetServiceImpl implements MypetService {
 	@Override
 	public String insertPet(PetVO petVO) {
 		String memId = "c"; //테스트용
-
+		petVO.setMemId("c");
+		petVO.setFileNo(23);
+		
 		int lastPetNo = 0;
 		lastPetNo = mapper.selectLastPetNO(memId);
 		if(lastPetNo != 0){
@@ -51,6 +54,20 @@ public class MypetServiceImpl implements MypetService {
 	public List<PetVO> deletePet(PetVO petVO) {
 		mapper.deletePet(petVO.getPetNo());
 		return mapper.listPetAll(petVO.getMemId());
+	}
+
+	@Override
+	public List<BreedVO> selectBreedByCode(int petSpecies) {
+		
+		return mapper.selectBreedByCode(petSpecies);
+	}
+
+	@Override
+	public List<BreedVO> selectBreedByNM(int petSpecies, String sBreedNm) {
+		BreedVO breedVO = new BreedVO();
+		breedVO.setBreedNm(sBreedNm);
+		breedVO.setCode(petSpecies);
+		return mapper.selectBreedByNM(breedVO);
 	}
 
 }

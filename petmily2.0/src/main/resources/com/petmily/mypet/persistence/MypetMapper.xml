@@ -13,10 +13,10 @@
 		values(pets_tb_seq.nextval,
 		#{memId},
 		#{petNm},
-		TO_DATE(#{petBirth}, 'YYYY-MM-DD'),
+		#{petBirth},
 		#{petSex},
 		#{petSpecies},
-		#{breedVO.breedNo},
+		#{breedNo},
 		null,
 		#{petSt},
 		#{petBasicVaccination},
@@ -52,7 +52,7 @@
 	</select>
 
 	<select id="selectBreedByNM" resultType="com.petmily.mypet.domain.BreedVO">
-		select * from breed_tb where breed_nm like '%'||#{breedNm}||'%' order
+		select * from breed_tb where code = #{code} and breed_nm like '%'||#{breedNm}||'%' order
 		by breed_nm
 	</select>
 
@@ -93,8 +93,8 @@
 		pet_no = #{petNo}
 	</delete>
 
-	<select id="selectLastPetNO" resultType="com.petmily.mypet.domain.PetVO">
-		SELECT MAX(petOdrNo) AS max_odr_no FROM pets_tb where mem_id =
+	<select id="selectLastPetNO" resultType="int">
+		SELECT MAX(pet_odr_no) FROM pets_tb where mem_id =
 		#{memId}
 	</select>
 

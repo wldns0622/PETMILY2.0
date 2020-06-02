@@ -11,7 +11,7 @@ public interface MypetMapper {
 	int selectFileNO(String fileStoredNm);
 	List<BreedVO> selectBreedAll();
 	List<BreedVO> selectBreedByCode(int code);
-	List<BreedVO> selectBreedByNM(String breedNm);
+	List<BreedVO> selectBreedByNM(BreedVO breedVO);
 	List<PetVO> listPetAll(String memId);
 	PetVO selectFileByNO(int fileNo);
 	String selectDate(int petNo);

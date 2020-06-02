@@ -2,6 +2,10 @@ package com.petmily.mypet.controller;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.petmily.mypet.service.MypetService;
@@ -38,12 +45,67 @@ public class MypetControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
+//	@Test
+//	public void list() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypet/list"))
+//				
+//				.andReturn()
+//				.getModelAndView().getModelMap());
+//	}
+	
+//	@Test
+//	public void selectBreed() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypet/petBreedSearch")
+//				.param("petSpecies", "4001"))
+//				.andReturn()
+//				.getModelAndView().getModelMap());
+//		
+//
+//	}
+	
+//	//품종명 검색
+//	@Test
+//	public void selectBreedNm() throws Exception {
+//		String result = mockMvc.perform(MockMvcRequestBuilders.post("/mypet/petBreedName")
+//				.param("petSpecies", "4001")
+//				.param("sBreedNm", "고든"))
+//				.andReturn()
+//				.getModelAndView().getViewName();
+//		
+//		log.info(result);
+//		
+//
+//	}
+//	
+	//펫 등록
 	@Test
-	public void list() throws Exception{
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypet/list"))
-				
+	public void insertBreedNm() throws Exception {
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try {
+			to = fm.parse("2020-06-02");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String result = mockMvc.perform(MockMvcRequestBuilders.post("/mypet/insertPet")
+				.param("memId", "c")
+				.param("petNm", "ㅠㅠ")
+				.param("petBirth", "22/09/2015")
+				.param("petSex", "F")
+				.param("petSpecies", "4001")
+				.param("breedNo", "1")
+				.param("petSt", "함께 있어요")
+				.param("petBasicVaccination", "모름")
+				.param("petNeutral", "N"))
 				.andReturn()
-				.getModelAndView().getModelMap());
+				.getModelAndView().getViewName();
+		
+		log.info(result);
+		
+
 	}
+
 
 }

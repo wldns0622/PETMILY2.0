@@ -1,18 +1,21 @@
 package com.petmily.mypet.domain;
 
-import java.io.Serializable;
 
+import java.io.Serializable;
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class PetVO implements Serializable {
 	private int petNo;
 	private String memId;
 	private String petNm;
-	private String petBirth;
+	private Date petBirth;
 	private char petSex;
 	private int petSpecies;
-	private BreedVO breedVO;
 	private String breedNm;
 	private int breedNo;
 	private int code;
