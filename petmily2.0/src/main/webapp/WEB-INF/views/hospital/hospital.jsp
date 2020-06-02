@@ -69,11 +69,11 @@
 		<div class="hospital-detail">
 			<div class="entry">
 				<!-- <tr>
-					<td class="name"></td>
-					<td class="tel"></td>
-					<td class="address"></td>
-					<td class="roadAddress"></td>
-					<td class="nightCare"></td>
+					<td class="hosptName"></td>
+					<td class="hosptTel"></td>
+					<td class="hosptAddress"></td>
+					<td class="hosptRoadAddress"></td>
+					<td class="hosptBusinessHours"></td>
 				</tr> -->
 			</div>
 		</div>

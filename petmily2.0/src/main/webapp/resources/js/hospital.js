@@ -53,7 +53,7 @@ $(function() {
 				 html += '<td class="hosptRoadAddress">' + hospitals[i].hosptRoadAddress + '</td><br>';
 				 html += '<td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td><br>';
 				 html += '<br>';
-				 html += '<a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '>예약하기</a>';
+				 html += '<a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a>';
 				 html += '</tr>';
 				 html += '<br>';
 				 html += '</div>';
