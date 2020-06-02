@@ -52,26 +52,9 @@
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-<!-- Css Styles -->
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/themify-icons.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/PETMILYPROJECT/assets/css/style.css" type="text/css">
-
 </head>
 
 <body>
-	<%-- ${ requestScope.hospitals } --%>
-	<%--     <input id="result" type="hidden" value="${ requestScope.hospitals }"> --%>
-	<header>
-		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
-	</header>
 	<div>
 		<div class="hospital-search">
 			<div>
@@ -96,18 +79,5 @@
 		</div>
 
 	</div>
-	<footer>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
-	</footer>
-	<!-- Js Plugins -->
-	<script src="/PETMILYPROJECT/assets/js/bootstrap.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery-ui.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery.countdown.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery.nice-select.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery.zoom.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery.dd.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/jquery.slicknav.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/owl.carousel.min.js"></script>
-	<script src="/PETMILYPROJECT/assets/js/main.js"></script>
 </body>
 </html>

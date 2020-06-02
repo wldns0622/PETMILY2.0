@@ -11,18 +11,19 @@ import com.petmily.hospital.domain.HospitalVO;
 import com.petmily.hospital.service.HospitalService;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@RestController
+@RestController //@RestController = @Controller + @ResponseBody
 @RequestMapping("/hospital/*")
 @AllArgsConstructor
-@ResponseBody
+@NoArgsConstructor
 public class HospitalRestController {
 
 	private HospitalService hospitalService;
 	
 	@GetMapping("/hospitalInfos")
 	public List<HospitalVO> hospitalInfos() {
-		
+		System.out.println("여기까지 왔음");
 		List<HospitalVO> hospital = hospitalService.hospitalInfos();
 		
 		return hospital;
