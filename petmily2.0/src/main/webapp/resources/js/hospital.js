@@ -47,13 +47,13 @@ $(function() {
 			kakao.maps.event.addListener(marker, 'click', function() {
 				 var html = '<div class="entry">';
 				 html += '<tr>';
-				 html += '<td class="name">' + hospitals[i].name + '</td><br>';
-				 html += '<td class="tel">' + hospitals[i].tel + '</td><br>';
-				 html += '<td class="address">' + hospitals[i].address + '</td><br>';
-				 html += '<td class="roadAddress">' + hospitals[i].roadAddress + '</td><br>';
-				 html += '<td class="nightCare">'+'진료 시간 : ' + hospitals[i].nightCare + '</td><br>';
+				 html += '<td class="hosptName">' + hospitals[i].hosptName + '</td><br>';
+				 html += '<td class="hosptTel">' + hospitals[i].hosptTel + '</td><br>';
+				 html += '<td class="hosptAddress">' + hospitals[i].hosptAddress + '</td><br>';
+				 html += '<td class="hosptRoadAddress">' + hospitals[i].hosptRoadAddress + '</td><br>';
+				 html += '<td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td><br>';
 				 html += '<br>';
-				 html += '<a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].no + '"><' + hospitals[i].name + '>예약하기</a>';
+				 html += '<a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '>예약하기</a>';
 				 html += '</tr>';
 				 html += '<br>';
 				 html += '</div>';
@@ -82,15 +82,15 @@ $(function() {
 		type : 'get',
 		dataType: "json",
 		success : function(data) {
-			console.log("data" + data)
+			//console.log("data" + data)
 			//위에 선언된 hospitals배열에 받아온 데이터를 넣기 (데이터는 쿼리문을 날려 읽어온 병원 정보들)
 			hospitals = data;
-			
+			console.log(hospitals[0])
 			// hospitals크기만큼 배열을 돌려서 positions라는 배열에 hospitals에 있는이름과 x,y값만 넣기
 			for (var i = 0; i < hospitals.length; i++) {
 				positions.push({
-					title : hospitals[i].name,
-					latlng : new kakao.maps.LatLng(hospitals[i].y, hospitals[i].x)
+					title : hospitals[i].hosptName,
+					latlng : new kakao.maps.LatLng(hospitals[i].hosptY, hospitals[i].hosptX)
 				})
 			}
 			hospitalMarkers();
