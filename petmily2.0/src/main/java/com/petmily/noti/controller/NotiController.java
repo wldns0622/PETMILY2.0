@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.petmily.member.domain.MemberVO;
+import com.petmily.noti.service.NotiService;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.CompareNameDesc;
 import com.petmily.pettalk.domain.SearchVO;
@@ -19,25 +23,19 @@ import com.petmily.pettalk.service.PettalkService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Controller
+@RestController
 @Log4j
 @RequestMapping("/noti/*")
 @AllArgsConstructor
 public class NotiController {
 	
-	private PettalkService service;
+	private NotiService service;
 	
-	@GetMapping("/list")
-	public void pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
+	@GetMapping("/notilist")
+	public void pettalkList(@SessionAttribute("member")MemberVO vo, @RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
+
 		
-		searchVO.setCodeSelect(code);
-		
-		model.addAttribute("list", service.listBoard(searchVO));
-		List<BoardVO> sortList = service.listBoard(searchVO);
-		Collections.sort(sortList, new CompareNameDesc());
-		model.addAttribute("sortList", sortList);
-		model.addAttribute("codeList", service.listPettalkCode());
-	
+		service.listNoti();
 		
 		
 		
