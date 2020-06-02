@@ -37,6 +37,7 @@
 	</bean>
 	
 	
+	 	<mybatis-spring:scan base-package="com.petmily.noti.persistence" />
 	 	<mybatis-spring:scan base-package="com.petmily.pettalk.persistence" />
 	
 	<!-- yu -->
