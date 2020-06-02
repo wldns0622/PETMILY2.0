@@ -78,9 +78,11 @@ $(function() {
 
 	//페이지가 실행되면 병원 정보를 읽어오는 ajax
 	$.ajax({
-		url : '/PETMILYPROJECT/hospital/hospitalInfo.go',
+		url : '/hospital/hospitalInfos',
 		type : 'get',
+		dataType: "json",
 		success : function(data) {
+			console.log("data" + data)
 			//위에 선언된 hospitals배열에 받아온 데이터를 넣기 (데이터는 쿼리문을 날려 읽어온 병원 정보들)
 			hospitals = data;
 			
@@ -92,7 +94,11 @@ $(function() {
 				})
 			}
 			hospitalMarkers();
+		},
+		error:function(request,status,error) {
+			 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
+		   
 	});
 
 });
