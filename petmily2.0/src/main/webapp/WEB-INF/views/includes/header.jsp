@@ -65,7 +65,7 @@
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
                     <li><a class="nav-link page-scroll" href="#team">Team</a></li>
                     <li><a class="nav-link page-scroll" href="#testimonials">Testimonials</a></li>
-                    <li><a class="nav-link page-scroll" href="#pricing">Pricing</a></li>
+                    <li><a class="nav-link page-scroll" href="/pettalk/list">펫 톡</a></li>
                     <li><a class="nav-link page-scroll" href="#contact">Contact</a></li>
                     <li><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-bell"></i><span style="position:relative;" class="label label-primary">0</span>

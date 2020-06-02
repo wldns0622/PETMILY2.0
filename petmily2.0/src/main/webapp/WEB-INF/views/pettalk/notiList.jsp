@@ -36,7 +36,6 @@ body, input, textarea, select, button, table {
 	color: #4e5263;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-
 }
 
 .bestIcon { -
@@ -59,106 +58,122 @@ body, input, textarea, select, button, table {
 </style>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
 
-	<div id="content" class="container">
-		<div id="content-body" class="col-12 product-shop">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div>
-							<table class="table border-bottom">
-								<thead>
-									<tr>
-										<th scope="col">알람번호</th>
-										<th scope="col">보낸사람</th>
-										<th scope="col">메시지</th>
-										<th scope="col">받는사람</th>
-										<th scope="col">발생일자</th>
-										<th scope="col">읽음처리</th>
-									</tr>
-								</thead>
-								<tbody class="notiList">
-								</tbody>
-							</table>
-						<div style="text-align :right;">
-							<button id="removeAll" class="btn btn-outline-secondary">모두읽음</button>
-						</div>
-
-						</div>
-
-					</div>
+<div id="content" class="container">
+		<div class="row">
+	<div id="content-body"class="col-12 wrapper wrapper-content animated fadeInRight">
+				<div class="i-box border m-lg ">
+				<div class="ibox-title">
+				<h1>알림 목록</h1>
 				</div>
+				<div class="ibox-content">
+					<table class="table border-bottom">
+						<thead>
+							<tr>
+								<th scope="col">알람번호</th>
+								<th scope="col">보낸사람</th>
+								<th scope="col">메시지</th>
+								<th scope="col">받는사람</th>
+								<th scope="col">발생일자</th>
+								<th scope="col">읽음처리</th>
+							</tr>
+						</thead>
+						<tbody class="notiList">
+						</tbody>
+					</table>
+					<div style="text-align: right;">
+						<button id="removeAll" class="btn btn-outline-secondary">모두읽음</button>
+					</div>
+
+				</div>
+			
 			</div>
+
 		</div>
 	</div>
-	<footer>
+</div>
+<footer> </footer>
+<!-- Js Plugins -->
 
-	</footer>
-	<!-- Js Plugins -->
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		notiadmin()
-	 });
+	});
 
-
-	$(document).on("click","#removeAll",function() {
+	$(document).on("click", "#removeAll", function() {
 		$.ajax({
-    		url : "/PETMILYPROJECT/comunity/NotiDelete.do",
-    		type : "POST",
-    		dataType:"json",
-    		success : function() {
-    			location.reload()
-    		},
-    	     complete : function() {
-    			location.reload()
-	        }
-    	})
+			url : "/PETMILYPROJECT/comunity/NotiDelete.do",
+			type : "POST",
+			dataType : "json",
+			success : function() {
+				location.reload()
+			},
+			complete : function() {
+				location.reload()
+			}
+		})
 
-	 });
+	});
 
-
-	$(document).on("click","#remove",function() {
+	$(document).on("click", "#remove", function() {
 		var seq = $(this).parent().parent().parent().find('#seq').text();
 		$.ajax({
-    		url : "/PETMILYPROJECT/comunity/NotiDelete.do",
-    		type : "POST",
-    		data : {"alertNo": seq},
-    		dataType:"json",
-    		success : function() {
-    			location.reload()
-    		},
-    	     complete : function() {
-    			location.reload()
-	        }
-    	})
+			url : "/PETMILYPROJECT/comunity/NotiDelete.do",
+			type : "POST",
+			data : {
+				"alertNo" : seq
+			},
+			dataType : "json",
+			success : function() {
+				location.reload()
+			},
+			complete : function() {
+				location.reload()
+			}
+		})
 
-	 });
+	});
 
-	  function notiadmin() {
+	function notiadmin() {
 
-	    	$.ajax({
-	    		url :  "/noti/notiList",
-	    		type : "POST",
-	    		dataType:"json",
-	    		success : function(data) {
-	    			for (var i = 0; i < data.length; i++) {
-	    				if(data[i].alertCode == 2001){
-	    					data[i].msg= data[i].boardNo+"번 게시물이 '좋아요'를 받았습니다."
-	    				}else if(data[i].alertCode == 2003){
-	    					data[i].msg=data[i].boardNo+"번 게시물에 '댓글'이 달렸습니다."
-	    				}
-	    			}
+		$
+				.ajax({
+					url : "/noti/notiList",
+					type : "POST",
+					dataType : "json",
+					success : function(data) {
+						for (var i = 0; i < data.length; i++) {
+							if (data[i].alertCode == 2001) {
+								data[i].msg = data[i].boardNo
+										+ "번 게시물이 '좋아요'를 받았습니다."
+							} else if (data[i].alertCode == 2003) {
+								data[i].msg = data[i].boardNo
+										+ "번 게시물에 '댓글'이 달렸습니다."
+							}
+						}
 
-	    			for (var i = 0; i < data.length; i++) {
-	    				$('.notiList').append('<tr><td id="seq">'+data[i].alertNo+'</td><td>'+data[i].memToId+'</td><td>'+data[i].msg+'</td><td>'+data[i].memId+'</td><td>'+data[i].alertCreateDt+'</td>'+"<td><span><svg id='remove' class='bi bi-x-square-fill' width='2em' height='2em' viewBox='0 0 16 16' fill='#ff5a5c' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z' clip-rule='evenodd'/></svg></span></td></tr>")
-	    			}
-	    			var len = data.length;
+						for (var i = 0; i < data.length; i++) {
+							$('.notiList')
+									.append(
+											'<tr><td id="seq">'
+													+ data[i].alertNo
+													+ '</td><td>'
+													+ data[i].memToId
+													+ '</td><td>'
+													+ data[i].msg
+													+ '</td><td>'
+													+ data[i].memId
+													+ '</td><td>'
+													+ data[i].alertCreateDt
+													+ '</td>'
+													+ "<td><span><svg id='remove' class='bi bi-x-square-fill' width='2em' height='2em' viewBox='0 0 16 16' fill='#ff5a5c' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z' clip-rule='evenodd'/></svg></span></td></tr>")
+						}
+						var len = data.length;
 
-	    		}
-	    	})
-	    };
-    </script>
+					}
+				})
+	};
+</script>
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
 
 </html>
