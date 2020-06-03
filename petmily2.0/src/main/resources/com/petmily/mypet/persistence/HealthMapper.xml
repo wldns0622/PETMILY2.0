@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.petmily.mypet.persistence.HealthMapper"> <!-- namespace 중요 , 정해진 이름은 없음 자기가 지으면 됨-->
+	<!-- 인터페이스의 패키지명 kosta.mapper, 인터페이스명 BoardMapper -->
+	<cache />
+
+	<select id="selectAllPet" resultType="PetVO" parameterType="String">
+		select * from pets_tb where mem_id = #{mem_id} order by pet_odr_no
+	</select>
+	<select id="selectAllWeight" resultType="HealthVO" parameterType="int"> 
+		select * from HEALTH_RECORDS_TB where pet_no = #{pet_no} order by health_record_dt
+	</select>
+	
+	<select id="countData" resultType="int" parameterType="HealthVO">
+		select count(*) from HEALTH_RECORDS_TB where pet_no = #{pet_no} and health_record_dt = TO_DATE(#{health_record_dt}, 'YYYY-MM-DD')
+	</select>
+	<insert id="insertData" parameterType="HealthVO">
+		insert into HEALTH_RECORDS_TB(HEALTH_RECORDS_NO,PET_NO,MEM_ID,HEALTH_RECORD_DT)
+					values(HEALTH_RECORDS_TB_SEQ.nextval,							
+							#{pet_no},
+							#{mem_id},
+							TO_DATE(#{health_record_dt}, 'YYYY-MM-DD')
+							
+							)
+	</insert>
+	<update id="updateAll" parameterType="HealthVO">
+		update HEALTH_RECORDS_TB set walking = #{walking},
+									 bath = #{bath},
+									 rapport = #{rapport},
+									 brush_teeth = #{brush_teeth},
+									 urine_color = #{urine_color},
+									 stool_color = #{stool_color},
+									 stool_pattern = #{stool_pattern},
+									 health_memo = #{health_memo},
+									 weight = #{weight}
+									 where pet_no = #{pet_no} and health_record_dt = TO_DATE(#{health_record_dt}, 'YYYY-MM-DD')
+	</update>
+	<select id="selectAllData" resultType="HealthVO" parameterType="HealthVO">
+		select * from HEALTH_RECORDS_TB where pet_no = #{pet_no} and health_record_dt = TO_DATE(#{health_record_dt}, 'YYYY-MM-DD')
+	</select>
+	
+	<select id="selectHosptTmt" resultType="HosptMedVO" parameterType="HealthVO">
+		select * from HOSPT_MED_RECORDS_TB r join HOSPITAL_TB h on r.HOSPT_NO = h.HOSPT_NO where pet_no = #{pet_no}
+	</select>
+	
+	<select id="countTmt" resultType="int" parameterType="MemMedVO">
+		select count(*) from MEM_MED_RECORDS_TB where pet_no = #{pet_no} and MEM_TMT_DT = TO_DATE(#{mem_tmt_dt}, 'YYYY-MM-DD')
+	</select>
+	<insert id="insertTmt" parameterType="MemMedVO">
+		insert into MEM_MED_RECORDS_TB(MEM_MED_RECORD_NO,PET_NO,MEM_ID,MEM_TMT_DT)
+					values(MEM_MED_RECORDS_TB_SEQ.nextval,							
+							#{pet_no},
+							#{mem_id},
+							TO_DATE(#{mem_tmt_dt}, 'YYYY-MM-DD')
+							
+							)
+	</insert>
+	<update id="updateTmt" parameterType="MemMedVO">
+		update MEM_MED_RECORDS_TB set MEM_TMT_SORT = #{mem_tmt_sort},
+									 MEM_TMT_CONTENTS = #{mem_tmt_contents}
+									 where pet_no = #{pet_no} and mem_tmt_dt = TO_DATE(#{mem_tmt_dt}, 'YYYY-MM-DD')
+	</update>
+	<select id="selectTmt" resultType="MemMedVO" parameterType="MemMedVO">
+		select * from MEM_MED_RECORDS_TB where pet_no = #{pet_no} and MEM_TMT_DT = TO_DATE(#{mem_tmt_dt}, 'YYYY-MM-DD')
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
