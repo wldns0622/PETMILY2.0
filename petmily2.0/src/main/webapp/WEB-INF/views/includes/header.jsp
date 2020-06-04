@@ -120,6 +120,12 @@ function noTiList() {
 			$('.dropdown-alerts').append('<br><br><div class="text-center link-block"><a href="/noti/notiList" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">See All Alerts</strong><i class="fa fa-angle-right"></i></a></div>')
 			
 			len = data.length;
+			
+			if(len=='0'){
+				
+				$('.dropdown-alerts').append('<div class="text-center link-block"><strong style="color:white">알림이 없습니다.</strong><i class="fa fa-angle-right"></i></div>')
+				
+			}
 
 			$('.label-primary').text(len);
 		},
