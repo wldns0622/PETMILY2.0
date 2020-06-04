@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+     <link rel="shortcut icon" href="data:image/x-icon;" type="image/x-icon">
     <!-- Add Your favicon here -->
     <!--<link rel="icon" href="img/favicon.ico">-->
 
@@ -99,7 +99,9 @@ function noTiList() {
 		type : "POST",
 		dataType:"json",
 		success : function(data) {
+			
 			$('.dropdown-alerts').children().remove();
+			
 			
 			for (var i = 0; i < data.length; i++) {
 				if(data[i].memToId == null){
@@ -113,7 +115,7 @@ function noTiList() {
 			}
 
 			for (var i = 0; i < data.length; i++) {
-				$('.dropdown-alerts').append('<li><a href="mailbox.html" class="dropdown-item"><div><i class="fa fa-envelope fa-fw"></i>'+data[i].msg+'<br><span class="float-right text-muted small">'+data[i].alertCreateDt+'</span></div></a></li>')
+				$('.dropdown-alerts').append('<li><a href="/pettalk/detail?seq='+ data[i].boardNo +'" class="dropdown-item"><div><i class="fa fa-envelope fa-fw"></i>'+data[i].msg+'<br><span class="float-right text-muted small">'+data[i].alertCreateDt+'</span></div></a></li>')
 			}
 			$('.dropdown-alerts').append('<br><br><div class="text-center link-block"><a href="/noti/notiList" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">See All Alerts</strong><i class="fa fa-angle-right"></i></a></div>')
 			
@@ -121,6 +123,13 @@ function noTiList() {
 
 			$('.label-primary').text(len);
 		},
+		error : function(){
+			//세션이 없을때
+			
+			$('.dropdown-alerts').children().remove();
+			$('.dropdown-alerts').append('<div class="text-center link-block"><a href="/member/login" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">로그인 해주세요.</strong><i class="fa fa-angle-right"></i></a></div>')
+			
+		}
 	})
 };
 

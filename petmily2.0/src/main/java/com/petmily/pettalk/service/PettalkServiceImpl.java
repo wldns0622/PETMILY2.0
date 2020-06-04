@@ -43,7 +43,13 @@ public class PettalkServiceImpl implements PettalkService {
 
 	@Override
 	public BoardVO detailBoard(int seq) {
-		return pettalkMapper.detailBoard(seq);
+		
+		BoardVO board = pettalkMapper.detailBoard(seq);
+		
+		board.setBoardHitcount(board.getBoardHitcount() +1);
+		pettalkMapper.updateHitCnt(board);
+		
+		return board;
 	}
 	@Override
 	public List<ReplyVO> listReply(int seq) {

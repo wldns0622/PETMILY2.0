@@ -50,7 +50,6 @@
     </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="/resources/js/jquery-2.1.1.js"></script>
 <script src="/resources/js/pace.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/classie.js"></script>

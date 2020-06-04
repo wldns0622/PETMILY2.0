@@ -22,6 +22,7 @@ public interface PettalkMapper {
 	public List<ReplyVO> listReply(int seq);
 	public void insertReply(ReplyVO replyVO);
 	public void insertReport(ReportVO reportVO);
+	public void updateHitCnt(BoardVO board);
 	
 	
 	/*

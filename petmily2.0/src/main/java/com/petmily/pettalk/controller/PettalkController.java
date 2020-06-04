@@ -4,13 +4,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.junit.runner.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.petmily.member.domain.MemberVO;
 import com.petmily.noti.domain.NotiVO;
 import com.petmily.noti.service.NotiService;
 import com.petmily.pettalk.domain.BoardVO;
@@ -32,8 +41,10 @@ public class PettalkController {
 	private NotiService notiService;
 	private PettalkService service;
 	@GetMapping("/list")
-	public void pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
+	public String pettalkList(@RequestParam(value="selectSorting",required=false)String code,Model model, SearchVO searchVO) {
 		
+		
+
 		searchVO.setCodeSelect(code);
 		
 		model.addAttribute("list", service.listBoard(searchVO));
@@ -42,7 +53,7 @@ public class PettalkController {
 		model.addAttribute("sortList", sortList);
 		model.addAttribute("codeList", service.listPettalkCode());
 		
-		
+		return "/pettalk/list";
 		
 	}
 	
@@ -62,16 +73,23 @@ public class PettalkController {
 	}
 	
 	@GetMapping("/detail")
-	public void pettalkDetail(@RequestParam("seq")int seq, Model model) {
-		System.out.println( service.detailBoard(seq));
+	public void pettalkDetail(@RequestParam("seq")int seq, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO loginMember = (MemberVO)session.getAttribute("member");
+		
+		model.addAttribute("loginMember",loginMember);
 		model.addAttribute("board", service.detailBoard(seq));
 		model.addAttribute("replys", service.listReply(seq));
 	}
 	
 	@PostMapping("/insertReply")
-	public String insertReply(ReplyVO replyVO){
+	public String insertReply(ReplyVO replyVO,HttpServletRequest request){
 		service.insertReply(replyVO);
 		
+		HttpSession session = request.getSession();
+		
+		
+		MemberVO loginMember = (MemberVO)session.getAttribute("member");
 		
 		BoardVO boardVO = service.detailBoard(replyVO.getBoardNo());
 		
@@ -79,7 +97,7 @@ public class PettalkController {
 		noti.setBoardNo(replyVO.getBoardNo());
 		noti.setAlertCode(2003);
 		noti.setMemId(boardVO.getMemId());
-		noti.setMemToId("АєЗаїо");
+		noti.setMemToId(loginMember.getName());
 		notiService.insertNoti(noti);
 		
 		return "redirect:/pettalk/detail?seq="+replyVO.getBoardNo();

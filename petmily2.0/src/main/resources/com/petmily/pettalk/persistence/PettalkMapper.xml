@@ -120,5 +120,14 @@
 	<insert id="insertReport" parameterType="com.petmily.pettalk.domain.ReportVO">
 		INSERT INTO REPORT_TB VALUES (#{boardNo},REPORT_SEQ.nextval,#{memId},#{rptContents},sysdate)
 	</insert>
+	
+	   <update id="updateHitCnt" parameterType="com.petmily.pettalk.domain.BoardVO">
+
+    		update board_community_tb SET BOARD_HITCOUNT = #{boardHitcount} WHERE BOARD_NO=#{boardNo}
+
+	</update>
+
+
+
 
 </mapper>

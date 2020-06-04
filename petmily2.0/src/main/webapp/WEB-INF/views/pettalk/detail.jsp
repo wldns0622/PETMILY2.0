@@ -1,12 +1,14 @@
+<%@page import="com.petmily.member.domain.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String code = request.getParameter("selectSorting");
 	request.setAttribute("selectCd", code);
+	
 %>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
-	<div id="content" class="container ">
+	<div id="content" class="container animated fadeInRight">
 		<div id="content-body" class="col-12 ibox border m-t-xl">
 			<div class="content-inner ibox-content">
 				<div class="card col">
@@ -32,10 +34,20 @@
 						<input type="hidden" name="writerNm" value="${member.name}">
 						<input type="hidden" name="writerId" value="${member.id}">
 						<div class="card-body row">
-							<textarea class="form-control col-lg-11" name="replyContent"
+						
+							<c:choose>
+								<c:when test="${!empty loginMember}">
+								<textarea class="form-control col-lg-11" name="replyContent"
 								placeholder="댓글을 입력해주세요." id="exampleFormControlTextarea1"
 								rows="1"></textarea>
 							<input class="btn btn-dark col-lg-1" type="submit" value="등록">
+								</c:when>
+								<c:when test="${empty loginMember}">
+								<textarea class="form-control col-lg-11" name="replyContent"
+								placeholder="로그인이 필요합니다." readonly="readonly" id="exampleFormControlTextarea1"
+								rows="1"></textarea>
+								</c:when>
+							</c:choose>
 						</div>
 					</form>
 				</div>
