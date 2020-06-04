@@ -1,23 +1,17 @@
 package com.petmily.pettalk.controller;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.junit.runner.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.petmily.member.domain.MemberVO;
 import com.petmily.noti.domain.NotiVO;
@@ -105,7 +99,7 @@ public class PettalkController {
 
 	@PostMapping("/reportAction")
 	public String reportAction(ReportVO reportVO){
-		reportVO.setMemId("hu");//�׽�Ʈ
+		reportVO.setMemId("hu");//�׽�Ʈ
 		service.insertReport(reportVO);
 		
 		return "redirect:/pettalk/detail?seq="+reportVO.getBoardNo();
