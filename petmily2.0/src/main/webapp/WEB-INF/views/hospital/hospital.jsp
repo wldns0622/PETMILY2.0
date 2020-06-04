@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="description" content="Fashi Template">
-<meta name="keywords" content="Fashi, unica, creative, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<%@include file="/WEB-INF/views/includes/header.jsp"%>
+
 <title>Hospital Information</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="jquery.js" type="text/javascript"></script>
@@ -17,37 +11,70 @@
 <style type="text/css">
 	* {
 		font-family: 함초롬돋움;
+		margin : 0px;
+		padding : 0px;
+		box-sizing: border-box;
+	}
+
+	.search {
+		
 	}
 	
-	.map-location {
-		margin: 150px 50px 200px 200px;
-		display: inline-block;
+	.searchbox-hospital {
+		margin-left: 200px;
+		text-align: center;
+		width: 300px;
 	}
 	
 	#map {
-		 width: 800px; 
-		 height: 600px;
+		 width: 700px; 
+		 height: 500px;
 	}
 	.hospital-search h2 {
-		margin: 150px 50px 0px 200px;
 		text-align: center;
 		font-family: 함초롬돋움;
 	}
 	
 	.hospital-detail  {
 		display: inline-block;
-		
 	}
 	
-	.entry {
-		margin: -600px 0px 5px 0px;
-		position: absolute;
+	.ibox-title {
+		padding: 15px 90px 15px 80px;
 	}
 	
-	.entry name {
-		font-size: 25px;
+	.map-wrap {
+		padding: 10px 10px 0px 5px;
+	}
+	
+	.map-search {
+		padding: 10px 0px 10px 0px;
+	}
+	
+	.hospital-select-search {
+		padding: 10px 0px;
+	}
+	
+	.select-search {
+		padding-right: 15px;
+	}
+	
+	.detail-info {
+		padding-top: 60px;
+		font-size: 15px;
+	}
+	
+	.hosptName { 
+		font-size: 20px;
 		font-weight: bold;
+		color: #353535;
+		padding-bottom: 20px;
 	}
+	
+	.hosptBusinessHours { 
+		padding: 0px 0px 20px 0px;
+	}
+	
 </style>
 
 <!-- Google Font -->
@@ -55,29 +82,61 @@
 </head>
 
 <body>
-	<div>
-		<div class="hospital-search">
+	<div class="content container">
+		<div class="wrapper wrapper-content animated fadeInRight">
 			<div>
-				<h2>병원 찾기</h2>
+				<div class="ibox">
+					<div class="ibox-title">
+						<h1 style="text-align: center;">병원 찾기</h1>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-sm-8 b-r map-wrap">
+								<div class="hospital-map-wrap">
+									<div class="hospital-search">
+									</div>
+
+									<div class="map-location">
+										<div class="col-lg-9 input-group map-search" style="text-align: center;" class="#searchbox-hospital">
+											<input class="col-lg-10 .h-300" type="text" class="form-control" placeholder="검색할 병원의 이름을 입력하세요!"> 
+											<span class="input-group-btn">
+												<button class="btn btn-secondary" type="button">찾기</button>
+											</span>
+										</div>
+
+										<div id="map"></div>
+										<div class="hospital-select-search">
+											<input type="checkbox" id="age10" name="age" value="10" onchange="makeFilter(this);"> 
+												<label class="select-search" for="age10">진료시간</label>
+											</input>
+											<input type="checkbox" id="age20" name="age" value="20" onchange="makeFilter(this);">
+												<label for="age20">운영일</label>
+											</input>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="col-sm-4 detail-info">
+								<div id="create-detail-table">
+									
+								</div>
+										<!-- <tr>
+											<td class="hosptName"></td>
+											<td class="hosptTel"></td>
+											<td class="hosptAddress"></td>
+											<td class="hosptRoadAddress"></td>
+											<td class="hosptBusinessHours"></td>
+										</tr> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-
-		<div class="map-location">
-			<div id="map"></div>
-
-		</div>
-		<div class="hospital-detail">
-			<div class="entry">
-				<!-- <tr>
-					<td class="hosptName"></td>
-					<td class="hosptTel"></td>
-					<td class="hosptAddress"></td>
-					<td class="hosptRoadAddress"></td>
-					<td class="hosptBusinessHours"></td>
-				</tr> -->
-			</div>
-		</div>
-
-	</div>
+	
+	
 </body>
+<%@include file="/WEB-INF/views/includes/footer.jsp"%>
 </html>

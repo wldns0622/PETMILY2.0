@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @RestController //@RestController = @Controller + @ResponseBody
-/*@RequestMapping("/hospital/*")*/
+@RequestMapping("/hospitalRest/*")
 /*@AllArgsConstructor
 @NoArgsConstructor*/
 public class HospitalRestController {
@@ -40,11 +40,7 @@ public class HospitalRestController {
 		  return hospital;
 	   }
 	 */
+
 	
-	@GetMapping("/hospitalSignUp")
-	public String hospitalSignUp() {
-		
-		return "/login/hospitalSignUp";
-	}
 	
 }

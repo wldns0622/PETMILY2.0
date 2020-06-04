@@ -52,10 +52,11 @@ public class MemberController {
 		 return "redirect:/member/login";
 	}
 	
-	
 	@GetMapping("/hospitalSignUp")
 	public String hospitalSignUp() {
 		
 		return "/login/hospitalSignUp";
 	}
+	
+	
 }

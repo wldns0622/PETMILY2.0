@@ -45,19 +45,18 @@ $(function() {
 			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
 			kakao.maps.event.addListener(marker, 'click', function() {
-				 var html = '<div class="entry">';
-				 html += '<tr>';
-				 html += '<td class="hosptName">' + hospitals[i].hosptName + '</td><br>';
-				 html += '<td class="hosptTel">' + hospitals[i].hosptTel + '</td><br>';
-				 html += '<td class="hosptAddress">' + hospitals[i].hosptAddress + '</td><br>';
-				 html += '<td class="hosptRoadAddress">' + hospitals[i].hosptRoadAddress + '</td><br>';
-				 html += '<td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td><br>';
-				 html += '<br>';
-				 html += '<a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a>';
-				 html += '</tr>';
-				 html += '<br>';
-				 html += '</div>';
-				 $('.hospital-detail').html(html);
+				var html = '';
+				html += '<table class="hospital-detail">';
+				html += '<tbody class="entry">';
+				html += '<tr><td class="hosptName">' + hospitals[i].hosptName + '</td></tr>';
+				html += '<tr><td class="hosptTel">' + '전화번호 : ' + hospitals[i].hosptTel + '</td></tr>';
+				html += '<tr><td class="hosptAddress">' + '주소 : '  + hospitals[i].hosptAddress + '</td></tr>';
+				html += '<tr><td class="hosptRoadAddress">' + '도로명주소 : '  + hospitals[i].hosptRoadAddress + '</td></tr>';
+				html += '<tr><td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td></tr>';
+				html += '<tr><td><a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a></td></tr>';
+				html += '</tbody>';
+				html += '</table>';
+				$('#create-detail-table').html(html);
 		});
 								
 		}//반복문 끝
@@ -78,7 +77,7 @@ $(function() {
 
 	//페이지가 실행되면 병원 정보를 읽어오는 ajax
 	$.ajax({
-		url : '/hospital/hospitalInfos',
+		url : '/hospitalRest/hospitalInfos',
 		type : 'get',
 		dataType: "json",
 		success : function(data) {
