@@ -22,10 +22,15 @@
 		#{petBasicVaccination},
 		#{petNeutral},
 		#{fileNo},
-		#{petOdrNo}
+		#{petOdrNo},
+		sysdate
 		)
 	</insert>
 
+	<select id="selectPetByNo" resultType="com.petmily.mypet.domain.PetVO">
+		select * from pets_tb p join breed_tb b on p.breed_no = b.breed_no where pet_no = #{petNo} and mem_id = #{memId}
+	</select>
+	
 	<insert id="insertFile">
 		insert into file_tb
 		values(file_no_seq.nextval,
@@ -88,7 +93,7 @@
 		where file_no = #{fileNo}
 	</update>
 
-	<delete id="deletePet" parameterType="int">
+	<delete id="deletePet">
 		delete from pets_tb where
 		pet_no = #{petNo}
 	</delete>

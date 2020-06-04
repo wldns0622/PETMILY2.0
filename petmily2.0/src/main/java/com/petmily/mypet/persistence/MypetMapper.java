@@ -7,6 +7,7 @@ import com.petmily.mypet.domain.PetVO;
 
 public interface MypetMapper {
 	int insertPet(PetVO petVO);
+	PetVO selectPetByNo(PetVO petVO);
 	int insertFile(PetVO petVO);
 	int selectFileNO(String fileStoredNm);
 	List<BreedVO> selectBreedAll();

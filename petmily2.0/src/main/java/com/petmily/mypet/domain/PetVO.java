@@ -27,6 +27,6 @@ public class PetVO implements Serializable {
 	private String fileOriginalNm;
 	private String fileStoredNm;
 	private int petOdrNo;
-	
+	private Date petRegdt;
 	
 }

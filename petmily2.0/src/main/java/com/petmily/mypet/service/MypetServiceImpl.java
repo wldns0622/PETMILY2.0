@@ -70,4 +70,10 @@ public class MypetServiceImpl implements MypetService {
 		return mapper.selectBreedByNM(breedVO);
 	}
 
+	@Override
+	public PetVO selectPetByNo(PetVO petVO) {
+		
+		return mapper.selectPetByNo(petVO);
+	}
+
 }

@@ -1,12 +1,16 @@
 package com.petmily.mypet.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +30,12 @@ public class MypetController {
 
 	private MypetService service;
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, false));
+	}
+	
 	@GetMapping("/list")
 	public void list(Model model) {
 		String memId = "c"; // 테스트용
@@ -65,7 +75,7 @@ public class MypetController {
 	}
 	
 	@PostMapping("/deletePet")
-	public String deletePet(RedirectAttributes rttr, int petNo) {
+	public String deletePet(RedirectAttributes rttr, @RequestParam("petNo") int petNo) {
 
 		String memId = "c"; //테스트 코드
 		log.info("Delete Pet: " + petNo);
@@ -76,11 +86,7 @@ public class MypetController {
 		service.deletePet(petVO);
 		rttr.addFlashAttribute("result", memId);
 
-		return "redirect:/board/list";
+		return "redirect:/mypet/list";
 	}
 
-	@GetMapping("/health")
-	public void health(Model model) {
-		log.info("health");
-	}
 }

@@ -173,82 +173,77 @@
 			<!-- Pet detail Start -->
 			<c:forEach items="${petList }" var="pet">
 				<div class="col-lg-3">
+				<a href="/health/home?petNo=<c:out value="${pet.petNo}"/>">	
 					<div class="widget-head-color-box navy-bg p-lg text-center">
-						<div class="m-b-md">
-							<h2 class="font-bold no-margins">
-								<c:out value="${pet.petNm }" />
-							</h2>
-							<small><fmt:formatDate pattern="yyyy / MM / dd"
-									value="${pet.petBirth }" /> </small>
-						</div>
-						<img src="/resources/img/mypet/cute_bori.jpg"
-							class="rounded-circle circle-border m-b-md" alt="profile">
-						<div>
-							<span><c:out value="${pet.breedNm }" /></span> | <span><c:choose>
-
-									<c:when test="${pet.code eq 4001}">강아지</c:when>
-
-									<c:when test="${pet.code eq 4002}">고양이</c:when>
-
-								</c:choose> </span> | <span><c:choose>
-
-									<c:when test="${pet.petSex eq 'F'.charAt(0)}">여아</c:when>
-
-									<c:when test="${pet.petSex ne 'M'.charAt(0)}">남아</c:when>
-
-								</c:choose></span>
-						</div>
+							
+							<div class="m-b-md">
+								<h2 class="font-bold no-margins">
+									<c:out value="${pet.petNm }" />
+								</h2>
+								<small><fmt:formatDate pattern="yyyy / MM / dd"
+										value="${pet.petBirth }" /> </small>
+							</div>
+							<img src="/resources/img/mypet/cute_bori.jpg"
+								class="rounded-circle circle-border m-b-md" alt="profile">
+							<div>
+								<span><c:out value="${pet.breedNm }" /></span> | <span><c:choose>
+	
+										<c:when test="${pet.code eq 4001}">강아지</c:when>
+	
+										<c:when test="${pet.code eq 4002}">고양이</c:when>
+	
+									</c:choose> </span> | <span><c:choose>
+	
+										<c:when test="${pet.petSex eq 'F'.charAt(0)}">여아</c:when>
+	
+										<c:when test="${pet.petSex ne 'M'.charAt(0)}">남아</c:when>
+	
+									</c:choose></span>
+							</div>
+						
 					</div>
+					</a>
 					<div class="widget-text-box">
 						<div class="text-right">
-							<a href="/delete/" class="btn btn-xs btn-primary"
-								data-toggle="modal" data-target="#deleteModal"> 삭제</a>
-							<!-- Delete Modal Start -->
-
-							<div class="modal inmodal" id="deleteModal" tabindex="-1"
-								role="dialog" aria-hidden="true" style="display: none;">
-								<div class="modal-dialog">
-									<div class="modal-content animated rubberBand">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">
-												<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-											</button>
-											<i class="fa fa-laptop modal-icon"></i>
-											<h4 class="modal-title">Modal title</h4>
-											<small class="font-bold">Lorem Ipsum is simply dummy
-												text of the printing and typesetting industry.</small>
-										</div>
-										<div class="modal-body">
-											<p>
-												<strong>Lorem Ipsum is simply dummy</strong> text of the
-												printing and typesetting industry. Lorem Ipsum has been the
-												industry's standard dummy text ever since the 1500s, when an
-												unknown printer took a galley of type and scrambled it to
-												make a type specimen book. It has survived not only five
-												centuries, but also the leap into electronic typesetting,
-												remaining essentially unchanged.
-											</p>
-											<div class="form-group">
-												<label>Sample Input</label> <input type="email"
-													placeholder="Enter your email" class="form-control">
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-white"
-												data-dismiss="modal">취소</button>
-											<button type="button" class="btn btn-danger">삭제</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-							<!-- Delete Modal End -->
+							<a href="" class="delete-btn btn btn-xs btn-primary" 
+								data-toggle="modal" data-petno="${pet.petNo }" data-target="#deleteModal"> 삭제</a>
+							
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 			<!-- Pet detail End -->
+			
+			<!-- Delete Modal Start -->
+
+			<div class="modal inmodal" id="deleteModal" tabindex="-1"
+				role="dialog" aria-hidden="true" style="display: none;">
+				<div class="modal-dialog">
+					<div class="modal-content animated rubberBand">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<i class="fa fa-warning modal-icon ml-4 mb-4"></i>
+							<h4 class="modal-title">정말 삭제하시겠어요?</h4>
+							삭제한 데이터는 복구가 불가능해요!
+						</div>
+					
+						<div class="modal-footer">
+							<button type="button" class="btn btn-white"
+								data-dismiss="modal">취소</button>
+								<form action="/mypet/deletePet" method="post">
+									<input  id="delete-pet" type="hidden" name="petNo" value="">
+									<button type="submit" class="btn btn-danger" data-oper="delete">삭제</button>
+								</form>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Delete Modal End -->
 		</div>
 	</div>
 </div>
@@ -287,6 +282,37 @@ $(document).ready(function() {
 
 	        
 	    });
+		
+		// 삭제
+		$(document).on("click",".delete-btn",function(){
+			
+			var petNo = $(this).data("petno");
+			
+			
+			//console.log("삭제될 번호: " + petNo);
+			
+			$("#delete-pet").val(petNo);
+			//console.log("바뀐 번호: "+ $("#delete-pet").val());
+			
+			
+			  
+						 
+		});
+		
+		//헬스페이지 이동
+		$(document).on("click",".go-health",function(){
+			
+			var petNo = $(this).data("petno");
+			
+			
+			//console.log("삭제될 번호: " + petNo);
+			
+			
+			
+			
+			  
+						 
+		});
 		
 		$(document).on("click","#search-breed2",function(){
 	    	var openWin;
@@ -350,15 +376,8 @@ $(document).ready(function() {
 	        }
 		}); 
 		
+		var formObj = $("form");
 		
-		$(document).on("click","#delete-pet-yes",function(){
-
-			  
-			 location.replace("/PETMILYPROJECT/pet/deletePetAction.go?pet_no="+$(this).parent().find("#delete-pet-no").val());
-			 
-			
-				 
-		}); 
 });
 </script>
 
