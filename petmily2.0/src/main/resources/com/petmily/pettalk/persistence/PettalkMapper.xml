@@ -97,24 +97,24 @@
 	</insert>
 	
 	
-		<!-- 동일 게시글 추천 여부 검색 -->
-	<select id="likeCheck" parameterType="map" resultType="int">
+	<!-- 동일 게시글 추천 여부 검색 -->
+	<select id="likeCheck" parameterType="com.petmily.pettalk.domain.BoardVO" resultType="int">
 		select count(*) from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
 	</select>
 
 	<!-- 게시글 추천 -->
-	<insert id="likeUpdate" parameterType="map">
+	<insert id="likeUpdate" parameterType="com.petmily.pettalk.domain.BoardVO">
 		insert into LIKE_TB values(#{boardNo}, #{memId})
 	</insert>
 
 	<!-- 게시글 추천 취소 -->
-	<delete id="likeDelete" parameterType="map">
+	<delete id="likeDelete" parameterType="com.petmily.pettalk.domain.BoardVO">
 		delete from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
 	</delete>
 
 	<!-- 게시글 추천수 -->
 	<select id="likeCount" parameterType="int" resultType="int">
-		select count(*) from LIKE_TB where board_no = #{boardNo}
+		select count(*) from LIKE_TB where board_no = #{seq}
 	</select>
 
 	<insert id="insertReport" parameterType="com.petmily.pettalk.domain.ReportVO">

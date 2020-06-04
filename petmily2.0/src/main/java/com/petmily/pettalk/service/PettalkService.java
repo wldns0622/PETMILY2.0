@@ -20,6 +20,10 @@ public interface PettalkService {
 	public void insertReport(ReportVO reportVO);
 	public BoardVO detailBoard(int seq);
 	public List<ReplyVO> listReply(int seq);
+	public int likeCheck(BoardVO board);
+	public void likeUpdate(BoardVO board);
+	public void likeDelete(BoardVO board);
+	public int likeCount(int seq);
 	
 
 	

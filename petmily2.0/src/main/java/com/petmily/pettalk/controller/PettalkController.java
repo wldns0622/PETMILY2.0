@@ -1,9 +1,14 @@
 package com.petmily.pettalk.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petmily.member.domain.MemberVO;
 import com.petmily.noti.domain.NotiVO;
@@ -105,6 +111,45 @@ public class PettalkController {
 		return "redirect:/pettalk/detail?seq="+reportVO.getBoardNo();
 	}
 	
+	@ResponseBody
+	@PostMapping("/likeUpdate")
+	public void likeUpdate(BoardVO boardVO,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		HttpSession session = request.getSession();
+		MemberVO loginSession = (MemberVO)session.getAttribute("member");
+		
+		int tmp = service.likeCheck(boardVO);
+		
+		if(tmp==0){
+			service.likeUpdate(boardVO);
+		
+			NotiVO noti = new NotiVO();
+			noti.setBoardNo(boardVO.getBoardNo());
+			noti.setAlertCode(2001);
+			noti.setMemId(loginSession.getName());
+			noti.setMemToId(boardVO.getMemId());
+
+			notiService.insertNoti(noti);
+			
+			PrintWriter out = response.getWriter();
+			
+			 out.print(5);
+			 out.close();
+		}else{
+			 service.likeDelete(boardVO);
+			
+		}
+		
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("/likeCount")
+	public void likeCount (@RequestParam("boardNo")int boardNo,HttpServletResponse response) throws IOException{
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print(service.likeCount(boardNo));
+	}
 	
 	
 }

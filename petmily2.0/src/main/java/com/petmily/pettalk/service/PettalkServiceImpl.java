@@ -71,4 +71,29 @@ public class PettalkServiceImpl implements PettalkService {
 		
 	}
 
+
+	@Override
+	public int likeCheck(BoardVO board) {
+		
+		return pettalkMapper.likeCheck(board);
+	}
+
+	@Override
+	public void likeUpdate(BoardVO board) {
+		
+		pettalkMapper.likeUpdate(board);
+	}
+	
+	@Override
+	public void likeDelete(BoardVO board) {
+		
+		pettalkMapper.likeDelete(board);
+	}
+	@Override
+	public int likeCount(int seq) {
+		
+		return pettalkMapper.likeCount(seq);
+	}
+	
+	
 }

@@ -123,7 +123,9 @@ function noTiList() {
 			
 			if(len=='0'){
 				
-				$('.dropdown-alerts').append('<div class="text-center link-block"><strong style="color:white">알림이 없습니다.</strong><i class="fa fa-angle-right"></i></div>')
+				$('.dropdown-alerts').children().remove();
+				
+				$('.dropdown-alerts').append('<div class="text-center link-block"><strong>알림이 없습니다.</strong><i class="fa fa-angle-right"></i></div>')
 				
 			}
 

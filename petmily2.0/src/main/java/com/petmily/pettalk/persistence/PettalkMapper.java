@@ -23,7 +23,10 @@ public interface PettalkMapper {
 	public void insertReply(ReplyVO replyVO);
 	public void insertReport(ReportVO reportVO);
 	public void updateHitCnt(BoardVO board);
-	
+	public int likeCheck(BoardVO board);
+	public int likeUpdate(BoardVO board);
+	public int likeDelete(BoardVO board);
+	public int likeCount(int seq);
 	
 	/*
 	codeListService

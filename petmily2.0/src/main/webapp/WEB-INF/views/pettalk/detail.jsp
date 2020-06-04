@@ -23,7 +23,15 @@
 				</div>
 				<p class="card-body">${board.boardContent }</p>
 				<div class="card-body text-center">
-					<button type="button" id="likeBtn" class="btn btn-outline-success">좋아요</button>
+						<c:choose>
+							<c:when test="${!empty loginMember}">
+								<button type="button" id="likeBtn" class="btn btn-outline-success">좋아요</button>
+							</c:when>
+							<c:when test="${empty loginMember}">
+								<button hidden="true" type="button" id="likeBtn" class="btn btn-outline-success">좋아요</button>
+							</c:when>
+						</c:choose>
+				
 					<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">신고</button>
 				</div>
 
@@ -115,31 +123,31 @@
 
 		$("#likeBtn").click(function() {
 			$.ajax({
-				url : "/PETMILYPROJECT/comunity/likeUpdate.do",
+				url : "/pettalk/likeUpdate",
 				type : "POST",
 				data : {
 					boardNo : "${board.boardNo}",
-					memberId : "${member.name}",
-					boardMemId : "${board.memId}"
+					memNm : "${member.name}",
+					memId : "${board.memId}"
 				},
 				success : function(data) {
 					if(data!=5){
-						alert("중복 추천은 불가능^^");
+						likeCount();
 					}
-					likeCount();
+						likeCount();
 				},
 			})
 		})
 
 		function likeCount() {
 			$.ajax({
-				url : "/PETMILYPROJECT/comunity/likeCount.do",
+				url : "/pettalk/likeCount",
 				type : "POST",
 				data : {
 					boardNo : "${board.boardNo}"
 				},
 				success : function(count) {
-					$(".likeCount").html("추천수 "+count);
+					$(".likeCount").text("추천수 "+count);
 				},
 			})
 		};

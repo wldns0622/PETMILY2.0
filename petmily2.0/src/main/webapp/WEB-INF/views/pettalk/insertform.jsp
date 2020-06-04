@@ -35,7 +35,7 @@
 										class=" col-form-label col-form-label col-lg-1" >작성자</label>
 									<div class="col-lg-3">
 										<input class="form-control col-lg-5" type="text" readonly="readonly" name="memNm" value=${member.name }>
-										<input type="hidden" value="${member.id }">
+										<input type="hidden" name="memId" value="${member.id }">
 									</div>
 								</div>
 								<div class="row">
