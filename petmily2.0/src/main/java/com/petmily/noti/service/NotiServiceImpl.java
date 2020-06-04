@@ -24,7 +24,6 @@ public class NotiServiceImpl implements NotiService {
 	@Override
 	public void insertNoti(NotiVO notiVO) {
 		
-		System.out.println("어디서나는널포이느야");
 		notiMapper.insertNoti(notiVO);
 		
 	}
