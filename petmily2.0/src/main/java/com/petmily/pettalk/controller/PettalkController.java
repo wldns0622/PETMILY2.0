@@ -75,11 +75,51 @@ public class PettalkController {
 	@GetMapping("/detail")
 	public void pettalkDetail(@RequestParam("seq")int seq, Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO)session.getAttribute("member");
 		
-		model.addAttribute("loginMember",loginMember);
-		model.addAttribute("board", service.detailBoard(seq));
-		model.addAttribute("replys", service.listReply(seq));
+		MemberVO loginMember = (MemberVO)session.getAttribute("member");
+
+		if(loginMember!=null){
+			
+			BoardVO board = service.detailBoard(seq);
+			model.addAttribute("board", board);
+			
+			
+			board.setMemId(loginMember.getId());
+			int tmp = service.likeCheck(board);
+			
+			if(tmp>0){
+				model.addAttribute("likeYn", "Y");
+				System.out.println("Y");
+				
+			}else{
+				model.addAttribute("likeYn", "N");
+				System.out.println("N");
+				
+			}
+			model.addAttribute("loginMember",loginMember);
+			model.addAttribute("replys", service.listReply(seq));
+			
+		}else{
+			BoardVO board = service.detailBoard(seq);
+			model.addAttribute("board", board);
+			
+			
+			int tmp = service.likeCheck(board);
+			
+			if(tmp>0){
+				model.addAttribute("likeYn", "Y");
+				System.out.println("Y");
+				
+			}else{
+				model.addAttribute("likeYn", "N");
+				System.out.println("N");
+				
+			}
+			model.addAttribute("replys", service.listReply(seq));
+			
+			
+		}
+	
 	}
 	
 	@PostMapping("/insertReply")
@@ -117,7 +157,10 @@ public class PettalkController {
 		HttpSession session = request.getSession();
 		MemberVO loginSession = (MemberVO)session.getAttribute("member");
 		
+		String copy = boardVO.getMemId();
+		boardVO.setMemId(loginSession.getId());
 		int tmp = service.likeCheck(boardVO);
+		PrintWriter out = response.getWriter();
 		
 		if(tmp==0){
 			service.likeUpdate(boardVO);
@@ -125,16 +168,15 @@ public class PettalkController {
 			NotiVO noti = new NotiVO();
 			noti.setBoardNo(boardVO.getBoardNo());
 			noti.setAlertCode(2001);
-			noti.setMemId(loginSession.getName());
-			noti.setMemToId(boardVO.getMemId());
+			noti.setMemId(copy);
+			noti.setMemToId(loginSession.getName());
 
 			notiService.insertNoti(noti);
 			
-			PrintWriter out = response.getWriter();
 			
+		}else{
 			 out.print(5);
 			 out.close();
-		}else{
 			 service.likeDelete(boardVO);
 			
 		}

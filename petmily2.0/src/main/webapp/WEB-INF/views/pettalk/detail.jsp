@@ -8,6 +8,7 @@
 	
 %>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
+
 	<div id="content" class="container animated fadeInRight">
 		<div id="content-body" class="col-12 ibox border m-t-xl">
 			<div class="content-inner ibox-content">
@@ -24,15 +25,18 @@
 				<p class="card-body">${board.boardContent }</p>
 				<div class="card-body text-center">
 						<c:choose>
-							<c:when test="${!empty loginMember}">
-								<button type="button" id="likeBtn" class="btn btn-outline-success">좋아요</button>
+							<c:when test="${!empty loginMember && likeYn eq 'N'}">
+								<button type="button" id="likeBtn" data-style="slide-right" class="ladda-button btn btn-outline-info">좋아요</button>
+							</c:when>
+							<c:when test="${!empty loginMember && likeYn eq 'Y'}">
+								<button type="button" id="likeBtn" data-style="slide-right" class="ladda-button btn btn-info">좋아요</button>
 							</c:when>
 							<c:when test="${empty loginMember}">
-								<button hidden="true" type="button" id="likeBtn" class="btn btn-outline-success">좋아요</button>
+								<button hidden="true" type="button" id="likeBtn" class="btn btn-outline-info">좋아요</button>
 							</c:when>
 						</c:choose>
 				
-					<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">신고</button>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">신고</button>
 				</div>
 
 				<div class="form-group">
@@ -115,8 +119,13 @@
   </div>
 </div> 
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
+<script src="/resources/js/plugins/ladda/spin.min.js"></script>
+<script src="/resources/js/plugins/ladda/ladda.min.js"></script>
+<script src="/resources/js/plugins/ladda/ladda.jquery.min.js"></script>
 	<!-- Button trigger modal -->
 	<script type="text/javascript">
+	
+	
 	$('#myModal').on('shown.bs.modal', function () {
 		  $('#myInput').trigger('focus')
 		})
@@ -131,7 +140,7 @@
 					memId : "${board.memId}"
 				},
 				success : function(data) {
-					if(data!=5){
+					if(data==5){
 						likeCount();
 					}
 						likeCount();
@@ -153,6 +162,13 @@
 		};
 
 		$(document).ready(function() {
+			var likeYn = '${likeYn}'
+			
+			if(likeYn=='Y'){
+				$("#likeBtn").add('on');
+			}else{
+				$("#likeBtn").remove('on');
+			}
 			likeCount();
 
 
@@ -160,6 +176,48 @@
 			$("#boardNoModal").val($("#boardNo").val());
 
 
+	        // Bind normal buttons
+	        Ladda.bind( '.ladda-button',{ timeout: 2000 });
+
+	        // Bind progress buttons and simulate loading progress
+	        Ladda.bind( '.progress-demo .ladda-button',{
+	            callback: function( instance ){
+	                var progress = 0;
+	                var interval = setInterval( function(){
+	                    progress = Math.min( progress + Math.random() * 0.1, 1 );
+	                    instance.setProgress( progress );
+
+	                    if( progress === 1 ){
+	                        instance.stop();
+	                        clearInterval( interval );
+	                    }
+	                }, 200 );
+	            }
+	        });
+
+
+	        var l = $( '.ladda-button' ).ladda();
+
+	        l.click(function(){
+	        	var statusBtn = $(this);
+	            // Start loading
+	            l.ladda( 'start' );
+
+	            // Timeout example
+	            // Do something in backend and then stop ladda
+	            setTimeout(function(){
+	                l.ladda('stop');
+	                if(statusBtn.hasClass('btn-outline-info')) {
+						statusBtn.removeClass('btn-outline-info').addClass('btn-info');
+					}else {
+						statusBtn.removeClass('btn-info').addClass('btn-outline-info');
+					}
+	                
+	            },300)
+
+
+	        });
+			
 
 		});
 
