@@ -1,37 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FullCalendar Example</title>
+<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
+    
     <link rel=" shortcut icon" href="image/favicon.ico">
-
     <link rel="stylesheet" href="/resources/vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="/resources/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/vendor/css/bootstrap.min.css"/>
     <link rel="stylesheet" href='/resources/vendor/css/select2.min.css' />
     <link rel="stylesheet" href='/resources/vendor/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="/resources/css/reservation.css"/>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="/resources/css/reservation.css">
 
-</head>
 
-<body>
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">카테고리1</a></li>
-                <li><a tabindex="-1" href="#">카테고리2</a></li>
-                <li><a tabindex="-1" href="#">카테고리3</a></li>
-                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li><a tabindex="-1" href="#">일반 진료</a></li>
+                <li><a tabindex="-1" href="#">건강 검진</a></li>
+                <li><a tabindex="-1" href="#">예방 접종</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -54,6 +46,13 @@
                     </div>
                     <div class="modal-body">
 
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-allDay">병원명</label>
+								<label class="" name="">병원</label>
+							</div>
+						</div>
+	
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-allDay">하루종일</label>
@@ -127,60 +126,74 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
-        <div class="panel panel-default">
-
-            <div class="panel-heading">
-                <h3 class="panel-title">필터</h3>
-            </div>
-
-            <div class="panel-body">
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">구분별</label>
-                    <div class="input-group">
-                        <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <label for="calendar_view">등록자별</label>
-                    <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
-                                checked>정연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
-                                checked>다현</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
-                                checked>사나</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
-                                checked>나연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
-                                checked>지효</label>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- /.filter panel -->
     </div>
-    <!-- /.container -->
-
+	    
+	    </div>
+	</section>
+	<section id="contact" class="gray-section contact">
+	    <div class="container">
+	        <div class="row m-b-lg">
+	            <div class="col-lg-12 text-center">
+	                <div class="navy-line"></div>
+	                <h1>Contact Us</h1>
+	                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+	            </div>
+	        </div>
+	        <div class="row m-b-lg justify-content-center">
+	            <div class="col-lg-3 ">
+	                <address>
+	                    <strong><span class="navy">Company name, Inc.</span></strong><br/>
+	                    795 Folsom Ave, Suite 600<br/>
+	                    San Francisco, CA 94107<br/>
+	                    <abbr title="Phone">P:</abbr> (123) 456-7890
+	                </address>
+	            </div>
+	            <div class="col-lg-4">
+	                <p class="text-color">
+	                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
+	                </p>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-lg-12 text-center">
+	                <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
+	                <p class="m-t-sm">
+	                    Or follow us on social platform
+	                </p>
+	                <ul class="list-inline social-icon">
+	                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a>
+	                    </li>
+	                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a>
+	                    </li>
+	                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-lg-12 text-center m-t-lg m-b-lg">
+	                <p><strong>&copy; 2015 Company Name</strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<script src="/resources/vendor/js/reservation/moment.min.js"></script>
     <script src="/resources/vendor/js/reservation/jquery.min.js"></script>
     <script src="/resources/vendor/js/reservation/bootstrap.min.js"></script>
-    <script src="/resources/vendor/js/reservation/moment.min.js"></script>
+    <script src="/resources/vendor/js/reservation/bootstrap-datetimepicker.min.js"></script>
     <script src="/resources/vendor/js/reservation/fullcalendar.min.js"></script>
     <script src="/resources/vendor/js/reservation/ko.js"></script>
     <script src="/resources/vendor/js/reservation/select2.min.js"></script>
-    <script src="/resources/vendor/js/reservation/bootstrap-datetimepicker.min.js"></script>
     <script src="/resources/js/reservation.js"></script>
     <script src="/resources/js/reservationaddEvent.js"></script>
     <script src="/resources/js/reservationeditEvent.js"></script>
     <script src="/resources/js/reservationetcSetting.js"></script>
-</body>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="/resources/js/pace.min.js"></script>
+	<script src="/resources/js/classie.js"></script>
+	<script src="/resources/js/cbpAnimatedHeader.js"></script>
+	<script src="/resources/js/wow.min.js"></script>
+	<script src="/resources/js/inspinia.js"></script>
 
+</body>
 </html>

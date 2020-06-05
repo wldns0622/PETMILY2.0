@@ -35,7 +35,7 @@ function filtering(event) {
     }
   }
 
-  return show_username && show_type;
+  return true;
 }
 
 function calDateWhenResize(event) {
@@ -63,7 +63,7 @@ function calDateWhenDragnDrop(event) {
     endDate: ''
   }
 
-  // 날짜 & 시간이 모두 같은 경우
+  // 날짜 & 시간이 모두 같은 경우 
   if(!event.end) {
     event.end = event.start;
   }
@@ -166,7 +166,7 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "/reservation/reservationList",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
       },
@@ -325,7 +325,6 @@ var calendar = $('#calendar').fullCalendar({
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
-  defaultDate: moment('2019-05'), //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,

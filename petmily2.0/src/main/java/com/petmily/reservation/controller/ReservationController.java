@@ -13,4 +13,6 @@ public class ReservationController {
 		return "/hospital/reservation";
 	}
 	
+	
+	
 }

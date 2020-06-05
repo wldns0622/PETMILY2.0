@@ -1,3 +1,9 @@
+* {
+	padding : 0px;
+	margins : 0px;
+	box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   padding: 30px;
