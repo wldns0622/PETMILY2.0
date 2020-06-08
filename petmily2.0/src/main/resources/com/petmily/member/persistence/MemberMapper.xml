@@ -10,7 +10,7 @@
 		<result column="mem_phone_no" property="phoneNo" />
 		<result column="mem_birth" property="birth" />
 		<result column="mem_nicknm" property="nicknm" />
-		<!-- <result column="mem_code" property="code" /> -->
+		<result column="mem_code" property="code" />
 		<result column="mem_address" property="address" />
 		<result column="mem_email_check" property="emailCheck" />
 		<result column="mem_sms_check" property="smsCheck" />

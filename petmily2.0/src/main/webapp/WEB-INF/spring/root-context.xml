@@ -37,6 +37,7 @@
 	</bean>
 	
 	
+	 	<mybatis-spring:scan base-package="com.petmily.admin.persistence" />
 	 	<mybatis-spring:scan base-package="com.petmily.noti.persistence" />
 	 	<mybatis-spring:scan base-package="com.petmily.pettalk.persistence" />
 	
@@ -49,6 +50,7 @@
 	
 	<context:component-scan base-package="com.petmily.pettalk.service"/>
 	<context:component-scan base-package="com.petmily.noti.service"/>
+	<context:component-scan base-package="com.petmily.admin.service"/>
 	
 	
 	<!-- choi -->

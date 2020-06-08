@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +63,9 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbar">
                 <ul class="nav navbar-nav navbar-right">
+                <c:if test="${member.code eq 3003}">
+                    <li><a class="nav-link page-scroll" href="/admin/main.admin">관리자페이지</a></li>
+                </c:if>
                     <li><a class="nav-link page-scroll" href="#page-top">Home</a></li>
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
                     <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>

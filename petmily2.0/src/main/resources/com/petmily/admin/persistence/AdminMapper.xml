@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petmily.admin.persistence.AdminMapper">
+
+
+
+
+	<select id="getListPettalk" parameterType="com.petmily.pettalk.domain.SearchVO" resultMap="BoardVO">
+		select
+			t.BOARD_NO,
+			t.BOARD_TITLE,
+			t.BOARD_CONTENT,
+			b.LIKE_CNT,
+			t.CREATE_DT,
+			t.MEM_ID,
+			t.MEM_NM,
+			t.BOARD_CD,
+			t.MODIFICATION_DT,
+			t.BOARD_HITCOUNT,
+			r.REPLYCNT
+		from
+			board_community_tb t,
+			(select board_no,count(*) as LIKE_CNT from LIKE_TB group by board_no) b,
+			(select board_no,count(*) as REPLYCNT from reply_tb group by board_no)r
+		where
+		t.BOARD_no = b.board_no(+) AND t.board_no = r.board_no(+)
+			<if test="codeSelect != null and codeSelect !=''">
+				AND BOARD_CD = #{codeSelect}
+			</if>
+		 order by board_no desc
+	</select>
+	
+		<!-- 코드 리스트 출력 -->
+	<select id="listPettalkCode" resultMap="CodeVO">
+		select * from code_tb where code_type = 100
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.petmily.pettalk.domain.BoardVO">
+		insert into BOARD_COMMUNITY_TB values (BOARD_SEQ.nextval, #{boardTitle}, #{boardContent}, sysdate, #{memId}, #{memNm},#{boardCd},sysdate,null)
+	</insert>
+	
+	
+	<select id="detailBoard" resultMap="BoardVO">
+		select * from board_community_tb where BOARD_NO = #{seq}
+	</select>
+	
+	<!-- 리플 목록 -->
+	<select id="listReply" parameterType="int" resultType="com.petmily.pettalk.domain.ReplyVO">
+		select * from REPLY_TB where board_no = #{seq} order by REPLY_NO DESC
+	</select>
+	
+	
+	<!-- 리플 등록 -->
+	<insert id="insertReply" parameterType="com.petmily.pettalk.domain.ReplyVO">
+		insert into reply_tb values(#{boardNo},reply_seq.nextval,#{ReplyContent},#{WriterNm},#{WriterId},sysdate)
+	</insert>
+	
+	
+	<!-- 동일 게시글 추천 여부 검색 -->
+	<select id="likeCheck" parameterType="com.petmily.pettalk.domain.BoardVO" resultType="int">
+		select count(*) from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
+	</select>
+
+	<!-- 게시글 추천 -->
+	<insert id="likeUpdate" parameterType="com.petmily.pettalk.domain.BoardVO">
+		insert into LIKE_TB values(#{boardNo}, #{memId})
+	</insert>
+
+	<!-- 게시글 추천 취소 -->
+	<delete id="likeDelete" parameterType="com.petmily.pettalk.domain.BoardVO">
+		delete from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
+	</delete>
+
+	<!-- 게시글 추천수 -->
+	<select id="likeCount" parameterType="int" resultType="int">
+		select count(*) from LIKE_TB where board_no = #{seq}
+	</select>
+
+	<insert id="insertReport" parameterType="com.petmily.pettalk.domain.ReportVO">
+		INSERT INTO REPORT_TB VALUES (#{boardNo},REPORT_SEQ.nextval,#{memId},#{rptContents},sysdate)
+	</insert>
+	
+	   <update id="updateHitCnt" parameterType="com.petmily.pettalk.domain.BoardVO">
+
+    		update board_community_tb SET BOARD_HITCOUNT = #{boardHitcount} WHERE BOARD_NO=#{boardNo}
+
+	</update>
+	
+	
+
+
+
+
+</mapper>
