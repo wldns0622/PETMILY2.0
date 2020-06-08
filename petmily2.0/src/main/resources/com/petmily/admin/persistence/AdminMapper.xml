@@ -5,7 +5,7 @@
 <mapper namespace="com.petmily.admin.persistence.AdminMapper">
 
 
-
+<!-- 
 
 	<select id="getListPettalk" parameterType="com.petmily.pettalk.domain.SearchVO" resultMap="BoardVO">
 		select
@@ -32,7 +32,7 @@
 		 order by board_no desc
 	</select>
 	
-		<!-- 코드 리스트 출력 -->
+		코드 리스트 출력
 	<select id="listPettalkCode" resultMap="CodeVO">
 		select * from code_tb where code_type = 100
 	</select>
@@ -46,34 +46,34 @@
 		select * from board_community_tb where BOARD_NO = #{seq}
 	</select>
 	
-	<!-- 리플 목록 -->
+	리플 목록
 	<select id="listReply" parameterType="int" resultType="com.petmily.pettalk.domain.ReplyVO">
 		select * from REPLY_TB where board_no = #{seq} order by REPLY_NO DESC
 	</select>
 	
 	
-	<!-- 리플 등록 -->
+	리플 등록
 	<insert id="insertReply" parameterType="com.petmily.pettalk.domain.ReplyVO">
 		insert into reply_tb values(#{boardNo},reply_seq.nextval,#{ReplyContent},#{WriterNm},#{WriterId},sysdate)
 	</insert>
 	
 	
-	<!-- 동일 게시글 추천 여부 검색 -->
+	동일 게시글 추천 여부 검색
 	<select id="likeCheck" parameterType="com.petmily.pettalk.domain.BoardVO" resultType="int">
 		select count(*) from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
 	</select>
 
-	<!-- 게시글 추천 -->
+	게시글 추천
 	<insert id="likeUpdate" parameterType="com.petmily.pettalk.domain.BoardVO">
 		insert into LIKE_TB values(#{boardNo}, #{memId})
 	</insert>
 
-	<!-- 게시글 추천 취소 -->
+	게시글 추천 취소
 	<delete id="likeDelete" parameterType="com.petmily.pettalk.domain.BoardVO">
 		delete from LIKE_TB where board_no = #{boardNo} and LIKE_ID = #{memId}
 	</delete>
 
-	<!-- 게시글 추천수 -->
+	게시글 추천수
 	<select id="likeCount" parameterType="int" resultType="int">
 		select count(*) from LIKE_TB where board_no = #{seq}
 	</select>
@@ -86,7 +86,7 @@
 
     		update board_community_tb SET BOARD_HITCOUNT = #{boardHitcount} WHERE BOARD_NO=#{boardNo}
 
-	</update>
+	</update> -->
 	
 	
 

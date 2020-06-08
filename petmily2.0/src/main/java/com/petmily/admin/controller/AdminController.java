@@ -45,12 +45,13 @@ public class AdminController {
 		HttpSession loginSession = request.getSession();
 		try {
 			MemberVO loginMember = (MemberVO)loginSession.getAttribute("member");
-			if(loginMember.getCode() != "3003"){
-				return "/member/login";
+			if(!loginMember.getCode().equals("3003")){
+				System.out.println(loginMember.getCode());
+				return "redirect:/member/login";
 			}
 			
 		} catch (Exception e) {
-			return "/member/login";
+			return "redirect:/member/login";
 		}
 		
 		return "/admin/adminMain";
