@@ -64,7 +64,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="nav-link page-scroll" href="#page-top">Home</a></li>
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
-                    <li><a class="nav-link page-scroll" href="#team">Team</a></li>
+                    <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>
                     <li><a class="nav-link" href="/mypet/list">마이펫 건강관리</a></li>
                     <li><a class="nav-link" href="/pettalk/list">펫 톡</a></li>
                     <li><a class="nav-link page-scroll" href="#contact">Contact</a></li>
