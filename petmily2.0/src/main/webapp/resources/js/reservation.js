@@ -1,6 +1,10 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
 
+$("#chk_info").click(function(data){
+	console.log(data);
+})
+
 function getDisplayEventDate(event) {
 
   var displayEventDate;
