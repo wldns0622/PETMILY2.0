@@ -126,6 +126,8 @@
     		update board_community_tb SET BOARD_HITCOUNT = #{boardHitcount} WHERE BOARD_NO=#{boardNo}
 
 	</update>
+	
+	
 
 
 

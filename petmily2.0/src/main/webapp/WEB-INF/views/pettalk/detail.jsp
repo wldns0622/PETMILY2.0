@@ -136,7 +136,7 @@
 				type : "POST",
 				data : {
 					boardNo : "${board.boardNo}",
-					memNm : "${member.name}",
+					memToId : "${member.name}",
 					memId : "${board.memId}"
 				},
 				success : function(data) {

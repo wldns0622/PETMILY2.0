@@ -4,6 +4,7 @@ package com.petmily.pettalk.service;
 import java.util.List;
 
 import com.petmily.common.domain.CodeVO;
+import com.petmily.noti.domain.NotiVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.ReplyVO;
 import com.petmily.pettalk.domain.ReportVO;
@@ -24,6 +25,7 @@ public interface PettalkService {
 	public void likeUpdate(BoardVO board);
 	public void likeDelete(BoardVO board);
 	public int likeCount(int seq);
+
 	
 
 	

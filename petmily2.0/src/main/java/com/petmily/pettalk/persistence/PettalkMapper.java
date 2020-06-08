@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.petmily.common.domain.CodeVO;
+import com.petmily.noti.domain.NotiVO;
 import com.petmily.pettalk.domain.BoardVO;
 import com.petmily.pettalk.domain.ReplyVO;
 import com.petmily.pettalk.domain.ReportVO;
@@ -27,7 +28,6 @@ public interface PettalkMapper {
 	public int likeUpdate(BoardVO board);
 	public int likeDelete(BoardVO board);
 	public int likeCount(int seq);
-	
 	/*
 	codeListService
 	detailBoard

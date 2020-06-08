@@ -118,7 +118,7 @@ body, input, textarea, select, button, table {
 	$(document).on("click", "#remove", function() {
 		var seq = $(this).parent().parent().parent().find('#seq').text();
 		$.ajax({
-			url : "/PETMILYPROJECT/comunity/NotiDelete.do",
+			url : "/noti/NotiDelete",
 			type : "POST",
 			data : {
 				"alertNo" : seq

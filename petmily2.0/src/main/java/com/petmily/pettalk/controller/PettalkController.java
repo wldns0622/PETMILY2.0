@@ -136,10 +136,10 @@ public class PettalkController {
 		NotiVO noti = new NotiVO();
 		noti.setBoardNo(replyVO.getBoardNo());
 		noti.setAlertCode(2003);
-		noti.setMemId(boardVO.getMemId());
-		noti.setMemToId(loginMember.getName());
+		noti.setMemId(boardVO.getMemId()); //알림받을사람
+		noti.setMemToId(loginMember.getName()); //알림보낸사람
 		notiService.insertNoti(noti);
-		
+		System.out.println(noti.toString());
 		return "redirect:/pettalk/detail?seq="+replyVO.getBoardNo();
 	}
 
@@ -168,9 +168,8 @@ public class PettalkController {
 			NotiVO noti = new NotiVO();
 			noti.setBoardNo(boardVO.getBoardNo());
 			noti.setAlertCode(2001);
-			noti.setMemId(copy);
+			noti.setMemId(boardVO.getMemId());
 			noti.setMemToId(loginSession.getName());
-
 			notiService.insertNoti(noti);
 			
 			
@@ -192,6 +191,9 @@ public class PettalkController {
 		
 		out.print(service.likeCount(boardNo));
 	}
+	
+	
+	
 	
 	
 }
