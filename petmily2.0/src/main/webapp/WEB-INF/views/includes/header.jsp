@@ -64,7 +64,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="nav-link page-scroll" href="#page-top">Home</a></li>
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
-                    <li><a class="nav-link page-scroll" href="#team">Team</a></li>
+                    <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>
                     <li><a class="nav-link" href="/mypet/list">마이펫 건강관리</a></li>
                     <li><a class="nav-link" href="/pettalk/list">펫 톡</a></li>
                     <li><a class="nav-link page-scroll" href="#contact">Contact</a></li>
@@ -109,9 +109,9 @@ function noTiList() {
 					data[i].memToId = "(이름없음)"
 				}
 				if(data[i].alertCode == 2001){
-					data[i].msg= "'"+data[i].memId+"' 님에게 " + data[i].boardNo+"번 게시물이 '좋아요'를 받았습니다."
+					data[i].msg= "'"+data[i].memToId+"' 님에게 " + data[i].boardNo+"번 게시물이 '좋아요'를 받았습니다."
 				}else if(data[i].alertCode == 2003){
-					data[i].msg= "'"+data[i].memId+"' 님이 "+data[i].boardNo+"번 게시물에 '댓글'을 달았습니다."
+					data[i].msg= "'"+data[i].memToId+"' 님이 "+data[i].boardNo+"번 게시물에 '댓글'을 달았습니다."
 				}
 			}
 
