@@ -79,7 +79,7 @@
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-</head>
+<!-- </head> -->
 
 <body>
 	<div class="content container">
