@@ -10,6 +10,7 @@
 <!--
 .rounded-circle {
 	width: 7rem;
+	height: 7rem;
 }
 
 .modal-backdrop {
@@ -45,11 +46,7 @@
 						</div>
 						<div class="modal-body">
 							<form action="/mypet/insertPet" method="post">
-								<div class="form-group">
-									<label for="insert-file-original-nm" class="col-form-label">사진</label>
-									<input type="file" class="form-control"
-										id="insert-file-original-nm" name="fileOriginalNm">
-								</div>
+								
 								<div class="form-group">
 									<label for="insert-pet-nm" class="col-form-label">애완동물명</label>
 									<input type="text" class="form-control" id="insert-pet-nm"
@@ -183,8 +180,16 @@
 								<small><fmt:formatDate pattern="yyyy / MM / dd"
 										value="${pet.petBirth }" /> </small>
 							</div>
-							<img src="/resources/img/mypet/cute_bori.jpg"
-								class="rounded-circle circle-border m-b-md" alt="profile">
+							<img src="
+							<c:choose>
+	
+										<c:when test="${pet.fileNo == 0}">/resources/img/mypet/default_dog.jpg</c:when>
+										<c:otherwise>${pet.fileStoredNm }</c:otherwise>
+										<%-- <c:when test="${pet.fileNo != 0}">${pet.fileStoredNm }</c:when> --%>
+	
+							</c:choose>
+							"
+								class="rounded-circle circle-border m-b-md" alt="프로필 사진">
 							<div>
 								<span><c:out value="${pet.breedNm }" /></span> | <span><c:choose>
 	
@@ -254,7 +259,7 @@
 
 
 <!-- Mainly scripts -->
-    <!-- iCheck -->
+
 
 
 <script type="text/javascript">

@@ -24,10 +24,54 @@
 	<div class="row m-b-lg m-t-lg" id="pet-info-box">
 		<div class="col-md-3">
 
-			<div class="profile-image">
-				<img src="/resources/img/mypet/cute_bori.jpg"
+			
+			<div class="profile-image" data-toggle="modal" data-target="#deleteModal">
+				<img id="" src="
+					<c:choose>
+						<c:when test="${pet.fileNo == 0}">/resources/img/mypet/default_dog.jpg</c:when>
+						<c:otherwise>${pet.fileStoredNm }</c:otherwise>
+						<%-- <c:when test="${pet.fileNo != 0}">${pet.fileStoredNm }</c:when> --%>
+
+					</c:choose>
+						"
 					class="rounded-circle circle-border m-b-md" alt="프로필 사진">
+				<a>EDIT</a>
 			</div>
+			
+			<!-- Image Modal Start -->
+
+			<div class="modal inmodal" id="deleteModal" tabindex="-1"
+				role="dialog" aria-hidden="true" style="display: none;">
+				<div class="modal-dialog">
+					<div class="modal-content animated rubberBand">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							</button>
+							<i class="fa fa-warning modal-icon ml-4 mb-4"></i>
+							<h4 class="modal-title">프로필 사진 수정</h4>
+						</div>
+						<div class="modal-body">
+							<div class="dropzone" id="dropzoneForm">
+								<div class="fallback uploadDiv">
+									<input name="fileOriginalNm" type="file" multiple />
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-white"
+								data-dismiss="modal">취소</button>
+							
+								<input  id="pet-no" type="hidden" name="petNo" value="${pet.petNo }">
+								<button type="submit" id="uploadBtn" class="btn btn-info" data-dismiss="modal">수정</button>
+														
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Image Modal End -->
+			
 			<div class="profile-info">
 				<div class="">
 					<div>
@@ -129,7 +173,7 @@
 								data-dismiss="modal">취소</button>
 								<form action="/mypet/deletePet" method="post">
 									<input  id="delete-pet" type="hidden" name="petNo" value="">
-									<button type="submit" class="btn btn-danger" data-oper="delete">삭제</button>
+									<button type="submit" class="btn btn-danger" data-oper="delete" data-dismiss="modal">삭제</button>
 								</form>
 							
 						</div>
@@ -192,6 +236,55 @@
 </div>
 
 <!-- Mainly scripts -->
+
+<script type="text/javascript">
+var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|pdf)$");
+var maxSize = 5242880; //5MB
+
+function checkExtension(fileName, fileSize) {
+	if(fileSize >= maxSize){
+		alert("파일 사이즈 초과");
+		return false;
+	}
+	
+	if(regex.test(fileName)){
+		alert("해당 종류의 파일은 업로드할 수 없습니다.");
+		return false;
+	}
+	return true;
+}
+$(document).ready(function () {
+	$("#uploadBtn").on("click", function (e) {
+		var formData = new FormData();
+		var inputFile = $("input[name='fileOriginalNm']");
+		var files = inputFile[0].files;
+		console.log(files);
+		
+		//add filedata to formdata
+		for(var i = 0; i < files.length; i++){
+			if(!checkExtension(files[i].name, files[i].size)){
+				return false;
+			}
+			
+			formData.append("fileOriginalNm", files[i]);
+		}
+		formData.append("petNo",$('#pet-no').val());
+		
+		$.ajax({
+			url: '/health/uploadAjaxAction',
+			processData: false,
+			contentType: false,
+			data: formData,
+			type: 'POST',
+			success: function (result) {
+				//워크스페이스 refresh 해줘야 뜹니다
+				$('#profile-image-img').attr('src',result);
+				alert("프로필 사진 등록이 완료되었습니다.");
+			}
+		})// end $.ajax
+	})
+})
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {

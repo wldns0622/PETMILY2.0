@@ -21,7 +21,7 @@
 		#{petSt},
 		#{petBasicVaccination},
 		#{petNeutral},
-		#{fileNo},
+		0,
 		#{petOdrNo},
 		sysdate
 		)
@@ -38,6 +38,11 @@
 		#{fileStoredNm},
 		sysdate
 		)
+	</insert>
+	<insert id="insertFileNo">
+		update pets_tb set 
+			file_no = #{fileNo}
+		where mem_id = #{memId} and pet_no = #{petNo}
 	</insert>
 	<select id="selectFileNO" resultType="int">
 		select
@@ -99,7 +104,7 @@
 	</delete>
 
 	<select id="selectLastPetNO" resultType="int">
-		SELECT MAX(pet_odr_no) FROM pets_tb where mem_id =
+		SELECT  NVL(MAX(pet_odr_no),0) FROM pets_tb where mem_id =
 		#{memId}
 	</select>
 

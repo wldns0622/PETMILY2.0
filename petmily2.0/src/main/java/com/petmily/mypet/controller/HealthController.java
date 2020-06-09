@@ -1,16 +1,28 @@
 package com.petmily.mypet.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petmily.member.domain.MemberVO;
 import com.petmily.mypet.domain.PetVO;
 import com.petmily.mypet.service.MypetService;
 
@@ -32,14 +44,18 @@ public class HealthController {
 	}
 	
 	@GetMapping("/home")
-	public String home(Model model, @RequestParam("petNo") int petNo) {
-		String memId = "c"; // 테스트용
+	public String home(Model model, @RequestParam("petNo") int petNo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
 		System.out.println("home의 petNo: " + petNo);
 		PetVO petVO = new PetVO();
 		petVO.setPetNo(petNo);
-		petVO.setMemId(memId);
+		petVO.setMemId(member.getId());
 		model.addAttribute("pet", service.selectPetByNo(petVO));
 		
 		return "/mypet/health";
 	}
+	
+	
 }

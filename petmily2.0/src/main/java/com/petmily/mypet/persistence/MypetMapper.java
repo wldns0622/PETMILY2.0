@@ -9,6 +9,7 @@ public interface MypetMapper {
 	int insertPet(PetVO petVO);
 	PetVO selectPetByNo(PetVO petVO);
 	int insertFile(PetVO petVO);
+	int insertFileNo(PetVO petVO);
 	int selectFileNO(String fileStoredNm);
 	List<BreedVO> selectBreedAll();
 	List<BreedVO> selectBreedByCode(int code);

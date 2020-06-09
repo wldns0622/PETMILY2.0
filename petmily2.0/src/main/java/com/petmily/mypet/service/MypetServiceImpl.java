@@ -22,26 +22,31 @@ public class MypetServiceImpl implements MypetService {
 	
 	@Override
 	public String insertPet(PetVO petVO) {
-		String memId = "c"; //테스트용
-		petVO.setMemId("c");
-		petVO.setFileNo(23);
 		
 		int lastPetNo = 0;
-		lastPetNo = mapper.selectLastPetNO(memId);
-		if(lastPetNo != 0){
+		lastPetNo =  mapper.selectLastPetNO(petVO.getMemId());
+		if(lastPetNo > 0){
 			petVO.setPetOdrNo(lastPetNo+1);
 		}else{
 			petVO.setPetOdrNo(1);
 		}
 
 		mapper.insertPet(petVO);
-		return memId;
+
+		return petVO.getMemId();
 	}
 
 	@Override
 	public List<PetVO> petList(String memId) {
-				
-		return mapper.listPetAll(memId);
+		List<PetVO> petList =  mapper.listPetAll(memId);
+		for(int i = 0; i< petList.size(); i++){
+			if(petList.get(i).getFileNo() > 0){
+				petList.get(i).setFileStoredNm(mapper.selectFileByNO(petList.get(i).getFileNo()).getFileStoredNm());
+				System.out.println(petList.get(i).getFileStoredNm());
+			}
+			
+		}
+		return petList;
 	}
 
 	@Override
@@ -72,8 +77,22 @@ public class MypetServiceImpl implements MypetService {
 
 	@Override
 	public PetVO selectPetByNo(PetVO petVO) {
+		PetVO petVO2 =  mapper.selectPetByNo(petVO);
+		if(petVO2.getFileNo() > 0){
+			petVO2.setFileStoredNm(mapper.selectFileByNO(petVO2.getFileNo()).getFileStoredNm());
+		}
 		
-		return mapper.selectPetByNo(petVO);
+		return petVO2;
 	}
+
+	@Override
+	public int insertFile(PetVO petVO) {
+		mapper.insertFile(petVO);
+		int fileNo = mapper.selectFileNO(petVO.getFileStoredNm());
+		petVO.setFileNo(fileNo);
+		mapper.insertFileNo(petVO);
+		return 0;
+	}
+
 
 }
