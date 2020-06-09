@@ -25,7 +25,7 @@
 		<div class="col-md-3">
 
 			
-			<div class="profile-image" data-toggle="modal" data-target="#deleteModal">
+			<div class="profile-image" data-toggle="modal" data-target="#update-profile">
 				<img id="" src="
 					<c:choose>
 						<c:when test="${pet.fileNo == 0}">/resources/img/mypet/default_dog.jpg</c:when>
@@ -40,15 +40,15 @@
 			
 			<!-- Image Modal Start -->
 
-			<div class="modal inmodal" id="deleteModal" tabindex="-1"
+			<div class="modal inmodal" id="update-profile" tabindex="-1"
 				role="dialog" aria-hidden="true" style="display: none;">
 				<div class="modal-dialog">
-					<div class="modal-content animated rubberBand">
+					<div class="modal-content animated bounceIn">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">
 								<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 							</button>
-							<i class="fa fa-warning modal-icon ml-4 mb-4"></i>
+							<i class="fa fa-picture-o modal-icon ml-4 mb-4"></i>
 							<h4 class="modal-title">프로필 사진 수정</h4>
 						</div>
 						<div class="modal-body">
@@ -130,7 +130,7 @@
 					<i class="fa fa-rocket fa-4x"></i>
 					<h3 class="font-bold no-margins">지구별 여행</h3>
 					<h1 class="font-bold m-xs">
-						D+<span>1</span>
+						D+<span id="d-day-no"></span>
 					</h1>
 				</div>
 			</div>
@@ -253,7 +253,22 @@ function checkExtension(fileName, fileSize) {
 	}
 	return true;
 }
+
+function dDay() {
+    var now = new Date();
+    console.log('now: '+ now);
+    var then = new Date('<fmt:formatDate pattern="yyyy/MM /dd" value="${pet.petBirth }" />');
+   	console.log('then: '+ then);
+    var gap = now.getTime() - then.getTime();
+    console.log(gap);
+    gap = Math.floor(gap / (1000 * 60 * 60 * 24));
+    console.log(gap);
+    $('#d-day-no').append(gap);
+}
+
 $(document).ready(function () {
+	dDay();
+	
 	$("#uploadBtn").on("click", function (e) {
 		var formData = new FormData();
 		var inputFile = $("input[name='fileOriginalNm']");

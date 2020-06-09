@@ -3,12 +3,26 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<style>
+	.dogdoc-box{
+		border: 0.1rem solid #1ab394;
+		height: 12rem;
+    	padding: 1rem;
+	}
+</style>
 <div>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-3">
 			<img src="/resources/img/mypet/dogdoc_inj.jpg"
 				class="rounded-circle circle-border m-b-md" alt="독닥">
 		</div>
+		
+		<div class="col-lg-9">
+			<div class="dogdoc-box">
+				<h1 class="logo">접종에 대해 설명할 독닥이에요!</h1>
+			</div>
+		</div>
+
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
@@ -23,52 +37,23 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Data</th>
+						<th>기록 항목</th>
+						<th>종합 백신(DHPPL)</th>
 						<th>User</th>
 						<th>Value</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>1</td>
-						<td><span class="pie" style="display: none;">0.52,1.041</span>
-							<svg class="peity" height="16" width="16">
-							<path
-									d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z"
-									fill="#1ab394"></path>
-							<path
-									d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z"
-									fill="#d7d7d7"></path></svg></td>
-						<td>Samantha</td>
-						<td class="text-navy"><i class="fa fa-level-up"></i> 40%</td>
+						<td>
+						
+						</td>
 					</tr>
 					<tr>
-						<td>2</td>
-						<td><span class="pie" style="display: none;">226,134</span> <svg
-								class="peity" height="16" width="16">
-							<path
-									d="M 8 8 L 8 0 A 8 8 0 1 1 2.2452815972907922 13.55726696367198 Z"
-									fill="#1ab394"></path>
-							<path
-									d="M 8 8 L 2.2452815972907922 13.55726696367198 A 8 8 0 0 1 7.999999999999998 0 Z"
-									fill="#d7d7d7"></path></svg></td>
-						<td>Jacob</td>
-						<td class="text-warning"><i class="fa fa-level-down"></i>
-							-20%</td>
+						
 					</tr>
 					<tr>
-						<td>3</td>
-						<td><span class="pie" style="display: none;">0.52/1.561</span>
-							<svg class="peity" height="16" width="16">
-							<path
-									d="M 8 8 L 8 0 A 8 8 0 0 1 14.933563796318165 11.990700825968545 Z"
-									fill="#1ab394"></path>
-							<path
-									d="M 8 8 L 14.933563796318165 11.990700825968545 A 8 8 0 1 1 7.999999999999998 0 Z"
-									fill="#d7d7d7"></path></svg></td>
-						<td>Damien</td>
-						<td class="text-navy"><i class="fa fa-level-up"></i> 26%</td>
+						
 					</tr>
 				</tbody>
 			</table>
