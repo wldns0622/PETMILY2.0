@@ -13,6 +13,7 @@ public class MemberVO {
 	private String birth;
 	private String nicknm;
 	private String code;
+	private String codeNm;
 	private String address;
 	private char emailCheck;
 	private char smsCheck;

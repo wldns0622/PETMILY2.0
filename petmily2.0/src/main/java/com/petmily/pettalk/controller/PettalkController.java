@@ -84,8 +84,9 @@ public class PettalkController {
 			model.addAttribute("board", board);
 			
 			
-			board.setMemId(loginMember.getId());
-			int tmp = service.likeCheck(board);
+			BoardVO tmpboard = service.detailBoard(seq);
+			tmpboard.setMemId(loginMember.getId());
+			int tmp = service.likeCheck(tmpboard);
 			
 			if(tmp>0){
 				model.addAttribute("likeYn", "Y");
@@ -158,8 +159,10 @@ public class PettalkController {
 		MemberVO loginSession = (MemberVO)session.getAttribute("member");
 		
 		String copy = boardVO.getMemId();
+		
 		boardVO.setMemId(loginSession.getId());
 		int tmp = service.likeCheck(boardVO);
+		
 		PrintWriter out = response.getWriter();
 		
 		if(tmp==0){
@@ -168,7 +171,7 @@ public class PettalkController {
 			NotiVO noti = new NotiVO();
 			noti.setBoardNo(boardVO.getBoardNo());
 			noti.setAlertCode(2001);
-			noti.setMemId(boardVO.getMemId());
+			noti.setMemId(copy);
 			noti.setMemToId(loginSession.getName());
 			notiService.insertNoti(noti);
 			

@@ -18,7 +18,8 @@ zoom: 2;
 	<div class="row">
 	<div class="container i-box ">
              <div class="ibox-title">
-           		  <h2>신고된 글 관리</h2>
+           		  <h2>사용자 관리</h2>
+		<input type="">
              </div>
 			<div class="col-lg-12">
 				<div>
@@ -26,32 +27,29 @@ zoom: 2;
 					<table class="table table-hover border-bottom border-top">
 						<thead>
 							<tr>
-								<th scope="col">접수번호</th>
-								<th scope="col" >글번호</th>
-								<th scope="col">신고자ID</th>
-								<th scope="col">신고내용</th>
-								<th scope="col">신고일자</th>
-								<th scope="col">일괄체크</th>
+								<th scope="col">이름</th>
+								<th scope="col">아이디</th>
+								<th scope="col">닉네임</th>
+								<th scope="col">이메일</th>
+								<th scope="col">권한</th>
 							</tr>
+							
 						</thead>
 						<tbody>
-						
-						<c:forEach var="list" items="${reportList}">
+						<c:forEach var="list" items="${userList}">
 							<tr>
-								<td>${list.rptNo}</td>
-								<td scope="row"><a href="detailAction.do?seq=${list.boardNo }">${list.boardNo }</a> <span class="card-subtitle mb-2 text-muted"></span></td>
-								<td>${list.memId}</td>
-								<td>${list.rptContents}</td>
-								<td>${list.rptDt }</td>
-								<td><input type="checkbox" name="rptNo" value="${list.rptNo }"></td>
+								<td>${list.name }</td>
+								<td>${list.id }</td>
+								<td>${list.nicknm }</td>
+								<td>${list.email }</td>
+								<td>${list.codeNm }</td>
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
 					<div class="row">
 					<div class="col text-right m-r-lg ">
-									<input class="btn btn-w-m btn-danger" type="submit" value="게시물 삭제" formmethod="post" formaction="/admin/reportCommit">
-									<input class="btn btn-w-m btn-warning" type="submit" value="신고 반려" formmethod="post" formaction="/admin/reportReject">
+									<input class="btn btn-w-m btn-warning" type="button" value="정보 변경" formmethod="post" formaction="#">
 					</div>
 					</div>
 						</form>

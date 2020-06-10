@@ -14,37 +14,62 @@
 			class="col-12 wrapper wrapper-content animated fadeInRight">
 			<div class="i-box border m-lg ">
 				<div class="ibox-title">
-					<h1>알림 목록</h1>
+					<h1>관리자 기능</h1>
 				</div>
 				<div class="ibox-content">
 					<div class="row">
 						<div class="col-lg-4">
-							<div class="widget red-bg p-lg text-center">
+						<a href="/admin/userManager">
+							<div class="widget yellow-bg p-lg text-center">
 								<div class="m-b-md">
-									<i class="fa fa-bell fa-4x"></i>
-									<h1 class="m-xs">47</h1>
-									<h3 class="font-bold no-margins">Notification</h3>
-									<small>We detect the error.</small>
+									<i class="fa fa-user fa-4x"></i>
+									<h1 class="m-xs font-bold">사용자관리</h1>
+									<small>사용자를 검색하고 권한을 변경할 수 있습니다.</small>
 								</div>
 							</div>
+							</a>
 						</div>
 						<div class="col-lg-4">
-							<div class="widget red-bg p-lg text-center">
+						<a href="/admin/codeList">
+							<div class="widget lazur-bg p-lg text-center">
 								<div class="m-b-md">
-									<i class="fa fa-bell fa-4x"></i>
-									<h1 class="m-xs">47</h1>
-									<h3 class="font-bold no-margins">Notification</h3>
-									<small>We detect the error.</small>
+									<i class="fa fa-magic fa-4x"></i>
+									<h1 class="m-xs font-bold">코드관리</h1>
+									<small>홈페이지에서 사용되는 코드를 관리합니다.</small>
 								</div>
 							</div>
+						</a>
 						</div>
 						<div class="col-lg-4">
+						<a href="#">
 							<div class="widget red-bg p-lg text-center">
 								<div class="m-b-md">
-									<i class="fa fa-bell fa-4x"></i>
-									<h1 class="m-xs">47</h1>
-									<h3 class="font-bold no-margins">Notification</h3>
-									<small>We detect the error.</small>
+									<i class="fa fa-user-md fa-4x"></i>
+									<h1 class="m-xs font-bold">승인관리</h1>
+									<small>병원 권한으로 신청한 계정들을 관리합니다.</small>
+								</div>
+							</div>
+						</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+						<a href="/admin/reportList">
+							<div class="widget navy-bg p-lg text-center">
+								<div class="m-b-md">
+									<i class="fa fa-scissors fa-4x"></i>
+									<h1 class="m-xs font-bold">신고관리</h1>
+									<small>'펫톡'에 신고된 게시물을 관리합니다.</small>
+								</div>
+							</div>
+						</a>
+						</div>
+						<div class="col-lg-6">
+							<div class="widget blue-bg p-lg text-center">
+								<div class="m-b-md">
+									<i class="fa fa-line-chart fa-4x"></i>
+									<h1 class="m-xs font-bold">통계</h1>
+									<small>팻밀리의 각종 통계를 열람합니다.</small>
 								</div>
 							</div>
 						</div>
@@ -63,7 +88,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		notiadmin()
 	});
 </script>
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
