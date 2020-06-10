@@ -41,7 +41,10 @@
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
-
+					<div class="wrap-input100 validate-input">
+						<input class="input10" type="radio" name="member" value="member">일반회원 로그인
+						<input class="input10" type="radio" name="member" value="hospitalMember">병원회원 로그인
+					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<input type="submit" class="login100-form-btn" value="Login"/>
 					</div>

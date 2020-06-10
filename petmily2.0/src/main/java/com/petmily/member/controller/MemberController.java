@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petmily.hospital.domain.HospitalOperationVO;
 import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.HospitalOperationDTO;
+import com.petmily.member.domain.LoginMemberVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.member.persistence.MemberMapper;
 import com.petmily.member.service.MemberService;
@@ -32,13 +33,35 @@ public class MemberController {
 	}
 
 	@PostMapping("/login")
-	public String login(MemberVO member, HttpServletRequest request) {
-		MemberVO resultMember = memberService.memberLogin(member);
+	public String login(LoginMemberVO loginMember, HttpServletRequest request) {
+		
 		HttpSession session = request.getSession();
-
-		session.setAttribute("member", resultMember);
-
-		return "redirect:/";
+		
+		//String loginMember = request.getParameter("member");
+		
+		System.out.println("loginMember : " + loginMember);
+		
+		if(loginMember.getMember().equals("member")) {
+			MemberVO member = memberService.memberLogin(loginMember);
+			session.setAttribute("member", member);
+			
+			return "redirect:/";
+			
+		} else {
+			HospitalMemberVO hospitalMember = memberService.hospitalMemberLogin(loginMember);
+			//System.out.println("hospitalMember id : " + hospitalMember.getHsptId());
+			//System.out.println("hospitalMember password : " + hospitalMember.getHsptPass());
+			session.setAttribute("hospitalMember", hospitalMember);
+			
+			return "redirect:/";
+		}
+		
+		/*if(resultMember != null) {
+			session.setAttribute("member", resultMember);
+			return "redirect:/";
+		} else {
+			return "redirect:/member/login";
+		}*/ 
 	}
 
 	@GetMapping("/memberSignUp")
@@ -80,7 +103,7 @@ public class MemberController {
 		
 		memberService.hospitalMemberSignUp(hospitalMemberVO);
 		
-		return "";
+		return "redirect:/member/login";
 	}
 	
 	
