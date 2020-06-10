@@ -1,5 +1,7 @@
 package com.petmily.member.service;
 
+import com.petmily.hospital.domain.HospitalOperationVO;
+import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
 
 public interface MemberService {
@@ -8,4 +10,5 @@ public interface MemberService {
 	
 	public MemberVO memberLogin(MemberVO member);
 	
+	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO);
 }

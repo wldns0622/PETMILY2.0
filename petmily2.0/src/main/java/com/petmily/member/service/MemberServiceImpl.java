@@ -3,6 +3,7 @@ package com.petmily.member.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.member.persistence.MemberMapper;
 
@@ -28,5 +29,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.memberLogin(member);
 	}
 
+	@Override
+	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO) {
+		int result = memberMapper.hospitalMemberSignUp(hospitalMemberVO);
+		
+		return result;
+	}
+	
 	
 }

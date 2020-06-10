@@ -24,4 +24,10 @@
 		select * from member_tb where mem_id = #{id} and mem_pass = #{password}
 	</select>
 	
+	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
+		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
+	</insert>
+	
+	
+	
 </mapper>
