@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ImmuVO implements Serializable{
 	private int immuNo;
 	private int petNo;
@@ -19,4 +17,5 @@ public class ImmuVO implements Serializable{
 	private Date immuDt;
 	private String petMonth;
 	private String hosptNm;
+	private String immuSort;
 }

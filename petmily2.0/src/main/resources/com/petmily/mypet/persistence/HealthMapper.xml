@@ -8,7 +8,7 @@
 	<!-- 인터페이스의 패키지명 kosta.mapper, 인터페이스명 BoardMapper -->
 	<cache />
 
-	<select id="selectAllPet" resultType="PetVO" parameterType="String">
+	<!-- <select id="selectAllPet" resultType="com.petmily.mypet.domain.PetVO" parameterType="String">
 		select * from pets_tb where mem_id = #{mem_id} order by pet_odr_no
 	</select>
 	<select id="selectAllWeight" resultType="HealthVO" parameterType="int"> 
@@ -66,6 +66,25 @@
 	</update>
 	<select id="selectTmt" resultType="MemMedVO" parameterType="MemMedVO">
 		select * from MEM_MED_RECORDS_TB where pet_no = #{pet_no} and MEM_TMT_DT = TO_DATE(#{mem_tmt_dt}, 'YYYY-MM-DD')
+	</select> -->
+	
+	<!-- Immunization -->
+	<insert id="insertBasicImmu">
+		insert into IMMUNIZATION_TB
+			values(IMMUNIZATION_TB_SEQ.nextval,
+					#{petNo},
+					#{memId},
+					#{immuNm},
+					#{immuSeries},					
+					#{immuDt},
+					#{petMonth},
+					#{hosptNm},
+					'basic'
+			)
+	</insert>
+	
+	<select id="selectBasicImmu" resultType="com.petmily.mypet.domain.ImmuVO">
+		select * from IMMUNIZATION_TB where pet_no = #{petNo} and immu_sort = 'basic'
 	</select>
 </mapper>
 

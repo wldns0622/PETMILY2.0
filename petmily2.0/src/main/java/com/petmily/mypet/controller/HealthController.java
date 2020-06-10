@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petmily.member.domain.MemberVO;
+import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.PetVO;
+import com.petmily.mypet.service.HealthService;
 import com.petmily.mypet.service.MypetService;
 
 import lombok.AllArgsConstructor;
@@ -35,7 +37,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class HealthController {
 	
-	private MypetService service;
+	private MypetService myService;
+	private HealthService service;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
@@ -52,10 +55,11 @@ public class HealthController {
 		PetVO petVO = new PetVO();
 		petVO.setPetNo(petNo);
 		petVO.setMemId(member.getId());
-		model.addAttribute("pet", service.selectPetByNo(petVO));
+		model.addAttribute("pet", myService.selectPetByNo(petVO));
 		
 		return "/mypet/health";
 	}
+	
 	
 	
 }

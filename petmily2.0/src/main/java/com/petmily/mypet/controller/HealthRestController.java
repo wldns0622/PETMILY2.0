@@ -3,6 +3,7 @@ package com.petmily.mypet.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,14 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petmily.member.domain.MemberVO;
+import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.PetVO;
+import com.petmily.mypet.service.HealthService;
 import com.petmily.mypet.service.MypetService;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +37,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @AllArgsConstructor
 public class HealthRestController {
-	private MypetService service;
+	private MypetService myService;
+	private HealthService service;
 	
 	
 	private String getFolder(){
@@ -96,7 +102,7 @@ public class HealthRestController {
 			petVO.setFileOriginalNm(saveFile.getPath());
 			petVO.setFileStoredNm(storedPath);
 			
-			service.insertFile(petVO);
+			myService.insertFile(petVO);
 			
 			try {
 				multipartFile.transferTo(saveFile);
@@ -107,5 +113,26 @@ public class HealthRestController {
 		}// for End
 		
 		return petVO.getFileStoredNm();
+	}
+	
+	@PostMapping("/insertBasicImmu")
+	public String inertBasicImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.insertBasicImmu(immuVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/selectBasicImmu")
+	public @ResponseBody List<ImmuVO> inertBasicImmu(@RequestBody int petNo, HttpServletRequest request){
+		
+		List<ImmuVO> immuVOList = service.selectBasicImmu(petNo);
+		
+		System.out.println(immuVOList.toString());
+		
+		return immuVOList;
 	}
 }
