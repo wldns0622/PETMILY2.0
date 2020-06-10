@@ -75,7 +75,11 @@
                     <li><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fa fa-bell"></i><span style="position:relative;" class="label label-primary">0</span>
                     </a><ul style="left: auto;"class="dropdown-menu dropdown-alerts">
-                    </ul></li>
+                    </ul>
+                    </li>
+                    <li>
+                    	<a class="nav-link page-scroll" href="/member/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                    </li>
                 </ul>
                 
             </div>
