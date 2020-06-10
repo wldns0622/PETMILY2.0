@@ -45,6 +45,7 @@ $(function() {
 			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
 			kakao.maps.event.addListener(marker, 'click', function() {
+				
 				var html = '';
 				html += '<table class="hospital-detail">';
 				html += '<tbody class="entry">';
@@ -53,10 +54,11 @@ $(function() {
 				html += '<tr><td class="hosptAddress">' + '주소 : '  + hospitals[i].hosptAddress + '</td></tr>';
 				html += '<tr><td class="hosptRoadAddress">' + '도로명주소 : '  + hospitals[i].hosptRoadAddress + '</td></tr>';
 				html += '<tr><td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td></tr>';
-				html += '<tr><td><a href="/PETMILYPROJECT/reservation/reservationForm.go?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a></td></tr>';
+				html += '<tr><td><a href="/reservation/?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a></td></tr>';
 				html += '</tbody>';
 				html += '</table>';
 				$('#create-detail-table').html(html);
+				$('#create-detail-table').stop(true).css({'display': 'block', 'opacity': 0}).animate({'opacity': 1}, 300);
 		});
 								
 		}//반복문 끝
@@ -80,7 +82,7 @@ $(function() {
 		url : '/hospitalRest/hospitalInfos',
 		type : 'get',
 		dataType: "json",
-		success : function(data) {
+		success: function(data) {
 			//console.log("data" + data)
 			//위에 선언된 hospitals배열에 받아온 데이터를 넣기 (데이터는 쿼리문을 날려 읽어온 병원 정보들)
 			hospitals = data;
@@ -94,10 +96,8 @@ $(function() {
 			}
 			hospitalMarkers();
 		},
-		error:function(request,status,error) {
+		error: function(request,status,error) {
 			 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-		   
+		}   
 	});
-
 });

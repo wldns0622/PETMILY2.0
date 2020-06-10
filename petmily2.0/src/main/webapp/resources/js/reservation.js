@@ -342,3 +342,48 @@ var calendar = $('#calendar').fullCalendar({
   eventLongPressDelay: 0,
   selectLongPressDelay: 0
 });
+
+
+
+
+$("input:radio[name=reservation_kind]").click(function(){
+	 
+    if($("input[name=reservation_kind]:checked").val() == "0"){
+    	var htmlText = "";
+    	htmlText += '<div class="row">';
+    	htmlText += '<div class="col-xs-12">';
+    	htmlText += '<label class="col-xs-4">증상  </label>';
+    	htmlText += '<input type="text" name="reservation_symptom" placeholder="ex) 기침 or 호흡가빠름">';
+    	htmlText += '</div>';
+    	htmlText += '</div>';
+    	htmlText += '<div class="row">';
+    	htmlText += '<div class="col-xs-12">';
+    	htmlText += '<label  class="col-xs-4">증상 기간  </label>';
+    	htmlText += '<input type="text" name="reservation_period" placeholder="ex) 3일 or 일주일쯤">';
+    	htmlText += '</div>';
+    	htmlText += '</div>';
+    	
+        $("#radio-div").html(htmlText);
+    }else if($("input[name=reservation_kind]:checked").val() == "1"){
+    	var htmlText = "";
+    	htmlText += '<div class="row">';
+    	htmlText += '<div class="col-xs-12">';
+    	htmlText += '<label class="col-xs-4">접종 목록  </label>';
+    	htmlText += '<select name="reservation_inoculation_type">';
+    	htmlText += '<option value="DHPPL" selected>DHPPL</option>';
+    	htmlText += '<option value="코로나">코로나</option>';
+    	htmlText += '<option value="켄넬코프">켄넬코프</option>';
+    	htmlText += '<option value="인플루엔자">인플루엔자</option>';
+    	htmlText += '<option value="광견병">광견병</option>';
+    	htmlText += '<option value="심장사상충">심장사상충</option>';
+    	htmlText += '<option value="기타(상담)">기타</option>';
+    	htmlText += '</select>';
+    	htmlText += '</div>';
+    	htmlText += '</div>';
+        $("#radio-div").html(htmlText);
+    }else if($("input[name=reservation_kind]:checked").val() == "2"){
+        $("#radio-div").html("&nbsp;상담 후 진행 됩니다.");
+    }
+});
+
+

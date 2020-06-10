@@ -7,8 +7,9 @@ public class ReservationVO {
 	
 	private int reservationNo;
 	private String memberId;
-	private String reservationDate;
 	private String reservationPetName;
+	private String reservationDate;
+	private String reservation_status;
 	private String reservationKind;
 	private String reservationSymptom;
 	private String reservationPeriod;

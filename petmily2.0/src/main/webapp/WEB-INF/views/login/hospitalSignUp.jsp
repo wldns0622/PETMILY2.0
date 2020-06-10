@@ -14,9 +14,6 @@
 </head>
 <body>
 	<div class="container">
-		<!-- 좌우측의 공간 확보 -->
-		<!-- 헤더 들어가는 부분 -->
-		<!-- 모달창 -->
 		<div class="modal fade" id="defaultModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -31,15 +28,11 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
-				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal -->
-		<!--// 모달창 -->
 		<hr />
-		<!-- 본문 들어가는 부분 -->
-		<form class="form-horizontal" role="form" method="post" action="/member/memberSignUp">
+		
+		<form class="form-horizontal" role="form" method="post" action="/member/hospitalSignUp">
 			<div class="form-group">
 				<label for="provision" class="col-lg-2 control-label">회원가입약관</label>
 				<div class="col-lg-10" id="provision">
@@ -143,7 +136,109 @@
 					<input type="tel" class="form-control onlyNumber" name="hsptLicenseNum" id="hsptLicense-num" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
 				</div>
 			</div>
-			
+			<br>
+			<div class="form-group" id="divHospitalOper">
+				<label for="inputHospitalOper" class="col-lg-2 control-label">병원 운영시간</label>
+				<div class="col-lg-10">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>일요일</th>
+							<th>월요일</th>
+							<th>화요일</th>
+							<th>수요일</th>
+							<th>목요일</th>
+							<th>금요일</th>
+							<th>토요일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								진료시작 시간
+							</td>
+							<td>
+								<select name="sunOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="monOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="tueOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="wedOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="thuOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="friOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="satOpenOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								진료마감 시간
+							</td>
+							<td>
+								<select name="sunCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="monCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="tueCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="wedCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="thuCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="friCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+							<td>
+								<select name="satCloseOper">
+									<jsp:include page="includeOperation.jsp" flush="false"></jsp:include>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				</div>
+			</div>
 
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
@@ -274,7 +369,6 @@
                     }
                 });
                 
-				
                 
                 //------- validation 검사
                 $( "form" ).submit(function( event ) {
@@ -429,31 +523,23 @@
                     	divLicenseNum.removeClass("has-error");
                     	divLicenseNum.addClass("has-success");
                     }
-                    
-                    
-                    
-                
                 });
-                
             });
             
         </script>
-		<!--// 본문 들어가는 부분 -->
 		<hr />
-		<!-- 푸터 들어가는 부분 -->
 
 		<div>
 			<p class="text-center">
 				<small><strong>펫밀리 (주)</strong></small><br> <small>대표 :
-					정지운 ㆍ 주소 : 가산동 371-106 KR 서울특별시 금천구 가산디지털1로 181 W센터 3층 ㆍ 사업자등록번호 :
+					PETMILY ㆍ 주소 : 가산동 371-106 KR 서울특별시 금천구 가산디지털1로 181 W센터 3층 ㆍ 사업자등록번호 :
 					123-12-12345 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 					petmily.com All rights reserved.</small>
 			</p>
 		</div>
 		<!--// 푸터 들어가는 부분 -->
 	</div>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3faf7a6914d9ce206655c6300e9c7478&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3faf7a6914d9ce206655c6300e9c7478&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript" src="/resources/js/hospitalKeywordSearch.js"></script>
 </body>
 </html>

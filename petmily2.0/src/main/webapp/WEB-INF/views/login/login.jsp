@@ -20,6 +20,17 @@
 	<link rel="stylesheet" type="text/css" href="/resources/member/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="/resources/member/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/resources/member/css/main.css">
+
+<style type="text/css">
+	.login-select {
+		padding-left: 40px;
+	}
+	
+	.member-login {
+		padding-right: 30px;
+	}
+	
+</style>
 </head>
 <body>
 	
@@ -41,7 +52,11 @@
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
-
+					<div class="wrap-input100 login-select">
+						<input class="input10 member-login" type="radio" id="" name="member" value="member">일반회원 로그인
+						<input class="input10" type="radio" name="member" value="hospitalMember">병원회원 로그인
+						<span class="focus-input100"></span>
+					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<input type="submit" class="login100-form-btn" value="Login"/>
 					</div>

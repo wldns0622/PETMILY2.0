@@ -136,8 +136,7 @@ body, input, textarea, select, button, table {
 
 	function notiadmin() {
 
-		$
-				.ajax({
+		$.ajax({
 					url : "/noti/notiList",
 					type : "POST",
 					dataType : "json",
