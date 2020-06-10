@@ -13,6 +13,6 @@ public class HospitalVO {
 	private String hosptBusinessHours;
 	private double hosptX;
 	private double hosptY;
-	//private char hosptAgreement; //협약기업 여부 DB에는 컬럼 추가 되어 있음
+	private char hosptAgreement; //협약기업 여부 DB에는 컬럼 추가 되어 있음
 	
 }

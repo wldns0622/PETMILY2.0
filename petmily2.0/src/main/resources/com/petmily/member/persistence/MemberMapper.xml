@@ -20,8 +20,20 @@
 		insert into member_tb values (#{id}, #{name}, #{password}, #{email}, #{phoneNo}, #{birth}, #{nicknm}, 3001, #{address}, #{emailCheck}, #{smsCheck})
 	</insert>
 	
+	<!-- <select id="memberLogin" resultMap="MemberResult" parameterType="com.petmily.member.domain.MemberVO">
+		select * from member_tb where mem_id = #{id} and mem_pass = #{password}
+	</select> -->
+	
 	<select id="memberLogin" resultMap="MemberResult" parameterType="com.petmily.member.domain.MemberVO">
 		select * from member_tb where mem_id = #{id} and mem_pass = #{password}
+	</select>
+	
+	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
+		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
+	</insert>
+	
+	<select id="hospitalMemberLogin" parameterType="com.petmily.member.domain.LoginMemberVO" resultType="com.petmily.member.domain.HospitalMemberVO">
+		select * from hospital_member_tb where hspt_id = #{id} and hspt_pass = #{password}
 	</select>
 	
 </mapper>

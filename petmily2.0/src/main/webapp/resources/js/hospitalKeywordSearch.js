@@ -1,7 +1,4 @@
-
 // 마커를 담을 배열입니다
-var hospitalInfo = new Object();
-
 var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -93,27 +90,20 @@ function displayPlaces(places) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
-
-        
         
 	    //1. 마커 클릭 이벤트를 만들기
 	    // - 클릭했을떄 클릭이 발생하는지 확인
 	    // - 정보를 읽어와서 찍어봐 
 	    // - 정보가 잘 넘어온다면 정보를 객체에 담아
 	    // - 인풋 밸류값에 해당하는 정보를 객체.이름 이런식으로 넣어줘
-        var hospital = places[i];
-        kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {        
-        	hospitalInfo.name = hospital.place_name;
-        	hospitalInfo.address = hospital.address_name;
-        	hospitalInfo.tel = hospital.phone;
-        	
-        	$('#name').val(hospitalInfo.name);
-        	$('#address').val(hospitalInfo.address);
-        	$('#phoneNumber').val(hospitalInfo.tel);
+        let hospital = places[i];
+        
+        kakao.maps.event.addListener(marker, 'click', function() {
+        	$('#name').val(hospital.place_name);
+        	$('#address').val(hospital.address_name);
+        	$('#phoneNumber').val(hospital.phone);
         	
         });
-        
         
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
@@ -246,3 +236,4 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
+
