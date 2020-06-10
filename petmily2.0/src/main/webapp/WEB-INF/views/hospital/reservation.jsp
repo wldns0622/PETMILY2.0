@@ -36,20 +36,26 @@
 	<!-- 일정 추가 MODAL -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
 		<div class="modal-dialog" role="document">
+			<form action="/reservation/reservation" method="post">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title"></h4>
+					<h4 class="modal-title">진료 예약</h4>
 				</div>
 				<div class="modal-body">
-					<input type="hidden">
-					<input type="hidden">
+				
+				
+					<!-- hidden 인풋 -->
+					<input type="hidden" name="reservation_member_id" value ="">
+					<input type="hidden" name="reservation_hospital_id" value ="">
+					
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-allDay">병원명</label> 
+							<!-- 병원명 읽어와서 넣어주기 -->
 							<label class="" name=""><b>병원</b></label>
 						</div>
 					</div>
@@ -57,16 +63,18 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-reservation-name">예약자</label> 
+							<!-- 회원 정보 읽어와서 넣어주기 -->
 							<label class="" name=""><b>이름</b></label>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-xs-12">
-							<label class="col-xs-4" for="edit-type">반려견</label> <select
-								class="inputModal" type="text" name="reservation_pet_name" id="edit-type">
+							<label class="col-xs-4" for="edit-type">반려견</label> 
+							<select class="inputModal" type="text" name="reservation_pet_name" id="edit-type">
 								<!-- 반려견이 1마리 이상 존재한다면 반복문으로 option 만들어 주기 -->
 								<!-- 반려견이 없다면 '등록된 반려견 정보가 존재하지 않습니다' 띄어주기 -->
+								<!-- 펫 번호들 넣어주기 -->
 								<option value="카테고리1">뽀삐</option>
 								<option value="카테고리2">스켈레톤</option>
 								<option value="카테고리3">고양이</option>
@@ -84,8 +92,8 @@
 
 					<div class="row">
 						<div class="col-xs-12">
-							<label class="col-xs-4" for="edit-desc">진료 종류</label> <input
-								type="radio" name="reservation_kind" value="0" checked="checked">일반진료
+							<label class="col-xs-4" for="edit-desc">진료 종류</label> 
+							<input type="radio" name="reservation_kind" value="0" checked="checked">일반진료
 							<input type="radio" name="reservation_kind" value="1">예방접종
 							<input type="radio" name="reservation_kind" value="2">건강검진
 						</div>
@@ -108,11 +116,12 @@
 				</div>
 				<div class="modal-footer modalBtnContainer-addEvent">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" id="save-event">예약</button>
+					<button type="submit" class="btn btn-primary" id="save-event">예약</button>
 				</div>
 
 
 			</div>
+			</form>
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal-dialog -->

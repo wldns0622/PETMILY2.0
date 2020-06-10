@@ -385,3 +385,5 @@ $("input:radio[name=reservation_kind]").click(function(){
         $("#radio-div").html("&nbsp;상담 후 진행 됩니다.");
     }
 });
+
+
