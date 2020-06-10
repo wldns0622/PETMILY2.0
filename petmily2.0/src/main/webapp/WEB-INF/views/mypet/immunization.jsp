@@ -181,7 +181,7 @@
 	<!-- 날짜 -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="text-center">2020</h1>
+			<h1 class="text-center">2020</h1><!-- select 날짜 바람!! -->
 		</div>
 	</div>
 	<!-- 날짜 End -->
