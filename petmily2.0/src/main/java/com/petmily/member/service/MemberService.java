@@ -12,9 +12,9 @@ public interface MemberService {
 	
 	public MemberVO memberLogin(LoginMemberVO loginMemberVO);
 	
-	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO);
+	//public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO);
 	
-	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO, HospitalOperationVO operationVO, HospitalVO hospitalVO);
+	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO, HospitalOperationVO operationVO);
 	
 	public HospitalMemberVO hospitalMemberLogin(LoginMemberVO loginMemberVO);
 	

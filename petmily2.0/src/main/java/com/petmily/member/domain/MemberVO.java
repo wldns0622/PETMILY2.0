@@ -17,5 +17,6 @@ public class MemberVO {
 	private String address;
 	private char emailCheck;
 	private char smsCheck;
+	private String registerDate;
 	
 }

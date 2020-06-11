@@ -103,8 +103,10 @@ public class MemberController {
 		
 		System.out.println("일요일 운영시간 : " + hospitalOperationVO.getSunOper());
 		
-		memberService.hospitalMemberSignUp(hospitalMemberVO);
+		//String hsptAddr = hospitalMemberVO.getHsptAddr();
+		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr().substring(3));
 		
+		memberService.hospitalMemberSignUp(hospitalMemberVO, hospitalOperationVO);
 		
 		
 		return "redirect:/member/login";

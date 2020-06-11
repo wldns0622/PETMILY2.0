@@ -32,16 +32,16 @@
 		select * from hospital_member_tb where hspt_id = #{id} and hspt_pass = #{password}
 	</select>
 	
-<!-- 	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
+	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
 		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
 	</insert>
 	
-	<insert id="hospitalOperationInsert" parameterType="com.petmily.member.domain.HospitalOperationVO">
+	<insert id="hospitalOperationInsert" parameterType="com.petmily.hospital.domain.HospitalOperationVO">
 		insert into hospital_operation_tb values (#{sunOper}, #{monOper}, #{tueOper}, #{wedOper}, #{thuOper}, #{friOper}, #{satOper}, #{hsptId})
 	</insert>
 	
-	<update id="hospitalAgreementUpdate" parameterType="com.petmily.hospital.domain.HospitalVO">
-		update hospital_tb set hospt_agreement = #{hosptAgreement} where hospt_name = #{hosptName};
-	</update> -->
+	<update id="hospitalAgreementUpdate" parameterType="com.petmily.member.domain.HospitalMemberVO">
+		update hospital_tb set hospt_agreement = '1' where hospt_name = #{hsptName} AND regexp_like(hospt_address, '*${hsptAddr}*')
+	</update>
 	
 </mapper>

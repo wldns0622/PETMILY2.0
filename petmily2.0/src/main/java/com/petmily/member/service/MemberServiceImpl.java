@@ -33,22 +33,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.memberLogin(loginMember);
 	}
 
-	@Override
+	/*@Override
 	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO) {
 		int result = memberMapper.hospitalMemberSignUp(hospitalMemberVO);
 		
 		return result;
-	}
+	}*/
 	
 	//transaction 적용
 	@Transactional
 	@Override
-	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO, HospitalOperationVO operationVO, HospitalVO hospitalVO) {
+	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO, HospitalOperationVO operationVO) {
 		int result = 0;
 		
 		memberMapper.hospitalMemberSignUp(hospitalMemberVO);
 		memberMapper.hospitalOperationInsert(operationVO);
-		memberMapper.hospitalAgreementUpdate(hospitalVO);
+		memberMapper.hospitalAgreementUpdate(hospitalMemberVO);
 		
 		return result;
 	}

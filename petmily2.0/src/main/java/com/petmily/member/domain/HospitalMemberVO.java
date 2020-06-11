@@ -13,5 +13,4 @@ public class HospitalMemberVO {
 	private String hsptLicenseNum;
 	//private String hsptBusinessDay; //병원 운영일 테이블 참조
 	//private String hsptBusinessHours; //병원 운영시간 테이블 참조
-	
 }

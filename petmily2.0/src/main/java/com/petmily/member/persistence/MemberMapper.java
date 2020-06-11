@@ -14,15 +14,16 @@ public interface MemberMapper {
 	
 	//public LoginMemberVO memberLogin(LoginMemberVO loginMember);
 	
-	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO);
+	//public int hospitalOperationAdd(HospitalOperationVO hospitalOperationVO);
 	
-	public int hospitalOperationAdd(HospitalOperationVO hospitalOperationVO);
-	
-	public int hospitalUpdate(HospitalVO hospitalVO);
+	//public int hospitalUpdate(HospitalVO hospitalVO);
 	
 	public HospitalMemberVO hospitalMemberLogin(LoginMemberVO loginMember); //HospitalOperationVO hospitalOperationVO
 	
-	public HospitalOperationVO hospitalOperationInsert(HospitalOperationVO operationVO);
+	public int hospitalMemberSignUp(HospitalMemberVO hospitalMemberVO);
 	
-	public HospitalVO hospitalAgreementUpdate(HospitalVO hospitalVO);
+	public void hospitalOperationInsert(HospitalOperationVO operationVO);
+	
+	public void hospitalAgreementUpdate(HospitalMemberVO hospitalMemberVO);
+	
 }
