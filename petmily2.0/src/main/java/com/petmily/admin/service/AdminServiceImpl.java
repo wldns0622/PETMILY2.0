@@ -54,6 +54,16 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> adminMemberList(SearchVO searchVO) {
 		return mapper.adminMemberList(searchVO);
 	}
+
+	@Override
+	public List<CodeVO> adminCodeList() {
+		return mapper.adminCodeList();
+	}
+
+	@Override
+	public void memberCodeUpdate(MemberVO memberVO) {
+		mapper.memberCodeUpdate(memberVO);
+	}
 	
 	
 	

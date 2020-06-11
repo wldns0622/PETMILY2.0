@@ -21,8 +21,8 @@ public interface AdminService {
 	public List<CodeVO> codeDetailList(int codeType);
 	public void codeInsert(CodeVO codeVO);
 	public List<MemberVO> adminMemberList(SearchVO searchVO);
-	
-	
+	public List<CodeVO> adminCodeList();
+	public void memberCodeUpdate (MemberVO memberVO);
 	/*
 	codeListService
 	detailBoard

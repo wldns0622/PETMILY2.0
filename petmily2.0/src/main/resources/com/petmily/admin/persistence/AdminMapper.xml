@@ -47,11 +47,16 @@
 	
 	</insert>
 
-	<select id="adminMemberList" parameterType="com.petmily.pettalk.domain.SearchVO" resultMap="MemberResult">
-	select a.*,b.code_nm from member_tb a JOIN code_tb b ON a.mem_code = b.code where a.mem_code = ${codeSelect}
+	<select id="adminMemberList" parameterType="com.petmily.pettalk.domain.SearchVO" resultMap="MemberResult"> 
+	select a.*,b.code_nm from member_tb a JOIN code_tb b ON a.mem_code = b.code where a.mem_code = ${codeSelect} <if test="keyword != null and keyword !=''"> AND a.mem_nm LIKE '%' || #{keyword} || '%'</if>
 	</select>
 
 
+	<select id="adminCodeList" parameterType="com.petmily.pettalk.domain.SearchVO" resultType="com.petmily.common.domain.CodeVO">
+		select * from code_Tb where code_type=300
+	</select>
 
-
+	<update id="memberCodeUpdate" parameterType="com.petmily.member.domain.MemberVO">
+		update member_tb set mem_code = #{code} where mem_id = #{id}
+	</update>
 </mapper>

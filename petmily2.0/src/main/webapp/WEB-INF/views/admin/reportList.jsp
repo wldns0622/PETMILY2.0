@@ -11,12 +11,12 @@ zoom: 2;
 
 </style>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
-<div id = "content" class="container">
+<div id = "content" class="container-fluid">
 <div class="row">
 <jsp:include page="/WEB-INF/views/includes/adminnav.jsp" flush="false" />
 	<div id = "content-body" class="col-9 wrapper wrapper-content animated fadeInRight ">
 	<div class="row">
-	<div class="container i-box ">
+	<div class="container-fluid i-box ">
              <div class="ibox-title">
            		  <h2>신고된 글 관리</h2>
              </div>

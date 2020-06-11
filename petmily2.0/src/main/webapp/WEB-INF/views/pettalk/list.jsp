@@ -120,7 +120,6 @@ vertical-align: 1px;
 	var selectCd="";
 
     function changeSubmit(){
-    	/* $("#currentPageNo").val("1"); */
     	$('#sortingForm').submit()
     }
 

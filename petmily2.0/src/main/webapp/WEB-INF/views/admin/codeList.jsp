@@ -8,7 +8,7 @@ input[type=checkbox] {
 }
 </style>
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
-<div id="content" class="container">
+<div id="content" class="container-fluid">
 	<div class="row">
 		<jsp:include page="/WEB-INF/views/includes/adminnav.jsp" flush="false" />
 		<div id="content-body"
@@ -19,8 +19,8 @@ input[type=checkbox] {
 					<h2>공통 코드 관리</h2>
 				</div>
 
-				<div class="ibox-content ">
-					<table class="table table-striped text-center">
+				<div class="ibox-content container-fluid ">
+					<table class="table table-hover table-striped text-center">
 						<thead>
 							<tr>
 								<th>상위코드</th>
