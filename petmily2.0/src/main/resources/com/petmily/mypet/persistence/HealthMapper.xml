@@ -86,6 +86,10 @@
 	<select id="selectBasicImmu" resultType="com.petmily.mypet.domain.ImmuVO">
 		select * from IMMUNIZATION_TB where pet_no = #{petNo} and immu_sort = 'basic'
 	</select>
+	
+	<delete id="deleteBasicImmu">
+		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and immu_sort = 'basic'
+	</delete>
 </mapper>
 
 

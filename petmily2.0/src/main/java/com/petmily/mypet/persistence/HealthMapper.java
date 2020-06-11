@@ -7,4 +7,5 @@ import com.petmily.mypet.domain.ImmuVO;
 public interface HealthMapper {
 	int insertBasicImmu(ImmuVO immuVO);
 	List<ImmuVO> selectBasicImmu(int petNo);
+	int deleteBasicImmu(ImmuVO immuVO);
 }

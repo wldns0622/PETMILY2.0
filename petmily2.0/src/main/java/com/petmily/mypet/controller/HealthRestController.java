@@ -135,4 +135,15 @@ public class HealthRestController {
 		
 		return immuVOList;
 	}
+	
+	@PostMapping("/deleteBasicImmu")
+	public String deleteBasicImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.deleteBasicImmu(immuVO);
+		
+		return "";
+	}
 }

@@ -205,7 +205,7 @@
 				<div class="tab-content">
 					<!-- Tab 1 -->
 					<div role="tabpanel" id="tab-1" class="tab-pane">
-						<div class="panel-body">
+						<div class="panel-body animated fadeInDown">
 
 							<%@include file="/WEB-INF/views/mypet/consultation.jsp"%>
 
@@ -213,7 +213,7 @@
 					</div>
 					<!-- Tab 2 -->
 					<div role="tabpanel" id="tab-2" class="tab-pane" >
-						<div class="panel-body">
+						<div class="panel-body animated fadeInDown">
 
 							<%@include file="/WEB-INF/views/mypet/immunization.jsp"%>
 
@@ -221,7 +221,7 @@
 					</div>
 					<!-- Tab 3 -->
 					<div role="tabpanel" id="tab-3" class="tab-pane">
-						<div class="panel-body">
+						<div class="panel-body animated fadeInDown">
 
 							<%@include file="/WEB-INF/views/mypet/weight.jsp"%>
 

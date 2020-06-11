@@ -29,5 +29,11 @@ public class HealthServiceImpl implements HealthService {
 		return mapper.selectBasicImmu(petNo);
 	}
 
+	@Override
+	public int deleteBasicImmu(ImmuVO immuVO) {
+		
+		return mapper.deleteBasicImmu(immuVO);
+	}
+
 
 }
