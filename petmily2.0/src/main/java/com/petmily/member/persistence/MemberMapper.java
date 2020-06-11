@@ -22,4 +22,7 @@ public interface MemberMapper {
 	
 	public HospitalMemberVO hospitalMemberLogin(LoginMemberVO loginMember); //HospitalOperationVO hospitalOperationVO
 	
+	public HospitalOperationVO hospitalOperationInsert(HospitalOperationVO operationVO);
+	
+	public HospitalVO hospitalAgreementUpdate(HospitalVO hospitalVO);
 }

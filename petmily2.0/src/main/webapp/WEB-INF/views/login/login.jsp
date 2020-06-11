@@ -22,11 +22,21 @@
 	<link rel="stylesheet" type="text/css" href="/resources/member/css/main.css">
 
 <style type="text/css">
-	.login-select {
+
+	.login-select, .sign-up-select {
 		padding-left: 40px;
 	}
 	
-	.member-login {
+	.sign-up-select {
+		padding-left: 30px;
+	}
+	
+	.btn-info {
+		background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+		font-family: Ubuntu-Bold;
+	}
+	
+	#member-login {
 		padding-right: 30px;
 	}
 	
@@ -53,7 +63,7 @@
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 					<div class="wrap-input100 login-select">
-						<input class="input10 member-login" type="radio" id="" name="member" value="member">일반회원 로그인
+						<input class="input10" id="member-login" type="radio" name="member" value="member" checked="checked">일반회원 로그인 &nbsp&nbsp
 						<input class="input10" type="radio" name="member" value="hospitalMember">병원회원 로그인
 						<span class="focus-input100"></span>
 					</div>
@@ -61,8 +71,10 @@
 						<input type="submit" class="login100-form-btn" value="Login"/>
 					</div>
 				</form>
-				<a href="/member/memberSignUp" class="signUp btn btn-info" id="member-sign-up">일반 회원 가입하기</a>
-				<a href="/member/hospitalSignUp" class="signUp btn btn-info" id="hospital-sign-up">병원 회원 가입하기</a>
+				<div class="wrap-input100 sign-up-select">
+					<a href="/member/memberSignUp" class="signUp btn btn-info" id="member-sign-up">일반 회원 가입하기</a>
+					<a href="/member/hospitalSignUp" class="signUp btn btn-info" id="hospital-sign-up">병원 회원 가입하기</a>
+				</div>
 				</div>
 			</div>
 		</div>

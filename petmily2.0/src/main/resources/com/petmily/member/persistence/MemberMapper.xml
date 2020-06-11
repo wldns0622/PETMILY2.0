@@ -28,12 +28,20 @@
 		select * from member_tb where mem_id = #{id} and mem_pass = #{password}
 	</select>
 	
+	<select id="hospitalMemberLogin" parameterType="com.petmily.member.domain.LoginMemberVO" resultType="com.petmily.member.domain.HospitalMemberVO">
+		select * from hospital_member_tb where hspt_id = #{id} and hspt_pass = #{password}
+	</select>
+	
 	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
 		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
 	</insert>
 	
-	<select id="hospitalMemberLogin" parameterType="com.petmily.member.domain.LoginMemberVO" resultType="com.petmily.member.domain.HospitalMemberVO">
-		select * from hospital_member_tb where hspt_id = #{id} and hspt_pass = #{password}
-	</select>
+	<insert id="hospitalOperationInsert" parameterType="com.petmily.member.domain.HospitalOperationVO">
+		insert into hospital_operation_tb values (#{sunOper}, #{monOper}, #{tueOper}, #{wedOper}, #{thuOper}, #{friOper}, #{satOper}, #{hsptId})
+	</insert>
+	
+	<update id="hospitalAgreementUpdate" parameterType="com.petmily.hospital.domain.HospitalVO">
+		update hospital_tb set hospt_agreement = #{hosptAgreement} where hospt_name = #{hosptName};
+	</update>
 	
 </mapper>

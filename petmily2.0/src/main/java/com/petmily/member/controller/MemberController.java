@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,22 +92,35 @@ public class MemberController {
 		HospitalOperationVO hospitalOperationVO = new HospitalOperationVO();
 		
 		hospitalOperationVO.setSunOper(oper.getSunOpenOper() + "~" + oper.getSunCloseOper());
-		hospitalOperationVO.setSunOper(oper.getMonOpenOper() + "~" + oper.getMonCloseOper());
-		hospitalOperationVO.setSunOper(oper.getTueOpenOper() + "~" + oper.getTueCloseOper());
-		hospitalOperationVO.setSunOper(oper.getWedOpenOper() + "~" + oper.getWedCloseOper());
-		hospitalOperationVO.setSunOper(oper.getThuOpenOper() + "~" + oper.getThuCloseOper());
-		hospitalOperationVO.setSunOper(oper.getFriOpenOper() + "~" + oper.getFriCloseOper());
-		hospitalOperationVO.setSunOper(oper.getSatOpenOper() + "~" + oper.getSatCloseOper());
-		hospitalOperationVO.setSunOper(oper.getSatOpenOper() + "~" + oper.getSatCloseOper());
+		hospitalOperationVO.setMonOper(oper.getMonOpenOper() + "~" + oper.getMonCloseOper());
+		hospitalOperationVO.setTueOper(oper.getTueOpenOper() + "~" + oper.getTueCloseOper());
+		hospitalOperationVO.setWedOper(oper.getWedOpenOper() + "~" + oper.getWedCloseOper());
+		hospitalOperationVO.setThuOper(oper.getThuOpenOper() + "~" + oper.getThuCloseOper());
+		hospitalOperationVO.setFriOper(oper.getFriOpenOper() + "~" + oper.getFriCloseOper());
+		hospitalOperationVO.setSatOper(oper.getSatOpenOper() + "~" + oper.getSatCloseOper());
 		
 		hospitalOperationVO.setHsptId(hospitalMemberVO.getHsptId());
 		
+		System.out.println("일요일 운영시간 : " + hospitalOperationVO.getSunOper());
+		
 		memberService.hospitalMemberSignUp(hospitalMemberVO);
+		
+		
 		
 		return "redirect:/member/login";
 	}
 	
 	
 	
+	/*
+	@Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/student/**").hasAnyRole("ADMIN, TEACHER, STUDENT")
+		.and().formLogin().loginPage("/member/login").loginProcessingUrl("/member/login").defaultSuccessUrl("/index").and()
+		.logout().logoutUrl("/member/logout").logoutSuccessUrl("/index");
+   }
+   */
+
 	
 }
