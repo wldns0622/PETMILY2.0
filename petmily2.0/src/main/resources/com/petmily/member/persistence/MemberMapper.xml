@@ -32,7 +32,7 @@
 		select * from hospital_member_tb where hspt_id = #{id} and hspt_pass = #{password}
 	</select>
 	
-	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
+<!-- 	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
 		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
 	</insert>
 	
@@ -42,6 +42,6 @@
 	
 	<update id="hospitalAgreementUpdate" parameterType="com.petmily.hospital.domain.HospitalVO">
 		update hospital_tb set hospt_agreement = #{hosptAgreement} where hospt_name = #{hosptName};
-	</update>
+	</update> -->
 	
 </mapper>
