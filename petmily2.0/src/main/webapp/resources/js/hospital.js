@@ -45,22 +45,28 @@ $(function() {
 			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
 			kakao.maps.event.addListener(marker, 'click', function() {
-				
+				var text = "";
+				if(hospitals[i].hosptAgreement == '1'){
+					text = "<협약 병원>";
+				}
+		
 				var html = '';
 				html += '<table class="hospital-detail">';
 				html += '<tbody class="entry">';
-				html += '<tr><td class="hosptName">' + hospitals[i].hosptName + '</td></tr>';
+				html += '<tr><td class="hosptName">' + hospitals[i].hosptName + text +'</td></tr>';
 				html += '<tr><td class="hosptTel">' + '전화번호 : ' + hospitals[i].hosptTel + '</td></tr>';
 				html += '<tr><td class="hosptAddress">' + '주소 : '  + hospitals[i].hosptAddress + '</td></tr>';
 				html += '<tr><td class="hosptRoadAddress">' + '도로명주소 : '  + hospitals[i].hosptRoadAddress + '</td></tr>';
 				html += '<tr><td class="hosptBusinessHours">'+'진료 시간 : ' + hospitals[i].hosptBusinessHours + '</td></tr>';
-				html += '<tr><td><a href="/reservation/?hosptNo='+ hospitals[i].hosptNo + '"><' + hospitals[i].hosptName + '> 예약하기</a></td></tr>';
+				if (hospitals[i].hosptAgreement == '1') {
+					html += '<tr><td><a href="/reservation/?hsptName='+ hospitals[i].hosptName + '&hsptAddr=' + hospitals[i].hosptAddress + '"><' + hospitals[i].hosptName + '> 예약하기</a></td></tr>';
+				}
 				html += '</tbody>';
 				html += '</table>';
 				$('#create-detail-table').html(html);
 				$('#create-detail-table').stop(true).css({'display': 'block', 'opacity': 0}).animate({'opacity': 1}, 300);
 		});
-								
+			
 		}//반복문 끝
 
 		// 인포윈도우를 표시하는 클로저를 만드는 함수

@@ -1,6 +1,15 @@
+<%@page import="com.petmily.member.domain.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	MemberVO member = (MemberVO)session.getAttribute("member");
+%>
+
+
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
+
 
 <link rel=" shortcut icon" href="image/favicon.ico">
 <link rel="stylesheet" href="/resources/vendor/css/fullcalendar.min.css" />
@@ -13,7 +22,6 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="/resources/css/reservation.css" />
-
 
 <div class="container">
 
@@ -56,7 +64,7 @@
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-allDay">병원명</label> 
 							<!-- 병원명 읽어와서 넣어주기 -->
-							<label class="" name=""><b>병원</b></label>
+							<label class="" name=""><b>${requestMember.hsptName }</b></label>
 						</div>
 					</div>
 
@@ -64,20 +72,25 @@
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-reservation-name">예약자</label> 
 							<!-- 회원 정보 읽어와서 넣어주기 -->
-							<label class="" name=""><b>이름</b></label>
+							<label class="" name=""><b>${member.name }</b></label>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-type">반려견</label> 
-							<select class="inputModal" type="text" name="reservation_pet_name" id="edit-type">
+							<select class="inputModal" type="text" name="reservation_pet_no" id="edit-type">
+								<c:if test="${petList != null }">
+									<c:forEach var="list" items="${petList }">
+										<option value="${list.petNo}">${list.petNm}</option>
+									</c:forEach>
+								</c:if>
+								<c:if test="${petList == null}">
+									<option>등록된 펫이 없습니다. 펫을 등록해 주세요.</option>
+								</c:if>
 								<!-- 반려견이 1마리 이상 존재한다면 반복문으로 option 만들어 주기 -->
 								<!-- 반려견이 없다면 '등록된 반려견 정보가 존재하지 않습니다' 띄어주기 -->
 								<!-- 펫 번호들 넣어주기 -->
-								<option value="카테고리1">뽀삐</option>
-								<option value="카테고리2">스켈레톤</option>
-								<option value="카테고리3">고양이</option>
 							</select>
 						</div>
 					</div>

@@ -6,7 +6,13 @@
 		select * from hospital_tb
 	</select>
 	
+	<select id="hospitalDetail" resultType="com.petmily.member.domain.HospitalMemberVO" parameterType="com.petmily.member.domain.HospitalMemberVO">
+		<![CDATA[
+		SELECT * FROM hospital_member_tb WHERE HSPT_NAME = #{hsptName} AND regexp_like(HSPT_ADDR, '*${hsptAddr}*')
+		]]>
+	</select>
 	
-	
+	<select id="findUserPetList" resultType="com.petmily.mypet.domain.PetVO">
+		select * from pets_tb where mem_id = #{id}
+	</select>
 </mapper>
-
