@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.petmily.reservation.persistence.ReservationMapper"> <!-- namespace 중요 , 정해진 이름은 없음 자기가 지으면 됨 -->
+	<!-- 인터페이스의 패키지명 kosta.mapper, 인터페이스명 BoardMapper -->
+
+	<cache />
+	<insert id='insertReservation' parameterType="com.petmily.reservation.domain.ReservationVO">
+		insert into reservation_tb values (RESERVATION_SEQ.nextval, #{reservationMemberId}, #{reservationPetNo}, #{reservationDate}, '0', #{reservationKind}, #{reservationSymptom}, #{reservationPeriod}, #{reservationInoculationType}, #{reservationHospitalId})
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

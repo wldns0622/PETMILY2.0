@@ -1,8 +1,7 @@
-package com.petmily.reservation.service;
+package com.petmily.reservation.persistence;
 
 import com.petmily.reservation.domain.ReservationVO;
 
-public interface ReservationService {
+public interface ReservationMapper {
 	public int insertReservation(ReservationVO reservation);
-
 }
