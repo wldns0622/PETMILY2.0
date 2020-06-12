@@ -1,4 +1,4 @@
-$(function () {
+/*$(function () {
 
     var lineData = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -125,4 +125,4 @@ $(function () {
     var ctx5 = document.getElementById("radarChart").getContext("2d");
     new Chart(ctx5, {type: 'radar', data: radarData, options:radarOptions});
 
-});
+});*/

@@ -116,7 +116,7 @@ public class HealthRestController {
 	}
 	
 	@PostMapping("/insertBasicImmu")
-	public String inertBasicImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+	public String insertBasicImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		MemberVO member =  (MemberVO) session.getAttribute("member");
 		
@@ -127,7 +127,7 @@ public class HealthRestController {
 	}
 	
 	@PostMapping("/selectBasicImmu")
-	public @ResponseBody List<ImmuVO> inertBasicImmu(@RequestBody int petNo, HttpServletRequest request){
+	public @ResponseBody List<ImmuVO> selectBasicImmu(@RequestBody int petNo, HttpServletRequest request){
 		
 		List<ImmuVO> immuVOList = service.selectBasicImmu(petNo);
 		
@@ -143,6 +143,70 @@ public class HealthRestController {
 		
 		immuVO.setMemId(member.getId());
 		service.deleteBasicImmu(immuVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/insertBoosterImmu")
+	public String insertBoosterImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.insertBoosterImmu(immuVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/selectBoosterImmu")
+	public @ResponseBody List<ImmuVO> selectBoosterImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		
+		List<ImmuVO> immuVOList = service.selectBoosterImmu(immuVO);
+		
+		System.out.println(immuVOList.toString());
+		
+		return immuVOList;
+	}
+	
+	@PostMapping("/deleteBoosterImmu")
+	public String deleteBoosterImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.deleteBoosterImmu(immuVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/insertDiImmu")
+	public String insertDiImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.insertDiImmu(immuVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/selectDiImmu")
+	public @ResponseBody List<ImmuVO> selectDiImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		
+		List<ImmuVO> immuVOList = service.selectDiImmu(immuVO);
+		
+		System.out.println(immuVOList.toString());
+		
+		return immuVOList;
+	}
+	
+	@PostMapping("/deleteDiImmu")
+	public String deleteDiImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		immuVO.setMemId(member.getId());
+		service.deleteDiImmu(immuVO);
 		
 		return "";
 	}

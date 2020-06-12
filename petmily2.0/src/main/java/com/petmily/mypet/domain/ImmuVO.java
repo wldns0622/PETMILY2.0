@@ -18,4 +18,5 @@ public class ImmuVO implements Serializable{
 	private String petMonth;
 	private String hosptNm;
 	private String immuSort;
+	private int diYear;
 }

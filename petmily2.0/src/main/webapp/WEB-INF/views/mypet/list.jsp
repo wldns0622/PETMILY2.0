@@ -260,7 +260,18 @@
 
 <!-- Mainly scripts -->
 
+<script src="/resources/js/popper.min.js"></script>
+<script src="/resources/js/bootstrap.js"></script>
+<script src="/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+<!-- FooTable -->
+<script src="/resources/js/plugins/footable/footable.all.min.js"></script>
+    
+
+
+<!-- Data picker -->
+<script src="/resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -383,17 +394,17 @@ $(document).ready(function() {
 		
 		var formObj = $("form");
 		
+		
 });
 </script>
 
 <!-- Page-Level Scripts -->
 <script>
-	$(document).ready(function() {
+/* 	$(document).ready(function() {
 
-		$('.footable').footable();
-		$('.footable2').footable();
+		
 
-	});
+	}); */
 </script>
 
 <%@include file="/WEB-INF/views/includes/footer.jsp"%>

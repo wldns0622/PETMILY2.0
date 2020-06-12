@@ -330,12 +330,12 @@
 					</thead>
 					<tbody class="booster-tbody">
 						<tr>
-							<td class="year-change" data-month="head"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td class="year-change" id="this-year" data-month="head"></td>
+							<td data-immu="DHPPL"></td>
+							<td data-immu="코로나"></td>
+							<td data-immu="켄넬코프"></td>
+							<td data-immu="인플루엔자"></td>
+							<td data-immu="광견병"></td>
 						</tr>
 
 					</tbody>
@@ -490,13 +490,13 @@
 					<tbody class="di-tbody">
 						<tr>
 							<td data-month="head">심장사상충 예방</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td data-month="5월"></td>
+							<td data-month="6월"></td>
+							<td data-month="7월"></td>
+							<td data-month="8월"></td>
+							<td data-month="9월"></td>
+							<td data-month="10월"></td>
+							<td data-month="11월"></td>
 						</tr>
 
 					</tbody>
@@ -664,6 +664,7 @@
 		    return gap;
 		}
 		
+		var nowYear = new Date().getFullYear();
 		var thisYear = new Date().getFullYear();
 		
 		function yearSelect(thisYear) {			
@@ -676,11 +677,15 @@
 		$('.year-minus').click(function() {
 			thisYear -= 1;
 			yearSelect(thisYear);
+			
+			reBasicImmu();
 		});
 		
 		$('.year-plus').click(function() {
 			thisYear += 1;
 			yearSelect(thisYear);
+			
+			reBasicImmu();
 		});
 		
 		//날짜 비교할 것 https://lynmp.com/ko/article/dm8dab79421fa5f8d1 등 유효성 검사하기
@@ -688,11 +693,29 @@
 		
 		//기초 접종 데이터 불러오기
 		function reBasicImmu() {
-			var $basicTd = $('.basic-tbody>tr>td:not([data-month="head"])');
 			
-			$('#dogdoc-explain').empty();
+			var redCount = 0;
+			
+			var $basicTd = $('.basic-tbody>tr>td:not([data-month="head"])');
+			var $boosterTd = $('.booster-tbody>tr>td:not([data-month="head"])');
+			var $diTd = $('.di-tbody>tr>td:not([data-month="head"])');
+			
+			
+			
 			$basicTd.empty();
 			var petNo = <c:out value="${pet.petNo}"/>;
+			
+			$boosterTd.empty();
+			var boosterImmuVO = {
+					petNo: <c:out value="${pet.petNo}"/>,
+					petMonth: $('#this-year').html()
+			};
+			
+			$diTd.empty();
+			var diImmuVO = {
+					petNo: <c:out value="${pet.petNo}"/>,
+					diYear: $('#this-year').html()
+			};
 			
 			$.ajax({
 				type: 'post',
@@ -704,7 +727,7 @@
 					
 					// 빨간 박스, 독닥 함수
 					function redBlock() {
-						var redCount = 0;
+						
 						for (var j = 0; j < $basicTd.length; j++) {
 							//독닥 글 넣기!!!!
 							$basicTd.eq(j).removeClass('red-block');
@@ -752,12 +775,7 @@
 							
 						}
 						
-						//진료 안내
-						if(redCount>0){
-							$('#dogdoc-explain').append("아직 미접종한 항목이 남아있어요!<br>접종을 위한 건강상담 어떠세요?");
-						}else if(redCount == 0){
-							$('#dogdoc-explain').append("전부 접종 완료되었어요!<br>더 행복한 우리 아이를 위한 검진 어떠세요?");
-						}
+						return boosterAjax();
 					}
 					
 					var monthGap = dDay();
@@ -787,14 +805,171 @@
 					
 					insertData();
 					
+					//추가 접종 ajax
+					function boosterAjax() {
+						$.ajax({
+							type: 'post',
+							url: '/health/selectBoosterImmu',
+							data: JSON.stringify(boosterImmuVO),
+							dataType: 'json',
+							contentType: "application/json; charset=utf-8",
+							success: function(result) {
+								
+								// 빨간 박스, 독닥 함수
+								function redBlock() {
+									
+									for (var j = 0; j < $boosterTd.length; j++) {
+										//독닥 글 넣기!!!!
+										$boosterTd.eq(j).removeClass('red-block');
+										
+										if(monthGap>52){
+											if($boosterTd.eq(j).html() == ""){
+												
+												if($('#this-year').html() <= nowYear){
+													$boosterTd.eq(j).addClass('red-block');
+													redCount++;
+												}
+											}
+										}
+										
+										
+									}
+									return diAjax();
+								}
+								
+								
+								if(result.length == 0){
+									redBlock();
+								}
+								
+								function insertData() {
+									for (var i = 0; i < result.length; i++) {
+										for (var j = 0; j < $boosterTd.length; j++) {
+											$boosterTd.eq(j).removeClass('red-block');
+											if(result[i].immuNm == $boosterTd.eq(j).data('immu')){
+												//console.log('result: ' + result[0].petMonth);
+												var toDay = new Date(result[i].immuDt);
+											    var resultDate = toDay.yyyymmdd();
+												
+												var html = resultDate + '<br>'+ result[i].hosptNm;
+												$boosterTd.eq(j).append(html);
+												
+											}
+										}
+									}
+									
+									return redBlock();
+								}
+								
+								insertData();
+								
+								//심장사상충 ajax
+								function diAjax() {
+									$.ajax({
+										type: 'post',
+										url: '/health/selectDiImmu',
+										data: JSON.stringify(diImmuVO),
+										dataType: 'json',
+										contentType: "application/json; charset=utf-8",
+										success: function(result) {
+											
+											// 빨간 박스, 독닥 함수
+											function redBlock() {
+												
+												var thisMonth = new Date().getMonth()+1;
+												
+												for (var j = 0; j < $diTd.length; j++) {
+													//독닥 글 넣기!!!!
+													$diTd.eq(j).removeClass('red-block');
+													if($diTd.eq(j).html() == ""){
+														
+														if($('#this-year').html() == nowYear){
+															if($diTd.eq(j).data('month').substr(0, $diTd.eq(j).data('month').length-1) <= thisMonth){
+																$diTd.eq(j).addClass('red-block');
+																redCount++;
+															}
+														}else if($('#this-year').html() < nowYear){
+															$diTd.eq(j).addClass('red-block');
+															redCount++;
+														}
+														
+													}
+													
+													
+													
+												}
+												
+												//진료 안내
+												$('#dogdoc-explain').empty();
+												if(redCount>0){
+													$('#dogdoc-explain').append("아직 미접종한 항목이 남아있어요!<br>접종을 위한 건강상담 어떠세요?");
+												}else if(redCount == 0){
+													$('#dogdoc-explain').append("전부 접종 완료되었어요!<br>더 행복한 우리 아이를 위한 검진 어떠세요?");
+												}
+												
+												//과정 End
+												
+											}// 심장사상충 redBlock End
+											
+											
+											if(result.length == 0){
+												redBlock();
+											}
+											
+											function insertData() {
+												for (var i = 0; i < result.length; i++) {
+													for (var j = 0; j < $diTd.length; j++) {
+														$diTd.eq(j).removeClass('red-block');
+														
+														if(result[i].petMonth == $diTd.eq(j).data('month')){
+															//console.log('result: ' + result[0].petMonth);
+															var toDay = new Date(result[i].immuDt);
+														    var resultDate = toDay.yyyymmdd();
+															
+															var html = resultDate + '<br>'+ result[i].hosptNm;
+															$diTd.eq(j).append(html);
+															
+														}
+													}
+												}
+												
+												return redBlock();
+											}
+											
+											insertData();
+											
+										},
+										error: function() {
+											alert("문제가 발생했습니다.");
+										}
+									}) //심장사상충 ajax End
+								}
+								
+								
+								
+							},
+							error: function() {
+								alert("문제가 발생했습니다.");
+							}
+						})
+					}
+
 				},
 				error: function() {
 					alert("문제가 발생했습니다.");
-				}
-			})
-		}
+				} //reBasicImmu error End
+			})//reBasicImmu ajax End
+			
+			
+			
+
+		} // reBasicImmu() End
+		
 		
 		reBasicImmu();
+
+		
+		
 		
 		$('.basic-tbody>tr>td:not([data-month="head"])').click(function(e) {
 			var $tdHtml = $(this).html();
@@ -836,9 +1011,9 @@
 				$('.insert-booster-form div h3 span').empty();
 				$('.insert-booster-form input:not([name="petNo"])').val("");
 				$('.insert-booster-form div h3 span').eq(0).append($(this).data('immu'));
-				$('.insert-booster-form div h3 span').eq(1).append($(this).data('month'));
+				$('.insert-booster-form div h3 span').eq(1).append($('#this-year').html());
 				$('.insert-booster-form input[name="immuNm"]').val($(this).data('immu'));
-				$('.insert-booster-form input[name="petMonth"]').val($(this).data('month'));
+				$('.insert-booster-form input[name="petMonth"]').val($('#this-year').html());
 
 			}else{
 				//수정 및 삭제
@@ -847,9 +1022,9 @@
 				$('.update-booster-form div h3 span').empty();
 				$('.update-booster-form input:not([name="petNo"])').val("");
 				$('.update-booster-form div h3 span').eq(0).append($(this).data('immu'));
-				$('.update-booster-form div h3 span').eq(1).append($(this).data('month'));
+				$('.update-booster-form div h3 span').eq(1).append($('#this-year').html());
 				$('.update-booster-form input[name="immuNm"]').val($(this).data('immu'));
-				$('.update-booster-form input[name="petMonth"]').val($(this).data('month'));
+				$('.update-booster-form input[name="petMonth"]').val($('#this-year').html());
 
 			}
 			
@@ -865,9 +1040,9 @@
 				$('#insert-di-immu').modal('show');
 				$('.insert-di-form div h3 span').empty();
 				$('.insert-di-form input:not([name="petNo"])').val("");
-				$('.insert-di-form div h3 span').eq(0).append($(this).data('immu'));
+				$('.insert-di-form div h3 span').eq(0).append("심장사상충");
 				$('.insert-di-form div h3 span').eq(1).append($(this).data('month'));
-				$('.insert-di-form input[name="immuNm"]').val($(this).data('immu'));
+				$('.insert-di-form input[name="immuNm"]').val('심장사상충');
 				$('.insert-di-form input[name="petMonth"]').val($(this).data('month'));
 
 			}else{
@@ -876,9 +1051,9 @@
 				$('#update-di-immu').modal('show');
 				$('.update-di-form div h3 span').empty();
 				$('.update-di-form input:not([name="petNo"])').val("");
-				$('.update-di-form div h3 span').eq(0).append($(this).data('immu'));
+				$('.update-di-form div h3 span').eq(0).append('심장사상충');
 				$('.update-di-form div h3 span').eq(1).append($(this).data('month'));
-				$('.update-di-form input[name="immuNm"]').val($(this).data('immu'));
+				$('.update-di-form input[name="immuNm"]').val('심장사상충');
 				$('.update-di-form input[name="petMonth"]').val($(this).data('month'));
 
 			}
@@ -886,6 +1061,7 @@
 			
 		})
 		
+		//기초 insert
 		$('#insert-basic-immu-Btn').click(function () {
 			console.log('클릭');
 			var basicImmu = {
@@ -914,6 +1090,64 @@
 			
 		})
 		
+		// 추가 inesrt
+		$('#insert-booster-immu-Btn').click(function () {
+			console.log('클릭');
+			var boosterImmu = {
+				petNo: 	$('.insert-booster-form input[name="petNo"]').val(),
+				immuNm: $('.insert-booster-form input[name="immuNm"]').val(),
+				petMonth: $('.insert-booster-form input[name="petMonth"]').val(),
+				immuDt: $('.insert-booster-form input[name="immuDt"]').val(),
+				hosptNm: $('.insert-booster-form input[name="hosptNm"]').val()
+			}
+			
+			$.ajax({
+				type: 'post',
+				url: '/health/insertBoosterImmu',
+				data: JSON.stringify(boosterImmu),
+				contentType: "application/json; charset=utf-8",
+				success: function(result,status,xhr) {
+					reBasicImmu();
+				},
+				error: function(xhr,status,er) {
+					if(error){
+						error(er);
+					}
+				}
+			})
+			
+		})
+		
+		//심장사상충 insert
+		$('#insert-di-immu-Btn').click(function () {
+			console.log('클릭');
+			var diImmu = {
+				petNo: 	$('.insert-di-form input[name="petNo"]').val(),
+				immuNm: $('.insert-di-form input[name="immuNm"]').val(),
+				petMonth: $('.insert-di-form input[name="petMonth"]').val(),
+				immuDt: $('.insert-di-form input[name="immuDt"]').val(),
+				diYear: $('#this-year').html(),
+				hosptNm: $('.insert-di-form input[name="hosptNm"]').val()
+			}
+			
+			$.ajax({
+				type: 'post',
+				url: '/health/insertDiImmu',
+				data: JSON.stringify(diImmu),
+				contentType: "application/json; charset=utf-8",
+				success: function(result,status,xhr) {
+					reBasicImmu();
+				},
+				error: function(xhr,status,er) {
+					if(error){
+						error(er);
+					}
+				}
+			})
+			
+		})
+		
+		// 기초 삭제
 		$('#delete-basic-immu-Btn').click(function () {
 			console.log('클릭');
 			var basicImmu = {
@@ -929,6 +1163,63 @@
 				type: 'post',
 				url: '/health/deleteBasicImmu',
 				data: JSON.stringify(basicImmu),
+				contentType: "application/json; charset=utf-8",
+				success: function(result,status,xhr) {
+					reBasicImmu();
+				},
+				error: function(xhr,status,er) {
+					if(error){
+						error(er);
+					}
+				}
+			})
+			
+		})
+		
+		// 추가 삭제
+		$('#delete-booster-immu-Btn').click(function () {
+			console.log('클릭');
+			var boosterImmu = {
+				petNo: 	$('.update-booster-form input[name="petNo"]').val(),
+				immuNm: $('.update-booster-form input[name="immuNm"]').val(),
+				petMonth: $('.update-booster-form input[name="petMonth"]').val(),
+				immuDt: $('.update-booster-form input[name="immuDt"]').val(),
+				hosptNm: $('.update-booster-form input[name="hosptNm"]').val()
+			}
+			
+			$.ajax({
+				type: 'post',
+				url: '/health/deleteBoosterImmu',
+				data: JSON.stringify(boosterImmu),
+				contentType: "application/json; charset=utf-8",
+				success: function(result,status,xhr) {
+					reBasicImmu();
+				},
+				error: function(xhr,status,er) {
+					if(error){
+						error(er);
+					}
+				}
+			})
+			
+		})
+		
+		// 심장사상충 삭제
+		$('#delete-di-immu-Btn').click(function () {
+			console.log('클릭');
+			var diImmu = {
+				petNo: 	$('.update-di-form input[name="petNo"]').val(),
+				immuNm: $('.update-di-form input[name="immuNm"]').val(),
+				petMonth: $('.update-di-form input[name="petMonth"]').val(),
+				immuDt: $('.update-di-form input[name="immuDt"]').val(),
+				diYear: $('#this-year').html(),
+				hosptNm: $('.update-di-form input[name="hosptNm"]').val()
+			}
+			
+			$.ajax({
+				type: 'post',
+				url: '/health/deleteDiImmu',
+				data: JSON.stringify(diImmu),
 				contentType: "application/json; charset=utf-8",
 				success: function(result,status,xhr) {
 					reBasicImmu();

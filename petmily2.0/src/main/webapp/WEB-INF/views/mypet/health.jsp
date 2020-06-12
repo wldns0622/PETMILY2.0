@@ -195,7 +195,7 @@
 		<div class="col-lg-12">
 			<div class="tabs-container">
 				<ul class="nav nav-tabs" role="tablist">
-					<li><a class="nav-link" id="tablist-1" data-toggle="tab" href="#tab-1" >
+					<li><a class="nav-link a" id="tablist-1" data-toggle="tab" href="#tab-1" >
 							진료</a></li>
 					<li><a class="nav-link" id="tablist-2" data-toggle="tab" href="#tab-2">
 							접종</a></li>

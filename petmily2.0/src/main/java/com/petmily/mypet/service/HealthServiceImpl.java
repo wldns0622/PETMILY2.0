@@ -35,5 +35,35 @@ public class HealthServiceImpl implements HealthService {
 		return mapper.deleteBasicImmu(immuVO);
 	}
 
+	@Override
+	public int insertBoosterImmu(ImmuVO immuVO) {
+		return mapper.insertBoosterImmu(immuVO);
+	}
+
+	@Override
+	public List<ImmuVO> selectBoosterImmu(ImmuVO immuVO) {
+		return mapper.selectBoosterImmu(immuVO);
+	}
+
+	@Override
+	public int deleteBoosterImmu(ImmuVO immuVO) {
+		return mapper.deleteBoosterImmu(immuVO);
+	}
+
+	@Override
+	public int insertDiImmu(ImmuVO immuVO) {
+		return mapper.insertDiImmu(immuVO);
+	}
+
+	@Override
+	public List<ImmuVO> selectDiImmu(ImmuVO immuVO) {
+		return mapper.selectDiImmu(immuVO);
+	}
+
+	@Override
+	public int deleteDiImmu(ImmuVO immuVO) {
+		return mapper.deleteDiImmu(immuVO);
+	}
+
 
 }

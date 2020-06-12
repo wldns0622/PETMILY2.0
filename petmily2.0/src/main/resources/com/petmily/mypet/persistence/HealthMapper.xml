@@ -79,7 +79,8 @@
 					#{immuDt},
 					#{petMonth},
 					#{hosptNm},
-					'basic'
+					'basic',
+					0
 			)
 	</insert>
 	
@@ -89,6 +90,54 @@
 	
 	<delete id="deleteBasicImmu">
 		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and immu_sort = 'basic'
+	</delete>
+	
+	<!-- booster -->
+	<insert id="insertBoosterImmu">
+		insert into IMMUNIZATION_TB
+			values(IMMUNIZATION_TB_SEQ.nextval,
+					#{petNo},
+					#{memId},
+					#{immuNm},
+					'0',					
+					#{immuDt},
+					#{petMonth},
+					#{hosptNm},
+					'booster',
+					0
+			)
+	</insert>
+	
+	<select id="selectBoosterImmu" resultType="com.petmily.mypet.domain.ImmuVO">
+		select * from IMMUNIZATION_TB where pet_no = #{petNo} and pet_month = #{petMonth} and immu_sort = 'booster'
+	</select>
+	
+	<delete id="deleteBoosterImmu">
+		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and immu_sort = 'booster'
+	</delete>
+	
+	<!-- di -->
+	<insert id="insertDiImmu">
+		insert into IMMUNIZATION_TB
+			values(IMMUNIZATION_TB_SEQ.nextval,
+					#{petNo},
+					#{memId},
+					#{immuNm},
+					'0',					
+					#{immuDt},
+					#{petMonth},
+					#{hosptNm},
+					'di',
+					#{diYear}
+			)
+	</insert>
+	
+	<select id="selectDiImmu" resultType="com.petmily.mypet.domain.ImmuVO">
+		select * from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = '심장사상충' and di_year = #{diYear} and immu_sort = 'di'
+	</select>
+	
+	<delete id="deleteDiImmu">
+		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and di_year = #{diYear} and immu_sort = 'di'
 	</delete>
 </mapper>
 
