@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
     .btn_write_area {
@@ -46,25 +47,12 @@ vertical-align: 1px;
 <div id = "content" class="container ibox animated fadeInRight col-xl-r">
 	<div id = "content-body" class="col ibox-content border m-t-xl">
 	<div class="container">
-		<div class="row">
-	        <div class="col-lg-9 order-1 order-lg-2">
-	            <div class="product-show-option">
-	                <div class="row">
-	                    <div class="col-lg-7 col-md-7">
-	                        <div class="select-option">
-	                        <form id="sortingForm" name="area" class="col-lg-8" action="list">
-	                            <select id="selectCd" class="custom-select" name="selectSorting" onchange="changeSubmit()">
-	       	                        	<option value="">전체</option>
-			                  			 <c:forEach var="item" items="${codeList}">
-	       	                        	<option value="${item.code}">${item.codeNm}</option>
-		                            </c:forEach> 
-	                            </select>
-                            </form>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-            </div>
+		<div class="m-l m-t row" id ="menuList">
+               	<a id="all" style="box-shadow:3px 2px 9px -5px  #555b61" class="btn btn-default btn-rounded m-l-xs m-b" href="list">전체</a></li>
+			 <c:forEach var="item" items="${codeList}">
+               	<a style="box-shadow:3px 2px 9px -5px  #555b61" data-val="${item.code}" class="btn btn-default btn-rounded dim m-l-xs m-b" href="list?selectSorting=${item.code}">${item.codeNm}</a></li>
+             </c:forEach> 
+		
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
@@ -81,6 +69,7 @@ vertical-align: 1px;
 							</tr>
 						</thead>
 						<tbody>
+						<c:if test="${fn:length(list) > 3}">
 						 <c:forEach var="bestList" end="2" items="${sortList}">
 						<tr class="best">
 						<td><span class="bestIcon">BEST</span></td>
@@ -91,16 +80,27 @@ vertical-align: 1px;
 								<td>${bestList.likeCnt }</td>
 							</tr>
 						</c:forEach>
-						<c:forEach var="list" items="${list}">
-							<tr>
-								<td scope="row">${list.boardNo}</td>
-								<td><a href="detail?seq=${list.boardNo }">${list.boardTitle }</a> <span class="card-subtitle mb-2 text-muted">(${list.replyCnt})</span></td>
-								<td>${list.memNm}</td>
-								<td>${list.createDt }</td>
-								<td>${list.boardHitcount }</td>
-								<td>${list.likeCnt }</td>
-							</tr>
-						</c:forEach>
+						</c:if>
+						<c:choose>
+						    <c:when test="${fn:length(list) == 0}">
+						    <tr>
+						    <td colspan=6 class="m-t m-b text-center"><h3>등록된 게시물이 없습니다.</h3></td>
+						    </tr>
+						        
+						    </c:when>
+						    <c:otherwise>
+								<c:forEach var="list" items="${list}">
+									<tr>
+										<td scope="row">${list.boardNo}</td>
+										<td><a href="detail?seq=${list.boardNo }">${list.boardTitle }</a> <span class="card-subtitle mb-2 text-muted">(${list.replyCnt})</span></td>
+										<td>${list.memNm}</td>
+										<td>${list.createDt }</td>
+										<td>${list.boardHitcount }</td>
+										<td>${list.likeCnt }</td>
+									</tr>
+								</c:forEach>
+						</c:otherwise>
+						</c:choose>
 						</tbody>
 					</table>
 
@@ -137,10 +137,26 @@ vertical-align: 1px;
     	    $.urlParam('selectSorting');
 
     selectCd = $.urlParam('selectSorting');
+    var listCd ="";
     if(selectCd){
     	$("#selectCd").val(selectCd).prop("selected", true);
+    	
+    	listCd = $('#menuList a').each(function(i,item){
+    		
+    	
+    		
+    		if(selectCd==$(item).attr("data-val")){
+    			
+    			$(this).removeClass("btn-default").addClass("btn-warning");
+    		}
+    		
+    	})
+    	
+    }else{
+    	$('#all').removeClass("btn-default").addClass("btn-warning");
     }
 
+    
     });
 
 

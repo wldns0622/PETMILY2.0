@@ -12,7 +12,7 @@
                                 <li><a href="/admin/codeList"> <i class="fa fa-envelope-o"></i> 코드 관리 </a></li>
                                 <li><a href="#"> <i class="fa fa-certificate"></i> 승인 관리 </a></li>
                                 <li><a href="/admin/reportList"> <i class="fa fa-file-text-o"></i> 신고 관리 <span class="label label-danger float-right">2</span></a></li>
-                                <li><a href="#"> <i class="fa fa-trash-o"></i> 통계 </a></li>
+                                <li><a href="/admin/statistics"> <i class="fa fa-trash-o"></i> 통계 </a></li>
                             </ul>
                             <h5>개발자 연락처</h5>
                             <ul class="category-list" style="padding: 0">

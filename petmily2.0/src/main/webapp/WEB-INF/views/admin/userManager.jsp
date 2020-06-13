@@ -13,28 +13,38 @@ input[type=checkbox] {
 		<jsp:include page="/WEB-INF/views/includes/adminnav.jsp" flush="false" />
 		<div id="content-body"
 			class="col-9 wrapper wrapper-content animated fadeInRight ">
-				
+
 
 			<div class="row">
 				<div class="container-fluid i-box border-bottom">
 					<div class="ibox-title">
 						<h2>사용자 관리</h2>
 					</div>
-					<div id="select" class="col-lg-12 col-md-12 m-b-xl border-top">
-				<label class="col-form-label col m-t" for="select">사용자 분류</label>
-					<div class="select-option">
-						<form id="sortingForm" name="area" class="col-lg-4" action="/admin/userManager" method="get">
-							<select id="selectCd" class="custom-select" name="codeSelect"
-								onchange="changeSubmit()">
-								<option value="" selected disabled hidden>관리자</option>
-								<c:forEach var="item" items="${userCodeList}">
-									<option value="${item.code}">${item.codeNm}</option>
-								</c:forEach>
-							</select>
-							<input name="keyword">
-						</form>
+						<div class="row">
+					<div id="select" class="col-lg-12 col-md-12 m-b border-top">
+							<form id="sortingForm" name="area" action="/admin/userManager"
+								method="get">
+								<div class="row m-t">
+						<div class="col-lg-3 ">
+									<label class=" col-form-label">사용자 분류</label> 
+									<select id="selectCd"
+										class="form-control col-sm-10" name="codeSelect"
+										onchange="changeSubmit()">
+										<option value="" selected disabled hidden>관리자</option>
+										<c:forEach var="item" items="${userCodeList}">
+											<option value="${item.code}">${item.codeNm}</option>
+										</c:forEach>
+									</select>
+						</div>
+						<div class="col-lg-9 ">
+									<label class="col-form-label">사용자 검색</label> 
+									<input name="keyword" type="text" placeholder="검색어를 입력해주세요." class="form-control col-lg-4">
+								</div>
+								</div>
+							</form>
+						</div>
+						</div>
 					</div>
-				</div>
 					<div class="col-lg-12">
 						<div>
 							<form>
@@ -87,42 +97,38 @@ input[type=checkbox] {
 </div>
 
 
-<script type="text/javascript" >
+<script type="text/javascript">
 	var tmpArr = []
 
-    function changeSubmit(){
-    	$('#sortingForm').submit()
-    }
+	function changeSubmit() {
+		$('#sortingForm').submit()
+	}
 
-	
-	
-	$(document).ready(function() {
-		var result = '<c:out value="${ok}"/>';
+	$(document).ready(
+			function() {
+				var result = '<c:out value="${ok}"/>';
 
-		if (result != '')
-			alert("정상 처리되었습니다.");
+				if (result != '')
+					alert("정상 처리되었습니다.");
 
+				$.urlParam = function(name) {
+					var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+							.exec(window.location.href);
+					if (results == null) {
+						return null;
+					} else {
+						return results[1] || 0;
+					}
+				};
 
-		
-		
-	  	$.urlParam = function(name){
-    	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    	    if (results==null){
-    	       return null;
-    	    }
-    	    else{
-    	       return results[1] || 0;
-    	    }
-   		 };
+				$.urlParam('codeSelect');
 
-    	    $.urlParam('codeSelect');
+				var selectCd = $.urlParam('codeSelect');
+				if (selectCd) {
+					$("#selectCd").val(selectCd).prop("selected", true);
+				}
 
-    var selectCd = $.urlParam('codeSelect');
-    if(selectCd){
-    	$("#selectCd").val(selectCd).prop("selected", true);
-    }
-
-	})
+			})
 	$('#tbodyRow').find('select').on('change', function() {
 		jsonObj = {
 			"code" : $(this).val(),
@@ -143,6 +149,7 @@ input[type=checkbox] {
 				data : JSON.stringify(tmpArr),
 				success : function(data) {
 					alert("반영되었습니다.")
+					location.reload(true);
 
 				},
 				error : function() {

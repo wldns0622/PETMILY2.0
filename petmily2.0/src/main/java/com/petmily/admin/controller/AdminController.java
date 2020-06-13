@@ -1,6 +1,8 @@
 package com.petmily.admin.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.admin.service.AdminService;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.member.domain.MemberVO;
@@ -155,4 +161,22 @@ public class AdminController {
 		return "ok";
 	}
 
+	
+	@GetMapping("/statistics")
+	public void statistics(){
+		
+	}
+	
+	@ResponseBody
+	@PostMapping("/statisticsData")
+	public String statisticsData(){
+		Gson g = new Gson();
+		List<StatisticsVO> list = adminService.memberTotalData();
+			
+		
+		return g.toJson(list);
+	}
+	
+	
+	
 }

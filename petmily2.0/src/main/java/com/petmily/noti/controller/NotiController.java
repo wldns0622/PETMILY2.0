@@ -32,7 +32,7 @@ public class NotiController {
 	
 	@ResponseBody
 	@PostMapping("/notiList")
-	public List<NotiVO> notiList(Model model, HttpServletRequest request) {
+	public List<NotiVO> notiList(Model model, HttpServletRequest request,@RequestParam(value="deleteYn")String deleteYn) {
 		
 		
 		try {
@@ -43,6 +43,7 @@ public class NotiController {
 
 			NotiVO notiVO = new NotiVO();
 			notiVO.setMemId(loginSession.getId());
+			notiVO.setDeleteYn(deleteYn);
 			
 			return service.listNoti(notiVO);
 			

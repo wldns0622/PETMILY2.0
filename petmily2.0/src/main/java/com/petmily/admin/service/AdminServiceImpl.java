@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.admin.persistence.AdminMapper;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.member.domain.MemberVO;
@@ -63,6 +64,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void memberCodeUpdate(MemberVO memberVO) {
 		mapper.memberCodeUpdate(memberVO);
+	}
+
+	@Override
+	public List<StatisticsVO> memberTotalData() {
+		return mapper.memberTotalData();
 	}
 	
 	

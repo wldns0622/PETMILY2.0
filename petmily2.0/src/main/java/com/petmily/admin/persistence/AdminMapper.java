@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.pettalk.domain.ReportVO;
@@ -23,6 +24,7 @@ public interface AdminMapper {
 	public List<MemberVO> adminMemberList(SearchVO searchVO);
 	public List<CodeVO> adminCodeList();
 	public void memberCodeUpdate(MemberVO memberVO);
+	public List<StatisticsVO>memberTotalData();
 	
 	
 	/*

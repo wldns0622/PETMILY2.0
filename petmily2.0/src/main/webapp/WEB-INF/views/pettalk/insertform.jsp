@@ -20,7 +20,7 @@
 									<label style="text-align: right;"
 										class=" col-form-label col-lg-1" >제목</label>
 									<div class="col-lg-7">
-										<input class="form-control" type="text" placeholder="제목" name="boardTitle">
+										<input class="form-control" required="required"  type="text" placeholder="제목" name="boardTitle">
 									</div>
 									<div class="col-lg-3">
 										<select class="form-control" name="boardCd">

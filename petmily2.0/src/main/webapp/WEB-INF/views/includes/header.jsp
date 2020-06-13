@@ -102,10 +102,23 @@ $('.dropdown-toggle').on('click',function(){
 	noTiList();
 })
 
-function noTiList() {
+function noTiList(deleteYn) {
+	
+	
+	var parameterTmp = deleteYn;
+	
+	console.log(parameterTmp)
+	
+	if(!parameterTmp){
+		parameterTmp = 'N';
+		}
+	console.log(parameterTmp)
+
+	
 	$.ajax({
 		url : "/noti/notiList",
 		type : "POST",
+		data : {"deleteYn":parameterTmp},
 		dataType:"json",
 		success : function(data) {
 			

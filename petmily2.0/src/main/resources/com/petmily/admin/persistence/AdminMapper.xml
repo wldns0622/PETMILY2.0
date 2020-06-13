@@ -59,4 +59,14 @@
 	<update id="memberCodeUpdate" parameterType="com.petmily.member.domain.MemberVO">
 		update member_tb set mem_code = #{code} where mem_id = #{id}
 	</update>
+	
+	<select id="memberTotalData" resultType="com.petmily.admin.domain.StatisticsVO">
+	SELECT TO_CHAR (register_date, 'YYYY-MM') AS "register_date",
+	   COUNT (*) as "reg_cnt",
+	   SUM (COUNT (1)) OVER (ORDER BY TO_CHAR (register_date, 'YYYY-MM')) as "reg_total"
+	FROM member_tb
+		GROUP BY TO_CHAR (register_date, 'YYYY-MM')
+		ORDER BY TO_CHAR (register_date, 'YYYY-MM')
+	</select>
+	
 </mapper>

@@ -59,11 +59,16 @@ body, input, textarea, select, button, table {
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="false" />
 
 <div id="content" class="container">
-		<div class="row">
-	<div id="content-body"class="col-12 wrapper wrapper-content animated fadeInRight">
-				<div class="i-box border m-lg ">
+	<div class="row">
+		<div id="content-body"
+			class="col-12 wrapper wrapper-content animated fadeInRight">
+			<div class="i-box border m-lg ">
 				<div class="ibox-title">
-				<h1>알림 목록</h1>
+					<h1>알림 목록</h1>
+					<span class="float-right"> <a id="N"
+						onclick="notiadmin('N')">새로운 알림</a> <a id="Y"
+						onclick="notiadmin('Y')">읽은알림</a>
+					</span>
 				</div>
 				<div class="ibox-content">
 					<table class="table border-bottom">
@@ -85,7 +90,7 @@ body, input, textarea, select, button, table {
 					</div>
 
 				</div>
-			
+
 			</div>
 
 		</div>
@@ -134,13 +139,34 @@ body, input, textarea, select, button, table {
 
 	});
 
-	function notiadmin() {
+	function notiadmin(deleteYn) {
+		var parameterTmp = deleteYn;
 
-		$.ajax({
+		if (!parameterTmp) {
+			parameterTmp = 'N';
+		}
+
+		$
+				.ajax({
 					url : "/noti/notiList",
 					type : "POST",
+					data : {
+						"deleteYn" : parameterTmp
+					},
 					dataType : "json",
 					success : function(data) {
+						$('.notiList').children().remove();
+
+						if (parameterTmp == 'Y') {
+							$('#Y').removeClass("text-muted small")
+							$('#N').addClass("text-muted small")
+
+						} else {
+
+							$('#N').removeClass("text-muted small")
+							$('#Y').addClass("text-muted small")
+						}
+
 						for (var i = 0; i < data.length; i++) {
 							if (data[i].alertCode == 2001) {
 								data[i].msg = data[i].boardNo
@@ -150,7 +176,6 @@ body, input, textarea, select, button, table {
 										+ "번 게시물에 '댓글'이 달렸습니다."
 							}
 						}
-
 						for (var i = 0; i < data.length; i++) {
 							$('.notiList')
 									.append(

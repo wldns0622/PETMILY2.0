@@ -10,14 +10,12 @@
 
 
 	<select id="listNoti" parameterType="com.petmily.noti.domain.NotiVO" resultType="com.petmily.noti.domain.NotiVO">
-		select * from alert_tb where MEM_ID=#{memId} ORDER BY ALERT_NO
+		select * from alert_tb where MEM_ID=#{memId} AND delete_yn = #{deleteYn} ORDER BY ALERT_NO DESC 
 
 	</select>
 
-	<delete id="deleteNoti" parameterType="com.petmily.noti.domain.NotiVO">
-		delete from alert_tb where MEM_ID=#{memId} <if test="alertNo != null and alertNo !=''">
-		AND ALERT_NO = #{alertNo}
-		</if>
-	</delete>
+	<update id="deleteNoti" parameterType="com.petmily.noti.domain.NotiVO">
+		update alert_tb set delete_yn = 'Y' where MEM_ID=#{memId} AND ALERT_NO = #{alertNo}
+	</update>
 
 </mapper>

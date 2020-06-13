@@ -17,6 +17,7 @@ public class NotiVO implements Serializable{
 	private String memId;
 	private String memToId;
 	private String eventNm;
+	private String deleteYn;
 
 
 

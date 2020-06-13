@@ -3,11 +3,9 @@ package com.petmily.admin.service;
 
 import java.util.List;
 
+import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.common.domain.CodeVO;
 import com.petmily.member.domain.MemberVO;
-import com.petmily.noti.domain.NotiVO;
-import com.petmily.pettalk.domain.BoardVO;
-import com.petmily.pettalk.domain.ReplyVO;
 import com.petmily.pettalk.domain.ReportVO;
 import com.petmily.pettalk.domain.SearchVO;
 
@@ -23,6 +21,8 @@ public interface AdminService {
 	public List<MemberVO> adminMemberList(SearchVO searchVO);
 	public List<CodeVO> adminCodeList();
 	public void memberCodeUpdate (MemberVO memberVO);
+	public List<StatisticsVO> memberTotalData();
+	
 	/*
 	codeListService
 	detailBoard
