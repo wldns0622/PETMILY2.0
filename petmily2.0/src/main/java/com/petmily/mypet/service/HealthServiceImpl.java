@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.petmily.mypet.domain.ImmuVO;
+import com.petmily.mypet.domain.RsvnVO;
 import com.petmily.mypet.persistence.HealthMapper;
 
 import lombok.AllArgsConstructor;
@@ -63,6 +64,18 @@ public class HealthServiceImpl implements HealthService {
 	@Override
 	public int deleteDiImmu(ImmuVO immuVO) {
 		return mapper.deleteDiImmu(immuVO);
+	}
+
+	@Override
+	public List<RsvnVO> allRSVN(int reservationPetNo) {
+		// TODO Auto-generated method stub
+		return mapper.allRSVN(reservationPetNo);
+	}
+
+	@Override
+	public RsvnVO selectRSVN(RsvnVO rsvnVO) {
+		// TODO Auto-generated method stub
+		return mapper.selectRSVN(rsvnVO);
 	}
 
 

@@ -3,7 +3,9 @@ package com.petmily.mypet.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.PetVO;
+import com.petmily.mypet.domain.RsvnVO;
 import com.petmily.mypet.service.HealthService;
 import com.petmily.mypet.service.MypetService;
 
@@ -210,4 +213,30 @@ public class HealthRestController {
 		
 		return "";
 	}
+	
+	@GetMapping("/allRSVN")
+    public @ResponseBody Object allRSVN(@RequestParam("petNo") int reservationPetNo){
+		System.out.println("예약일 전체");
+		//List<RsvnVO> rsvnVOList = service.allRSVN(reservationPetNo);
+		//System.out.println(rsvnVOList);
+		
+
+		  Map<String, Object> mp = new HashMap<String, Object>();
+		  mp.put("data", service.allRSVN(reservationPetNo));
+		  
+		  Object result = mp;
+		  
+		  return result;
+
+		
+		
+		//return rsvnVOList;
+    }
+	
+	@GetMapping("/selectRSVN")
+    public @ResponseBody RsvnVO selectRSVN(@RequestParam RsvnVO rsvnVO){
+       
+		RsvnVO rsvnVO2 = service.selectRSVN(rsvnVO);
+		return rsvnVO2;
+    }
 }

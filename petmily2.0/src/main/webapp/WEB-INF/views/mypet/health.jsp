@@ -321,15 +321,7 @@ $(document).ready(function() {
 });
 
 </script>
-<!-- Page-Level Scripts -->
-<script>
-	$(document).ready(function() {
 
-		$('.footable').footable();
-		$('.footable2').footable();
-
-	});
-</script>
 
 <%@include file="/WEB-INF/views/includes/footer.jsp"%>
 </html>

@@ -139,6 +139,13 @@
 	<delete id="deleteDiImmu">
 		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and di_year = #{diYear} and immu_sort = 'di'
 	</delete>
+	
+	<select id="allRSVN" resultType="com.petmily.mypet.domain.RsvnVO">
+		select * from RESERVATION_TB r JOIN HOSPITAL_MEMBER_TB h ON r.RESERVATION_HOSPITAL_ID = h.HSPT_ID where RESERVATION_PET_NO = #{reservationPetNo} order by RESERVATION_NO
+	</select>
+	<select id="selectRSVN" resultType="com.petmily.mypet.domain.RsvnVO">
+		select * from RESERVATION_TB where RESERVATION_PET_NO = #{reservationPetNo} and RESERVATION_NO = #{reservationNo}
+	</select>
 </mapper>
 
 
