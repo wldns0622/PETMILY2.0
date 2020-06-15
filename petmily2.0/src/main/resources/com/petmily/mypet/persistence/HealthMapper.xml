@@ -152,10 +152,12 @@
 					where r.RESERVATION_PET_NO = #{reservationPetNo} and r.RESERVATION_NO = #{reservationNo}
 	</select>
 	<select id="allMed" resultType="com.petmily.mypet.domain.MedVO">
+		<!-- <bind name="dtStart" value="_parameter.dtStart"/>
+		<bind name="dtEnd" value="_parameter.dtEnd"/> -->
 		select * from(
 			SELECT HOSPT_MED_RECORDS_TB.HOSPT_MED_RECORDS_NO,HOSPT_MED_RECORDS_TB.PET_NO,HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT as dt,HOSPT_MED_RECORDS_TB.HOSPT_TMT_SORT,HOSPT_MED_RECORDS_TB.HOSPT_TMT_CONTENTS, 'hospt' AS SORT FROM HOSPT_MED_RECORDS_TB WHERE pet_no = #{petNo}
 			<![CDATA[
-       			 and HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT >=#{dtStart} AND HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT <= #{dtEnd}
+       			 and HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT >=TO_DATE(#{dtStart},'yyyy-mm-dd') AND HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT <= TO_DATE(#{dtEnd},'yyyy-mm-dd')
     		]]>
 
 			
@@ -163,7 +165,7 @@
 			 
 			SELECT MEM_MED_RECORDS_TB.MEM_MED_RECORD_NO, MEM_MED_RECORDS_TB.PET_NO,MEM_MED_RECORDS_TB.MEM_TMT_DT as dt,MEM_MED_RECORDS_TB.MEM_TMT_SORT,MEM_MED_RECORDS_TB.MEM_TMT_CONTENTS, 'mem' AS SORT  FROM MEM_MED_RECORDS_TB WHERE pet_no = #{petNo}
 			<![CDATA[
-       			 and MEM_MED_RECORDS_TB.MEM_TMT_DT >=#{dtStart} AND MEM_MED_RECORDS_TB.MEM_TMT_DT <= #{dtEnd}
+       			 and MEM_MED_RECORDS_TB.MEM_TMT_DT >=TO_DATE(#{dtStart},'yyyy-mm-dd') AND MEM_MED_RECORDS_TB.MEM_TMT_DT <= TO_DATE(#{dtEnd},'yyyy-mm-dd')
     		]]>
 			) order by dt
 	</select>

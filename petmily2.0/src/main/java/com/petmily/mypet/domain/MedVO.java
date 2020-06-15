@@ -10,8 +10,8 @@ public class MedVO implements Serializable {
 	private int hosptMedRecordsNo;
 	private int petNo;
 	private String memId;
-	private Date dtStart;
-	private Date dtEnd;
+	private String dtStart;
+	private String dtEnd;
 	private Date hosptTmtDt;
 	private String hosptTmtSort;
 	private String hosptTmtContents;
@@ -22,4 +22,5 @@ public class MedVO implements Serializable {
 	private String memTmtSort;
 	private String memTmtContents;
 	private String hosptNm;
+	private String sort;
 }

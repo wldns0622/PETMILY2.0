@@ -8,6 +8,7 @@
 <link href="/resources/css/plugins/dataTables/datatables.min.css"
 	rel="stylesheet">
 
+<link href="/resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 <style>
 	.dataTables{
 		width: 100%;
@@ -132,6 +133,19 @@
 
 <div>
 	<div class="row">
+		<div class="col-lg-2">
+		</div>
+		<div class="col-lg-8 text-center">
+			<div class="form-group" id="data_5">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtStart" value="">
+                    <span class="input-group-addon">to</span>
+                    <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtEnd" value="">
+                </div>
+            </div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-lg-10">
 			<h2>
 				<strong>진료 기록 타임 라인</strong>
@@ -150,10 +164,8 @@
 					class="vertical-container dark-timeline center-orientation">
 					
 					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon navy-bg">
-						
+						<div class="vertical-timeline-icon navy-bg">						
 						</div>
-
 						<div class="vertical-timeline-content">
 							<h2>Meeting</h2>
 							<p>Conference on the sales results for the previous year.
@@ -221,7 +233,7 @@
 							<label class="font-normal">진료 일자</label>
 							<div class="input-group date">
 								<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-									type="date" id="insert-booster-date" name="memTmtDt"
+									type="date" id="insert-mem-date" name="memTmtDt"
 									class="form-control" value="">
 							</div>
 						</div>
@@ -255,6 +267,9 @@
 <script
 	src="/resources/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
+<!-- Data picker -->
+<script src="/resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
 
 <!-- Page-Level Scripts -->
 <script>
@@ -287,9 +302,16 @@ var lang_kor = {
 
     $(document).ready(function(){
     
-
+		
         var petNo = <c:out value="${pet.petNo}"/>;
         
+        $('.input-daterange').datepicker({
+        	format: "yyyy-mm-dd",
+        	maxViewMode: 2,
+            todayBtn: true,
+            clearBtn: true,
+            language: "ko"
+        });
 		
         $('.dataTables').DataTable({
         
@@ -348,88 +370,49 @@ var lang_kor = {
 
         });
         
-      //심장사상충 ajax
-		function diAjax() {
+       
+        
+        $('input[name="dtStart"]').on("change keyup paste", function() {
+        	allMed();
+        });
+        
+        $('input[name="dtEnd"]').on("propertychange change keyup paste input", function() {
+        	allMed();
+        });
+        
+        
+      //진료 데이터(전부) ajax
+ 		function allMed() {
+ 			var medVO = {
+ 	        		petNo: petNo,
+ 	        		dtStart: $('input[name="dtStart"]').val(),
+ 	        		dtEnd: $('input[name="dtEnd"]').val()
+ 	        };
+ 			console.log(medVO.petNo);
+ 			console.log(medVO.dtStart);
+ 			console.log(medVO.dtEnd);
 			$.ajax({
 				type: 'post',
-				url: '/health/selectRSVN',
-				data: JSON.stringify(diImmuVO),
+				url: '/health/allMed',
+				data: JSON.stringify(medVO),
 				dataType: 'json',
 				contentType: "application/json; charset=utf-8",
 				success: function(result) {
-					
-					// 빨간 박스, 독닥 함수
-					function redBlock() {
-						
-						var thisMonth = new Date().getMonth()+1;
-						
-						for (var j = 0; j < $diTd.length; j++) {
-							//독닥 글 넣기!!!!
-							$diTd.eq(j).removeClass('red-block');
-							if($diTd.eq(j).html() == ""){
-								
-								if($('#this-year').html() == nowYear){
-									if($diTd.eq(j).data('month').substr(0, $diTd.eq(j).data('month').length-1) <= thisMonth){
-										$diTd.eq(j).addClass('red-block');
-										redCount++;
-									}
-								}else if($('#this-year').html() < nowYear){
-									$diTd.eq(j).addClass('red-block');
-									redCount++;
-								}
-								
-							}
-							
-							
-							
+					console.log(result);
+					for (var i = 0; i < result.length; i++) {
+						if(result[i].sort=="hospt"){
+							//타임라인 글 돌리기
 						}
-						
-						//진료 안내
-						$('#dogdoc-explain').empty();
-						if(redCount>0){
-							$('#dogdoc-explain').append("아직 미접종한 항목이 남아있어요!<br>접종을 위한 건강상담 어떠세요?");
-						}else if(redCount == 0){
-							$('#dogdoc-explain').append("전부 접종 완료되었어요!<br>더 행복한 우리 아이를 위한 검진 어떠세요?");
-						}
-						
-						//과정 End
-						
-					}// 심장사상충 redBlock End
-					
-					
-					if(result.length == 0){
-						redBlock();
 					}
 					
-					function insertData() {
-						for (var i = 0; i < result.length; i++) {
-							for (var j = 0; j < $diTd.length; j++) {
-								$diTd.eq(j).removeClass('red-block');
-								
-								if(result[i].petMonth == $diTd.eq(j).data('month')){
-									//console.log('result: ' + result[0].petMonth);
-									var toDay = new Date(result[i].immuDt);
-								    var resultDate = toDay.yyyymmdd();
-									
-									var html = resultDate + '<br>'+ result[i].hosptNm;
-									$diTd.eq(j).append(html);
-									
-								}
-							}
-						}
-						
-						return redBlock();
-					}
-					
-					insertData();
+		
 					
 				},
 				error: function() {
-					alert("문제가 발생했습니다.");
 				}
-			}) //심장사상충 ajax End
-		}
-        
+			}) 
+		} 
+ 		//진료 데이터(전부) End
         
         $(document).on('click', '.rsvn-detail', function(){
         	$('.rsvn-detail-empty').empty();
@@ -503,7 +486,7 @@ var lang_kor = {
 		})
         
 		
-		//심장사상충 insert
+		//회원 입력 진료 기록 insert
 		$('#insert-mem-btn').click(function () {
 			var memTmt = {
 				petNo: 	$('.insert-mem-form input[name="petNo"]').val(),

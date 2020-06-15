@@ -245,6 +245,19 @@ public class HealthRestController {
 		return rsvnVO2;
     }
 	
+	@PostMapping("/allMed")
+    public @ResponseBody List<MedVO> allMed(@RequestBody MedVO medVO){
+		//@RequestParam("petNo") int petNo, @RequestParam("dtStart") Date dtStart, @RequestParam("dtEnd") Date dtEnd
+		System.out.println(medVO.getDtStart());
+//		MedVO medVO = new MedVO();
+//		medVO.setPetNo(petNo);
+//		medVO.setDtEnd(dtEnd);
+//		medVO.setDtStart(dtStart);
+		List<MedVO> medVOList = service.allMed(medVO);
+		System.out.println(medVOList);
+		return service.allMed(medVO);
+    }
+	
 	@PostMapping("/insertMemTmt")
 	public String insertMemTmt(@RequestBody MedVO medVO, HttpServletRequest request){
 		HttpSession session = request.getSession();
