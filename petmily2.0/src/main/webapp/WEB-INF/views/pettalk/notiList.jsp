@@ -63,9 +63,9 @@ body, input, textarea, select, button, table {
 		<div id="content-body"
 			class="col-12 wrapper wrapper-content animated fadeInRight">
 			<div class="i-box border m-lg ">
-				<div class="ibox-title">
-					<h1>알림 목록</h1>
-					<span class="float-right"> <a id="N"
+				<div class="ibox-title" style="padding:15px 40px 8px 15px">
+					<h1  style="display: inline">알림 목록</h1>
+					<span class="float-right m-l m-t m-b m-r"> <a class="m-r" id="N"
 						onclick="notiadmin('N')">새로운 알림</a> <a id="Y"
 						onclick="notiadmin('Y')">읽은알림</a>
 					</span>
@@ -158,13 +158,13 @@ body, input, textarea, select, button, table {
 						$('.notiList').children().remove();
 
 						if (parameterTmp == 'Y') {
-							$('#Y').removeClass("text-muted small")
-							$('#N').addClass("text-muted small")
+							$('#Y').removeClass("text-muted small").css("font-weight","bold")
+							$('#N').addClass("text-muted small").css("font-weight","normal")
 
 						} else {
 
-							$('#N').removeClass("text-muted small")
-							$('#Y').addClass("text-muted small")
+							$('#N').removeClass("text-muted small").css("font-weight","bold")
+							$('#Y').addClass("text-muted small").css("font-weight","normal")
 						}
 
 						for (var i = 0; i < data.length; i++) {
@@ -177,8 +177,13 @@ body, input, textarea, select, button, table {
 							}
 						}
 						for (var i = 0; i < data.length; i++) {
-							$('.notiList')
-									.append(
+							var deleteIcon="";
+							if(parameterTmp=='N'){
+								deleteIcon = "<span><svg id='remove' class='bi bi-x-square-fill' width='2em' height='2em' viewBox='0 0 16 16' fill='#ff5a5c' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z' clip-rule='evenodd'/></svg></span>";
+							}else{
+								 deleteIcon = "이미읽음"
+							}
+							$('.notiList').append(
 											'<tr><td id="seq">'
 													+ data[i].alertNo
 													+ '</td><td>'
@@ -189,8 +194,7 @@ body, input, textarea, select, button, table {
 													+ data[i].memId
 													+ '</td><td>'
 													+ data[i].alertCreateDt
-													+ '</td>'
-													+ "<td><span><svg id='remove' class='bi bi-x-square-fill' width='2em' height='2em' viewBox='0 0 16 16' fill='#ff5a5c' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm9.854 4.854a.5.5 0 00-.708-.708L8 7.293 4.854 4.146a.5.5 0 10-.708.708L7.293 8l-3.147 3.146a.5.5 0 00.708.708L8 8.707l3.146 3.147a.5.5 0 00.708-.708L8.707 8l3.147-3.146z' clip-rule='evenodd'/></svg></span></td></tr>")
+													+ '</td>'+"<td>"+deleteIcon+"</td></tr>")
 						}
 						var len = data.length;
 

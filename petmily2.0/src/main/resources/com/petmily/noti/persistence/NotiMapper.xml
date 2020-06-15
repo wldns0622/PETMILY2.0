@@ -5,7 +5,7 @@
 <mapper namespace="com.petmily.noti.persistence.NotiMapper">
 
 	<insert id="insertNoti" parameterType="com.petmily.noti.domain.NotiVO">
-		INSERT INTO alert_tb VALUES (NOTI_SEQ.nextval,sysdate,null,#{alertCode},#{memId},#{boardNo},#{memToId})
+		INSERT INTO alert_tb VALUES (NOTI_SEQ.nextval,sysdate,null,#{alertCode},#{memId},#{boardNo},#{memToId},'N')
 	</insert>
 
 

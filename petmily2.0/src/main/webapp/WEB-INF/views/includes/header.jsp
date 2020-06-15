@@ -66,7 +66,7 @@
                 <c:if test="${member.code eq 3003}">
                     <li><a class="nav-link page-scroll" href="/admin/main.admin">관리자페이지</a></li>
                 </c:if>
-                    <li><a class="nav-link page-scroll" href="#page-top">Home</a></li>
+                    <li><a class="nav-link page-scroll" href="/">Home</a></li>
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
                     <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>
                     <li><a class="nav-link" href="/mypet/list">마이펫 건강관리</a></li>

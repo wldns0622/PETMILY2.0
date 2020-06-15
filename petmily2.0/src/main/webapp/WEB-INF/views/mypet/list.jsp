@@ -172,7 +172,6 @@
 				<div class="col-lg-3">
 				<a href="/health/home?petNo=<c:out value="${pet.petNo}"/>">	
 					<div class="widget-head-color-box navy-bg p-lg text-center">
-							
 							<div class="m-b-md">
 								<h2 class="font-bold no-margins">
 									<c:out value="${pet.petNm }" />
@@ -260,13 +259,10 @@
 
 <!-- Mainly scripts -->
 
-<script src="/resources/js/popper.min.js"></script>
+<!-- <script src="/resources/js/popper.min.js"></script>
 <script src="/resources/js/bootstrap.js"></script>
 <script src="/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- FooTable -->
-<script src="/resources/js/plugins/footable/footable.all.min.js"></script>
+<script src="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script> -->
     
 
 
@@ -376,7 +372,7 @@ $(document).ready(function() {
 			}
 		}) */
 		
-		$("#accordion").sortable({
+		/* $("#accordion").sortable({
 			start: function(event, ui) {
 
 	        },
@@ -390,7 +386,7 @@ $(document).ready(function() {
 				
 				
 	        }
-		}); 
+		});  */
 		
 		var formObj = $("form");
 		
@@ -398,14 +394,7 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- Page-Level Scripts -->
-<script>
-/* 	$(document).ready(function() {
 
-		
-
-	}); */
-</script>
 
 <%@include file="/WEB-INF/views/includes/footer.jsp"%>
 </html>
