@@ -1,6 +1,7 @@
 package com.petmily.reservation.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petmily.hospital.service.HospitalService;
 import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
+import com.petmily.mypet.domain.PetVO;
 import com.petmily.reservation.domain.ReservationVO;
 import com.petmily.reservation.service.ReservationService;
 
@@ -56,4 +58,18 @@ public class ReservationController {
 		return "/hospital/completeReservation";
 	}
 	
+	@GetMapping("/reservationList")
+	public String reservationList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		List<ReservationVO> list = rsvService.reservationList(member.getId());
+		List<PetVO> petList = hoptService.findUserPetList(member.getId());
+		
+		//예약리스트
+		//펫 목록
+		System.out.println(petList);
+		model.addAttribute("list", list);
+		model.addAttribute("petList", petList);
+		return "/hospital/reservationList";
+	}
 }

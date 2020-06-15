@@ -1,5 +1,7 @@
 package com.petmily.reservation.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,11 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void insertReservation(ReservationVO reservation) {
 		int result = mapper.insertReservation(reservation);
+	}
+	
+	@Override
+	public List<ReservationVO> reservationList(String memId){
+		return mapper.reservationList(memId);
 	}
 
 }

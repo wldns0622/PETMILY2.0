@@ -124,12 +124,13 @@
 								<input type="text" name="reservationPeriod" placeholder="ex) 3일 or 일주일쯤"/>
 							</div>
 						</div>
+						<input type="hidden" name="reservationInoculationType" value=""/>
 					</div>
 
 				</div>
 				<div class="modal-footer modalBtnContainer-addEvent">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="submit" class="btn btn-primary">예약</button>
+					<button type="submit" class="btn btn-primary" >예약</button>
 				</div>
 			</form>
 
