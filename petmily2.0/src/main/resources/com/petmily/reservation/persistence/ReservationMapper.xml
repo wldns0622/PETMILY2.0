@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petmily.reservation.persistence.ReservationMapper">
+
+	<insert id='insertReservation' parameterType="com.petmily.reservation.domain.ReservationVO">
+		insert into reservation_tb values (RESERVATION_SEQ.nextval, #{reservationMemberId}, #{reservationPetNO}, #{reservationDate}, '0', #{reservationKind}, #{reservationSymptom}, #{reservationPeriod}, #{reservationInoculationType}, #{reservationHospitalId})
+	</insert>
+</mapper>

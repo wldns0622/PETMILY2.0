@@ -15,8 +15,8 @@ public class ReservationServiceImpl implements ReservationService {
 	private ReservationMapper mapper;
 	
 	@Override
-	public int insertReservation(ReservationVO reservation) {
-		return mapper.insertReservation(reservation);
+	public void insertReservation(ReservationVO reservation) {
+		int result = mapper.insertReservation(reservation);
 	}
 
 }

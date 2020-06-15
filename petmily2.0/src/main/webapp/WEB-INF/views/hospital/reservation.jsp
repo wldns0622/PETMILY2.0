@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	MemberVO member = (MemberVO)session.getAttribute("member");
 %>
 
@@ -44,7 +45,6 @@
 	<!-- 일정 추가 MODAL -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
 		<div class="modal-dialog" role="document">
-			<form action="/reservation/reservation" method="post">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -53,21 +53,22 @@
 					</button>
 					<h4 class="modal-title">진료 예약</h4>
 				</div>
+				
+				<form action="/reservation/reservation" method="post">
 				<div class="modal-body">
-				
-				
-					<!-- hidden 인풋 -->
-					<input type="hidden" name="reservation_member_id" value ="">
-					<input type="hidden" name="reservation_hospital_id" value ="">
-					
 					<div class="row">
 						<div class="col-xs-12">
-							<label class="col-xs-4" for="edit-allDay">병원명</label> 
+							<input type="hidden" name="reservationMemberId" value ="${member.id}">
+							<input type="hidden" name="reservationHospitalId" value ="${requestMember.hsptId }">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label class="col-xs-4" for="edit-allDay">병원명${member.id } ${requestMember.hsptId}</label> 
 							<!-- 병원명 읽어와서 넣어주기 -->
 							<label class="" name=""><b>${requestMember.hsptName }</b></label>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-reservation-name">예약자</label> 
@@ -75,11 +76,11 @@
 							<label class="" name=""><b>${member.name }</b></label>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-xs-12">
+							
 							<label class="col-xs-4" for="edit-type">반려견</label> 
-							<select class="inputModal" type="text" name="reservation_pet_no" id="edit-type">
+							<select class="inputModal" type="text" name="reservationPetNO" id="edit-type">
 								<c:if test="${petList != null }">
 									<c:forEach var="list" items="${petList }">
 										<option value="${list.petNo}">${list.petNm}</option>
@@ -97,31 +98,30 @@
 
 					<div class="row">
 						<div class="col-xs-12">
-							<label class="col-xs-4" for="edit-start">예약 날짜</label> <input
-								class="inputModal" type="text" name="reservation_date"
-								id="edit-start" />
+							<label class="col-xs-4" for="edit-start">예약 날짜</label> 
+							<input class="inputModal" type="text" name="reservationDate" id="edit-start" />
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-desc">진료 종류</label> 
-							<input type="radio" name="reservation_kind" value="0" checked="checked">일반진료
-							<input type="radio" name="reservation_kind" value="1">예방접종
-							<input type="radio" name="reservation_kind" value="2">건강검진
+							<input type="radio" name="reservationKind" value="0" checked="checked">일반진료
+							<input type="radio" name="reservationKind" value="1">예방접종
+							<input type="radio" name="reservationKind" value="2">건강검진
 						</div>
 					</div>
 					<div id="radio-div">
 						<div class="row">
 							<div class="col-xs-12">
 								<label class="col-xs-4">증상 : </label>
-								<input type="text" name="reservation_symptom" placeholder="ex) 기침 or 호흡가빠름">
+								<input type="text" name="reservationSymptom" placeholder="ex) 기침 or 호흡가빠름"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<label  class="col-xs-4">증상 기간 : </label>
-								<input type="text" name="reservation_period" placeholder="ex) 3일 or 일주일쯤">
+								<input type="text" name="reservationPeriod" placeholder="ex) 3일 or 일주일쯤"/>
 							</div>
 						</div>
 					</div>
@@ -129,12 +129,13 @@
 				</div>
 				<div class="modal-footer modalBtnContainer-addEvent">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="submit" class="btn btn-primary" id="save-event">예약</button>
+					<button type="submit" class="btn btn-primary">예약</button>
 				</div>
+			</form>
 
 
 			</div>
-			</form>
+			
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal-dialog -->
@@ -198,7 +199,6 @@
     <script src="/resources/vendor/js/reservation/fullcalendar.min.js"></script>
     <script src="/resources/vendor/js/reservation/ko.js"></script>
     <script src="/resources/vendor/js/reservation/select2.min.js"></script>
-    <script src="/resources/js/reservation.js"></script>
     <script src="/resources/js/reservationaddEvent.js"></script>
     <script src="/resources/js/reservationeditEvent.js"></script>
     <script src="/resources/js/reservationetcSetting.js"></script>
@@ -208,6 +208,7 @@
 	<script src="/resources/js/cbpAnimatedHeader.js"></script>
 	<script src="/resources/js/wow.min.js"></script>
 	<script src="/resources/js/inspinia.js"></script>
+	<script src="/resources/js/reservation.js"></script>
 
 </body>
 </html>
