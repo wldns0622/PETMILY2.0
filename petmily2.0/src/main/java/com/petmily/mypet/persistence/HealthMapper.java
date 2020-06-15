@@ -3,6 +3,7 @@ package com.petmily.mypet.persistence;
 import java.util.List;
 
 import com.petmily.mypet.domain.ImmuVO;
+import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.RsvnVO;
 
 public interface HealthMapper {
@@ -20,4 +21,8 @@ public interface HealthMapper {
 	
 	List<RsvnVO> allRSVN(int reservationPetNo);
 	RsvnVO selectRSVN(RsvnVO rsvnVO);
+	
+	List<MedVO> allMed(MedVO medVO);
+	int insertMemMed(MedVO medVO);
+	int deleteMemMed(int memMedRecordNo);
 }

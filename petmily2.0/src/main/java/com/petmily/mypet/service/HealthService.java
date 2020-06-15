@@ -3,6 +3,7 @@ package com.petmily.mypet.service;
 import java.util.List;
 
 import com.petmily.mypet.domain.ImmuVO;
+import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.RsvnVO;
 
 public interface HealthService {
@@ -20,4 +21,8 @@ public interface HealthService {
 	
 	public List<RsvnVO> allRSVN(int reservationPetNo);
 	public RsvnVO selectRSVN(RsvnVO rsvnVO);
+	
+	public List<MedVO> allMed(MedVO medVO);
+	public int insertMemMed(MedVO medVO);
+	public int deleteMemMed(int memMedRecordNo);
 }

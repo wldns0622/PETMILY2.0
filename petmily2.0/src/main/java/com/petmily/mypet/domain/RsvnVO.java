@@ -8,7 +8,7 @@ import lombok.Data;
 public class RsvnVO implements Serializable {	
 	private int reservationNo;
 	private String reservationMemberId;
-	private String reservationPetNo;
+	private int reservationPetNo;
 	private String petName;
 	private String reservationDate;
 	private String reservationStatus;
@@ -18,4 +18,5 @@ public class RsvnVO implements Serializable {
 	private String reservationInoculationType;
 	private String reservationHospitalId;
 	private String hsptName;
+	private String hosptTmtContents;
 }

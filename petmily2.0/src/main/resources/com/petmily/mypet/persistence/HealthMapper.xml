@@ -144,8 +144,42 @@
 		select * from RESERVATION_TB r JOIN HOSPITAL_MEMBER_TB h ON r.RESERVATION_HOSPITAL_ID = h.HSPT_ID where RESERVATION_PET_NO = #{reservationPetNo} order by RESERVATION_NO
 	</select>
 	<select id="selectRSVN" resultType="com.petmily.mypet.domain.RsvnVO">
-		select * from RESERVATION_TB where RESERVATION_PET_NO = #{reservationPetNo} and RESERVATION_NO = #{reservationNo}
+		select * from RESERVATION_TB r 
+					JOIN HOSPITAL_MEMBER_TB h 
+					ON r.RESERVATION_HOSPITAL_ID = h.HSPT_ID 
+					JOIN HOSPT_MED_RECORDS_TB m 
+					ON r.RESERVATION_NO = m.RESERVATION_NO
+					where r.RESERVATION_PET_NO = #{reservationPetNo} and r.RESERVATION_NO = #{reservationNo}
 	</select>
+	<select id="allMed" resultType="com.petmily.mypet.domain.MedVO">
+		select * from(
+			SELECT HOSPT_MED_RECORDS_TB.HOSPT_MED_RECORDS_NO,HOSPT_MED_RECORDS_TB.PET_NO,HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT as dt,HOSPT_MED_RECORDS_TB.HOSPT_TMT_SORT,HOSPT_MED_RECORDS_TB.HOSPT_TMT_CONTENTS, 'hospt' AS SORT FROM HOSPT_MED_RECORDS_TB WHERE pet_no = #{petNo}
+			<![CDATA[
+       			 and HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT >=#{dtStart} AND HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT <= #{dtEnd}
+    		]]>
+
+			
+			UNION ALL
+			 
+			SELECT MEM_MED_RECORDS_TB.MEM_MED_RECORD_NO, MEM_MED_RECORDS_TB.PET_NO,MEM_MED_RECORDS_TB.MEM_TMT_DT as dt,MEM_MED_RECORDS_TB.MEM_TMT_SORT,MEM_MED_RECORDS_TB.MEM_TMT_CONTENTS, 'mem' AS SORT  FROM MEM_MED_RECORDS_TB WHERE pet_no = #{petNo}
+			<![CDATA[
+       			 and MEM_MED_RECORDS_TB.MEM_TMT_DT >=#{dtStart} AND MEM_MED_RECORDS_TB.MEM_TMT_DT <= #{dtEnd}
+    		]]>
+			) order by dt
+	</select>
+	<insert id="insertMemMed">
+		insert into MEM_MED_RECORDS_TB values(
+											MEM_MED_RECORDS_TB_SEQ.nextval,
+											#{petNo},
+											#{memId},
+											#{memTmtDt},
+											#{memTmtSort},
+											#{memTmtContents},
+											#{hosptNm})
+	</insert>
+	<delete id="deleteMemMed">
+		delete from MEM_MED_RECORDS_TB where MEM_MED_RECORD_NO = #{memMedRecordNo}
+	</delete>
 </mapper>
 
 

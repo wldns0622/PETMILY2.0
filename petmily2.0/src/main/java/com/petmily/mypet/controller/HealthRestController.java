@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petmily.member.domain.MemberVO;
 import com.petmily.mypet.domain.ImmuVO;
+import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.PetVO;
 import com.petmily.mypet.domain.RsvnVO;
 import com.petmily.mypet.service.HealthService;
@@ -134,7 +135,7 @@ public class HealthRestController {
 		
 		List<ImmuVO> immuVOList = service.selectBasicImmu(petNo);
 		
-		System.out.println(immuVOList.toString());
+		//System.out.println(immuVOList.toString());
 		
 		return immuVOList;
 	}
@@ -166,7 +167,7 @@ public class HealthRestController {
 		
 		List<ImmuVO> immuVOList = service.selectBoosterImmu(immuVO);
 		
-		System.out.println(immuVOList.toString());
+		//System.out.println(immuVOList.toString());
 		
 		return immuVOList;
 	}
@@ -198,7 +199,7 @@ public class HealthRestController {
 		
 		List<ImmuVO> immuVOList = service.selectDiImmu(immuVO);
 		
-		System.out.println(immuVOList.toString());
+		//System.out.println(immuVOList.toString());
 		
 		return immuVOList;
 	}
@@ -225,7 +226,7 @@ public class HealthRestController {
 		  mp.put("data", service.allRSVN(reservationPetNo));
 		  
 		  Object result = mp;
-		  
+		  System.out.println(result);
 		  return result;
 
 		
@@ -234,9 +235,31 @@ public class HealthRestController {
     }
 	
 	@GetMapping("/selectRSVN")
-    public @ResponseBody RsvnVO selectRSVN(@RequestParam RsvnVO rsvnVO){
-       
+    public @ResponseBody RsvnVO selectRSVN(@RequestParam("reservationPetNo") int reservationPetNo, @RequestParam("reservationNo") int reservationNo){
+		RsvnVO rsvnVO = new RsvnVO();
+		rsvnVO.setReservationPetNo(reservationPetNo);
+		rsvnVO.setReservationNo(reservationNo);
+		System.out.println("reservationPetNo"+reservationPetNo);
 		RsvnVO rsvnVO2 = service.selectRSVN(rsvnVO);
+		System.out.println(rsvnVO2);
 		return rsvnVO2;
     }
+	
+	@PostMapping("/insertMemTmt")
+	public String insertMemTmt(@RequestBody MedVO medVO, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		MemberVO member =  (MemberVO) session.getAttribute("member");
+		
+		medVO.setMemId(member.getId());
+		service.insertMemMed(medVO);
+		
+		return "";
+	}
+	
+	@PostMapping("/deleteMemTmt")
+	public String deleteMemTmt(@RequestBody ImmuVO immuVO, HttpServletRequest request){
+		
+		
+		return "";
+	}
 }
