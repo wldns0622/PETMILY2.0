@@ -106,9 +106,9 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-desc">진료 종류</label> 
-							<input type="radio" name="reservationKind" value="0" checked="checked">일반진료
-							<input type="radio" name="reservationKind" value="1">예방접종
-							<input type="radio" name="reservationKind" value="2">건강검진
+							<input type="radio" name="reservationKind" value="일반진료" checked="checked">일반진료
+							<input type="radio" name="reservationKind" value="예방접종">예방접종
+							<input type="radio" name="reservationKind" value="건강검진">건강검진
 						</div>
 					</div>
 					<div id="radio-div">

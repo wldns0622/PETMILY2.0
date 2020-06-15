@@ -5,7 +5,7 @@
 <mapper namespace="com.petmily.reservation.persistence.ReservationMapper">
 
 	<insert id='insertReservation' parameterType="com.petmily.reservation.domain.ReservationVO">
-		insert into reservation_tb values (RESERVATION_SEQ.nextval, #{reservationMemberId}, #{reservationPetNO}, #{reservationDate}, '0', #{reservationKind}, #{reservationSymptom}, #{reservationPeriod}, #{reservationInoculationType}, #{reservationHospitalId})
+		insert into reservation_tb values (RESERVATION_SEQ.nextval, #{reservationMemberId}, #{reservationPetNO}, #{reservationDate}, '예약신청', #{reservationKind}, #{reservationSymptom}, #{reservationPeriod}, #{reservationInoculationType}, #{reservationHospitalId})
 	</insert>
 	
 	<select id="reservationList" resultType="com.petmily.reservation.domain.ReservationVO">

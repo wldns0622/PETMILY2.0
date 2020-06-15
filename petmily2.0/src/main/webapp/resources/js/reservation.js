@@ -348,7 +348,7 @@ var calendar = $('#calendar').fullCalendar({
 
 $("input:radio[name=reservationKind]").click(function(){
 	 
-    if($("input[name=reservationKind]:checked").val() == "0"){
+    if($("input[name=reservationKind]:checked").val() == "일반진료"){
     	var htmlText = "";
     	htmlText += '<div class="row">';
     	htmlText += '<div class="col-xs-12">';
@@ -365,26 +365,25 @@ $("input:radio[name=reservationKind]").click(function(){
     	htmlText += '</div>';
     	
         $("#radio-div").html(htmlText);
-    }else if($("input[name=reservationKind]:checked").val() == "1"){
+    }else if($("input[name=reservationKind]:checked").val() == "예방접종"){
     	var htmlText = "";
     	htmlText += '<div class="row">';
     	htmlText += '<div class="col-xs-12">';
     	htmlText += '<label class="col-xs-4">접종 목록  </label>';
     	htmlText += '<select name="reservationInoculationType">';
-    	htmlText += '<option value="0" selected>DHPPL</option>';
-    	htmlText += '<option value="1">코로나</option>';
-    	htmlText += '<option value="2">켄넬코프</option>';
-    	htmlText += '<option value="3">인플루엔자</option>';
-    	htmlText += '<option value="4">광견병</option>';
-    	htmlText += '<option value="5">심장사상충</option>';
-    	htmlText += '<option value="6">기타</option>';
+    	htmlText += '<option value="DHPPL" selected>DHPPL</option>';
+    	htmlText += '<option value="코로나">코로나</option>';
+    	htmlText += '<option value="켄넬코프">켄넬코프</option>';
+    	htmlText += '<option value="인플루엔자">인플루엔자</option>';
+    	htmlText += '<option value="광견병">광견병</option>';
+    	htmlText += '<option value="심장사상충">심장사상충</option>';
     	htmlText += '</select>';
     	htmlText += '<input type="hidden" name="reservationSymptom" value="">';
     	htmlText += '<input type="hidden" name="reservationPeriod" value="">';
     	htmlText += '</div>';
     	htmlText += '</div>';
         $("#radio-div").html(htmlText);
-    }else if($("input[name=reservationKind]:checked").val() == "2"){
+    }else if($("input[name=reservationKind]:checked").val() == "건강검진"){
         $("#radio-div").html("&nbsp;상담 후 진행 됩니다.");
     }
 });
