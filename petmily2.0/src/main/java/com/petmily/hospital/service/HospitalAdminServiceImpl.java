@@ -27,4 +27,10 @@ public class HospitalAdminServiceImpl implements HospitalAdminService {
 		return mapper.getReservation(hsptId);
 	}
 
+	@Override
+	public void statusUpdate(int reservationNo) {
+		System.out.println(reservationNo + "서비스");
+		mapper.statusUpdate(reservationNo);
+	}
+
 }
