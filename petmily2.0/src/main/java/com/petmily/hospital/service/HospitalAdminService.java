@@ -9,4 +9,5 @@ import com.petmily.reservation.domain.ReservationVO;
 public interface HospitalAdminService {
 	public HospitalOperationVO getOper(String hsptId);
 	public List<ReservationVO> getReservation(String hsptId);
+	public void statusUpdate(int reservationNo);
 }

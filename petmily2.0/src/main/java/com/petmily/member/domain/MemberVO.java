@@ -1,10 +1,12 @@
 package com.petmily.member.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
 public class MemberVO {
-	
+
 	private String id;
 	private String name;
 	private String password;
@@ -18,5 +20,8 @@ public class MemberVO {
 	private char emailCheck;
 	private char smsCheck;
 	private String registerDate;
-	
+	private boolean enabled;
+
+	//private List<AuthVO> authList;
+
 }

@@ -8,4 +8,8 @@
 	<select id="getReservation" resultType="com.petmily.reservation.domain.ReservationVO">
 		select * from reservation_tb where RESERVATION_HOSPITAL_ID = #{hsptId}
 	</select>
+
+	<update id="statusUpdate">
+		update into reservation_tb set reservation_status = '1' where RESERVATION_NO = #{reservationNo}
+	</update>
 </mapper>

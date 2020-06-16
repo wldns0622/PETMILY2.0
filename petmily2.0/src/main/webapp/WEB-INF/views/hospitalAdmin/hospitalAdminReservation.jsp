@@ -46,25 +46,58 @@
 										<td>${reservation.reservationMemberId }</td>
 										<td>${reservation.reservationPetNO }</td>
 										<td>${reservation.reservationKind }</td>
-										<td>
+										<td id="btnbtnbtn">
 											<c:if test="${reservation.reservationStatus eq '예약신청' }">
-												<button class="btn btn-success" id="statusBtn" value="승인">승인</button>
+												<button class="btn btn-success" name="statusBtn" id="statusBtn" value="승인" onclick="success('${reservation.reservationNo}')">승인</button>
 											</c:if>
 											<c:if test="${reservation.reservationStatus eq '예약완료' }">
-												<button class="btn btn-success" id="statusBtn" value="승인">진료결과 입력</button>
+												<button class="btn btn-success" name="statusBtn" id="statusBtn" value="진료결과">진료결과 입력</button>
 											</c:if>
 											<c:if test="${reservation.reservationStatus eq '진료완료' }">
-												<button class="btn btn-success" id="statusBtn" value="승인">완료</button>
+												<h4>완료</h4>
 											</c:if>
 										</td>
 									</tr>
 								</c:forEach>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
 
-<link>
+<script type="text/javascript">
+function success(number) {
+	console.log("넘어옴 승인")
+	console.log(number);
+	$.ajax({
+	    url: "/reservationAdminRest/reservationApprove/" + number ,
+	    type: 'get',
+	    success: function(){
+	    	location.href="/hospitalAdmin/reservation"
+	    },
+	    error: function (request, status, error){
+	    }
+	  });
+}
+/* $(document).on("click","#statusBtn",function(){
+	var test = {
+		result : '<c:out value="${reservation.reservationNo}"/>'
+	}
+	console.log(test.result);
+	if(this.value == '승인'){
+		console.log("넘어옴 승인")
+		$.ajax({
+		    url: "/reservationAdminRest/reservationApprove/" + ,
+		    type: 'get',
+		    success: function(){
+		    	location.href="/hospitalAdmin/reservation"
+		    },
+		    error: function (request, status, error){
+		    }
+		  });
+	} else if(this.value == '진료결과'){
+		// 모달 띄운다음 -> 진료완료로 바꾸기
+	}
+}) */
+</script>
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
 </html>

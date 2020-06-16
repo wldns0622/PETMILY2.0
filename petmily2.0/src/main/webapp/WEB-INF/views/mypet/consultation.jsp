@@ -13,6 +13,15 @@
 	.dataTables{
 		width: 100%;
 	}
+	#datepicker input, #datepicker span{
+		border: 0;
+	    font-size: xx-large;
+	    font-weight: bold;
+	    background-color: transparent;
+	}
+	#datepicker span{
+		margin-top: -1rem;
+	}
 </style>
 <div>
 	<div class="row">
@@ -22,7 +31,7 @@
 			</h2>
 		</div>
 		<div class="col-lg-2">
-			<button type="button" class="btn btn-outline btn-warning mt-3" onclick = "location.href = '#' ">예약 전체 바로가기</button>
+			<button type="button" class="btn btn-outline btn-warning mt-3" onclick = "location.href = '/reservation/reservationList' ">예약 전체 바로가기</button>
 		</div>
 	</div>
 	<div class="row">
@@ -41,20 +50,7 @@
 									<th>상세 보기</th>
 								</tr>
 							</thead>
-							<!-- <tbody class="r-tbody">
-															
-
-							</tbody> -->
-							<!-- <tfoot>
-								<tr>
-									<th>진료일</th>
-									<th>병원명</th>
-									<th>진료 종류</th>
-									<th>진료 상태</th>
-									<th>예약일</th>
-									<th>상세 보기</th>
-								</tr>
-							</tfoot> -->
+							
 						</table>
 					</div>
 
@@ -139,7 +135,7 @@
 			<div class="form-group" id="data_5">
                 <div class="input-daterange input-group" id="datepicker">
                     <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtStart" value="">
-                    <span class="input-group-addon">to</span>
+                    <span class="input-group-addon">-</span>
                     <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtEnd" value="">
                 </div>
             </div>
@@ -163,38 +159,7 @@
 				<div id="vertical-timeline"
 					class="vertical-container dark-timeline center-orientation">
 					
-					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon navy-bg">						
-						</div>
-						<div class="vertical-timeline-content">
-							<h2>Meeting</h2>
-							<p>Conference on the sales results for the previous year.
-								Monica please examine sales trends in marketing and products.
-								Below please find the current status of the sale.</p>
-							<a href="#" class="btn btn-sm btn-primary"> More info</a> <span
-								class="vertical-date"> Today <br> <small>Dec
-									24</small>
-							</span>
-						</div>
-					</div>
-
-					
-
-					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon lazur-bg">
-							<i class="fa fa-user-md"></i>
-						</div>
-
-						<div class="vertical-timeline-content">
-							<h2>Go to the doctor dr Smith</h2>
-							<p>Find some issue and go to doctor. Lorem Ipsum is simply
-								dummy text of the printing and typesetting industry. Lorem Ipsum
-								has been the industry's standard dummy text ever since the
-								1500s.</p>
-							<span class="vertical-date">Yesterday <br> <small>Dec
-									23</small></span>
-						</div>
-					</div>
+					<!-- 진료 기록 -->
 
 					
 				</div>
@@ -260,8 +225,68 @@
 	</div>
 </div>
 
-<!-- 기초 예방 추가 접종 Modal End -->
+<!-- 진료 직접 등록 Modal End -->
 
+<!-- 진료 직접 수정 Modal Start -->
+
+
+<div class="modal inmodal" id="update-mem" tabindex="-1"
+	role="dialog" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content animated fadeIn">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+				<i class="fa fa-hospital-o modal-icon ml-4 mb-4"></i>
+				<h4 class="modal-title">진료 기록 직접 등록</h4>
+			</div>
+			<div class="modal-body">
+					<form action="" id="update-mem-form" class="update-mem-form">
+
+						<input type="hidden" value="${pet.petNo }" name="petNo"
+							class="form-control">
+						<!-- petMonth는 해당 년도로 -->
+
+
+						<label>병원명</label> <input type="text" value="" name="hosptNm"
+							class="form-control">
+
+						<div class="form-group" id="data_1">
+							<label class="font-normal">진료 일자</label>
+							<div class="input-group date">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
+									type="date" id="update-mem-date" name="memTmtDt"
+									class="form-control" value="">
+							</div>
+						</div>
+
+						<label class="font-normal">진료 종류</label> <select
+							class="form-control m-b" name="memTmtSort">
+							<option>일반진료</option>
+							<option>건강검진</option>
+							<option>예방접종</option>
+						</select> <label class="font-normal">진료 메모</label> <input type="text"
+							name="memTmtContents" class="form-control">
+
+					</form>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-white" data-dismiss="modal">취소</button>
+
+				<input id="pet-no" type="hidden" name="petNo" value="${pet.petNo }">
+				<button type="submit" id="update-mem-btn"
+							class="btn btn-info" data-dismiss="modal">수정</button>
+
+				<button type="submit" id="delete-mem-btn"
+					class="btn btn-danger" data-dismiss="modal">삭제</button>
+				<input id="delete-mem-med-no" type="hidden" name="memMedRecordNo" value="">
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 진료 직접 수정 Modal End -->
 </div>
 <script src="/resources/js/plugins/dataTables/datatables.min.js"></script>
 <script
@@ -273,6 +298,14 @@
 
 <!-- Page-Level Scripts -->
 <script>
+//날짜 변환
+Date.prototype.yyyymmdd = function() {
+      var yyyy = this.getFullYear().toString();
+      var mm = (this.getMonth() + 1).toString();
+      var dd = this.getDate().toString();
+      return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
+}
+
 var lang_kor = {
         "decimal" : "",
         "emptyTable" : "데이터가 없습니다.",
@@ -370,8 +403,29 @@ var lang_kor = {
 
         });
         
-       
+        /* 오늘로부터 1주일전 날짜 반환 */
+        function lastWeek() {
+          var d = new Date()
+          var dayOfMonth = d.getDate()
+          d.setDate(dayOfMonth - 7)
+          return d
+        }
         
+       	var allMedNow = function (callback) {
+			var nowDate = new Date();
+			var nowDateCon = nowDate.yyyymmdd();
+			$('input[name="dtEnd"]').val(nowDateCon);		
+			
+			var preDate = lastWeek();
+			var preDateCon = preDate.yyyymmdd();
+			$('input[name="dtStart"]').val(preDateCon);	
+			
+			callback(); //allMed 콜백
+		}
+        
+       	//페이지 로딩시 타임라인
+       	allMedNow(allMed);
+       	
         $('input[name="dtStart"]').on("change keyup paste", function() {
         	allMed();
         });
@@ -399,10 +453,55 @@ var lang_kor = {
 				contentType: "application/json; charset=utf-8",
 				success: function(result) {
 					console.log(result);
+					$('#vertical-timeline').empty();
+					if(result==null){
+						var warningHtml = '<div class="text-center"><i class="fa fa-warning modal-icon ml-4 mb-4"></i>';
+						warningHtml += '<h1 >입력된 정보를 찾을 수 없어요!</h1></div>';
+						$('#vertical-timeline').append(warningHtml);						
+					}
 					for (var i = 0; i < result.length; i++) {
 						if(result[i].sort=="hospt"){
-							//타임라인 글 돌리기
+							var toDay = new Date(result[i].dt);
+						    var resultDate = toDay.yyyymmdd();
+						    
+							var hosptHtml = '<div class="vertical-timeline-block">';
+							hosptHtml +='<div class="vertical-timeline-icon lazur-bg">';
+							hosptHtml +='	<i class="fa fa-user-md"></i>';
+							hosptHtml +='</div>';
+
+							hosptHtml +='<div class="vertical-timeline-content">';
+							hosptHtml +='	<h1 class="text-info font-weight-bold">'+result[i].hsptName+' </h1>';
+							hosptHtml +='	<h2>진료 일자: '+resultDate+'</h2>';
+							hosptHtml +='	<h2>진료 종류: '+result[i].hosptTmtSort+'</h2>';
+							hosptHtml +='	<p>'+result[i].hosptTmtContents+'</p>';
+							hosptHtml +='	<span class="vertical-date"> 펫밀리 연동 기록 <br> <small>'+resultDate+'</small>';
+							hosptHtml +='	</span>';
+							hosptHtml +='</div>';
+							hosptHtml +='</div>';
+							$('#vertical-timeline').append(hosptHtml);
+						}else if(result[i].sort=="mem"){
+							var toDay = new Date(result[i].dt);
+						    var resultDate = toDay.yyyymmdd();
+						    
+							var memHtml = '<div class="vertical-timeline-block">';
+							memHtml +='<div class="vertical-timeline-icon navy-bg">';
+							memHtml +='</div>';
+
+							memHtml +='<div class="vertical-timeline-content">';
+							memHtml +='	<h1 class="text-primary font-weight-bold">'+result[i].hsptName+' </h1>';
+							memHtml +='	<h2>진료 일자: '+resultDate+' </h2>';
+							memHtml +='	<h2>진료 종류: '+result[i].hosptTmtSort+'</h2>';
+							memHtml +='	<p>'+result[i].hosptTmtContents+'</p>';							
+							memHtml +='<button type="button" class="btn btn-outline btn-primary mem-med-detail">수정 및 삭제</button>';
+							memHtml +='	<input type="hidden" value="'+result[i].hosptMedRecordsNo+'">';
+							memHtml +='	<span class="vertical-date"> 직접 입력 기록 <br> <small>'+resultDate+'</small>';
+							memHtml +='	</span>';
+							memHtml +='</div>';
+							memHtml +='</div>';
+							$('#vertical-timeline').append(memHtml);
 						}
+						
+						
 					}
 					
 		
@@ -502,7 +601,7 @@ var lang_kor = {
 				data: JSON.stringify(memTmt),
 				contentType: "application/json; charset=utf-8",
 				success: function(result,status,xhr) {
-					
+					allMed();
 				},
 				error: function(xhr,status,er) {
 					if(error){
@@ -512,29 +611,33 @@ var lang_kor = {
 			})
 			
 		})
-		
-        /* function allRSVN() {
-        	$.ajax({
-    			type: 'get',
-    			url: '/health/allRSVN/?petNo='+petNo,
-    			dataType: 'json',
-    			contentType: "application/json; charset=utf-8",
-    			success: function(result) {
-    				$('.r-tbody').empty();
-    				for (var i = 0; i < result.length; i++) {
-    					var rsvnHtml = '<tr>'+'<input type="hidden" values="'+result[i].reservationMemberId+'">'+'<td>'+result[i].reservationDate+'</td>'+'<td>'+result[i].reservationHospitalId+'</td>';
-    					rsvnHtml += '<td>'+result[i].reservationKind+'</td>'+'<td>'+result[i].reservationStatus+'</td>';
-    					rsvnHtml += '<td>예약 날짜 예정</td>' + '</tr>';		
-    					$('.r-tbody').append(rsvnHtml);
-    				}
-    				
-
-    			}
-            }) //예약 목록 ajax End
-		}
+	
+		//회원 입력 진료 기록 delete
+       $(document).on('click', '.mem-med-detail', function(){
+    	   $('#update-mem').modal('show');
+    	   var memMedRecordNo = $(this).next().val();
+    	   $('#delete-mem-med-no').val(memMedRecordNo);
+       })
         
-        allRSVN(); */
-        
+       $('#delete-mem-btn').click(function () {
+    	   var memMedRecordNo = $(this).next().val();
+    	   console.log(memMedRecordNo);
+    	   $.ajax({
+				type: 'post',
+				url: '/health/deleteMemTmt',
+				data: JSON.stringify(memMedRecordNo),
+				contentType: "application/json; charset=utf-8",
+				success: function(result,status,xhr) {
+					alert('삭제가 완료되었습니다.'); 
+					allMed();
+				},
+				error: function(xhr,status,er) {
+					if(error){
+						error(er);
+					}
+				}
+			})
+       })
     });
 
 </script>

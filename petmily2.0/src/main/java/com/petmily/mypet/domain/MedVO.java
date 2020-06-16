@@ -22,5 +22,7 @@ public class MedVO implements Serializable {
 	private String memTmtSort;
 	private String memTmtContents;
 	private String hosptNm;
+	private String hsptName; //병원 멤버 컬럼
 	private String sort;
+	private Date dt;
 }
