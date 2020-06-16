@@ -1,0 +1,30 @@
+package com.petmily.hospital.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.petmily.hospital.domain.HospitalOperationVO;
+import com.petmily.hospital.persistence.HospitalAdminMapper;
+import com.petmily.member.domain.HospitalMemberVO;
+import com.petmily.reservation.domain.ReservationVO;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class HospitalAdminServiceImpl implements HospitalAdminService {
+
+	private HospitalAdminMapper mapper;
+
+	@Override
+	public HospitalOperationVO getOper(String hsptId) {
+		return mapper.getOper(hsptId);
+	}
+
+	@Override
+	public List<ReservationVO> getReservation(String hsptId) {
+		return mapper.getReservation(hsptId);
+	}
+
+}

@@ -1,7 +1,11 @@
+<%@page import="com.petmily.member.domain.HospitalMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<%
+	HospitalMemberVO hospitalMemver = (HospitalMemberVO)session.getAttribute("hospitalMember");
+%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -35,13 +39,13 @@
     <link href="/resources/css/style.css" rel="stylesheet">
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
      <link href="/resources/css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
-    
+
     <style type="text/css">
     .dropdown-item div{
     color: black;
-    box-sizing: 
+    box-sizing:
     }
-    
+
     .dropdown-menu .dropdown-item .link-block{
     background-color: gray;
     }
@@ -66,6 +70,9 @@
                 <c:if test="${member.code eq 3003}">
                     <li><a class="nav-link page-scroll" href="/admin/main.admin">관리자페이지</a></li>
                 </c:if>
+                <c:if test="${hospitalMember != null }">
+                    <li><a class="nav-link page-scroll" href="/hospitalAdmin/main">병원 페이지</a></li>
+                </c:if>
                     <li><a class="nav-link page-scroll" href="/">Home</a></li>
                     <li><a class="nav-link page-scroll" href="#features">Features</a></li>
                     <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>
@@ -81,7 +88,7 @@
                     	<a class="nav-link page-scroll" href="/member/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                     </li>
                 </ul>
-                
+
             </div>
         </div>
     </nav>
@@ -94,7 +101,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	noTiList();
-	
+
 })
 
 
@@ -103,28 +110,28 @@ $('.dropdown-toggle').on('click',function(){
 })
 
 function noTiList(deleteYn) {
-	
-	
+
+
 	var parameterTmp = deleteYn;
-	
+
 	console.log(parameterTmp)
-	
+
 	if(!parameterTmp){
 		parameterTmp = 'N';
 		}
 	console.log(parameterTmp)
 
-	
+
 	$.ajax({
 		url : "/noti/notiList",
 		type : "POST",
 		data : {"deleteYn":parameterTmp},
 		dataType:"json",
 		success : function(data) {
-			
+
 			$('.dropdown-alerts').children().remove();
-			
-			
+
+
 			for (var i = 0; i < data.length; i++) {
 				if(data[i].memToId == null){
 					data[i].memToId = "(이름없음)"
@@ -140,25 +147,25 @@ function noTiList(deleteYn) {
 				$('.dropdown-alerts').append('<li><a href="/pettalk/detail?seq='+ data[i].boardNo +'" class="dropdown-item"><div><i class="fa fa-envelope fa-fw"></i>'+data[i].msg+'<br><span class="float-right text-muted small">'+data[i].alertCreateDt+'</span></div></a></li>')
 			}
 			$('.dropdown-alerts').append('<br><br><div class="text-center link-block"><a href="/noti/notiList" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">See All Alerts</strong><i class="fa fa-angle-right"></i></a></div>')
-			
+
 			len = data.length;
-			
+
 			if(len=='0'){
-				
+
 				$('.dropdown-alerts').children().remove();
-				
+
 				$('.dropdown-alerts').append('<div class="text-center link-block"><strong>알림이 없습니다.</strong><i class="fa fa-angle-right"></i></div>')
-				
+
 			}
 
 			$('.label-primary').text(len);
 		},
 		error : function(){
 			//세션이 없을때
-			
+
 			$('.dropdown-alerts').children().remove();
 			$('.dropdown-alerts').append('<div class="text-center link-block"><a href="/member/login" class="btn btn-primary btn-rounded btn-block"><strong style="color:white">로그인 해주세요.</strong><i class="fa fa-angle-right"></i></a></div>')
-			
+
 		}
 	})
 };

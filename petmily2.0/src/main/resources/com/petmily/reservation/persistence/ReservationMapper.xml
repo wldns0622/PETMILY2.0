@@ -7,8 +7,21 @@
 	<insert id='insertReservation' parameterType="com.petmily.reservation.domain.ReservationVO">
 		insert into reservation_tb values (RESERVATION_SEQ.nextval, #{reservationMemberId}, #{reservationPetNO}, #{reservationDate}, '예약신청', #{reservationKind}, #{reservationSymptom}, #{reservationPeriod}, #{reservationInoculationType}, #{reservationHospitalId})
 	</insert>
-	
+
 	<select id="reservationList" resultType="com.petmily.reservation.domain.ReservationVO">
 		select * from reservation_tb where reservation_member_id = #{memId}
 	</select>
+
+	<delete id="reservationFail">
+		delete from reservation_tb where reservation_no = #{reservationNo}
+	</delete>
+
+	<update id="reservationMedSuccess">
+		update reservation_tb set reservation_status = '진료완료' where reservation_no = #{reservationNo}
+	</update>
+
+	<select id="reservationMedInfo" resultType="com.petmily.hospital.domain.HospitalMedRecordsVO">
+		select * from HOSPT_MED_RECORDS_TB Where RESERVATION_NO=#{reservationNo}
+	</select>
+
 </mapper>

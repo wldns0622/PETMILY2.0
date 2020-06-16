@@ -86,13 +86,13 @@
 										
 										<c:choose>
 											<c:when test="${getList.reservationStatus eq '예약신청'}">
-												<td><a href="" class="btn btn-success">예약 취소</a></td>
+												<td><a href="/reservation/reservationFail?reservationNo=${getList.reservationNo}" class="btn btn-success">예약 취소</a></td>
 											</c:when>
 											<c:when test="${getList.reservationStatus eq '예약완료'}">
 												<td> - </td>
 											</c:when>
 											<c:when test="${getList.reservationStatus eq '진료완료'}">
-												<td><a href="" class="btn btn-success">진료 내역 확인</a></td>
+												<td><a href="/reservation/reservationMedInfo?reservationNo=${getList.reservationNo}" class="btn btn-success">진료 내역 확인</a></td>
 											</c:when>
 										</c:choose>
 										

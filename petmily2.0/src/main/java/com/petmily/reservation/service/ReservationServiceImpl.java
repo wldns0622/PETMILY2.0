@@ -25,5 +25,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<ReservationVO> reservationList(String memId){
 		return mapper.reservationList(memId);
 	}
+	
+	@Override
+	public void reservationFail(int reservationNo) {
+		mapper.reservationFail(reservationNo);
+	}
 
 }

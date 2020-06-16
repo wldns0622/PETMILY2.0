@@ -72,4 +72,18 @@ public class ReservationController {
 		model.addAttribute("petList", petList);
 		return "/hospital/reservationList";
 	}
+	
+	@GetMapping("/reservationFail")
+	public String reservationFail(int reservationNo) {
+		rsvService.reservationFail(reservationNo);
+		return "redirect:/reservation/reservationList";
+	}
+	
+	@GetMapping("/reservationMedInfo")
+	public String reservationMedInfo(int reservationNo) {
+		
+		
+		return "";
+	}
+	
 }

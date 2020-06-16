@@ -10,4 +10,5 @@ import com.petmily.reservation.domain.ReservationVO;
 public interface ReservationMapper {
 	public int insertReservation(ReservationVO reservation);
 	public List<ReservationVO> reservationList(String memId);
+	public void reservationFail(int reservationNo);
 }

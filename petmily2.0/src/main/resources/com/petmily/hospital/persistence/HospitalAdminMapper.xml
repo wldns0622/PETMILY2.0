@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petmily.hospital.persistence.HospitalAdminMapper">
+	<select id="getOper" resultType="com.petmily.hospital.domain.HospitalOperationVO">
+		select * from hospital_operation_tb where HSPT_ID = #{hsptId}
+	</select>
+
+	<select id="getReservation" resultType="com.petmily.reservation.domain.ReservationVO">
+		select * from reservation_tb where RESERVATION_HOSPITAL_ID = #{hsptId}
+	</select>
+</mapper>
