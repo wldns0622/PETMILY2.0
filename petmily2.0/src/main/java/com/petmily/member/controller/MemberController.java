@@ -1,6 +1,5 @@
 package com.petmily.member.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -42,34 +41,34 @@ public class MemberController {
 
 	@PostMapping("/login")
 	public String login(LoginMemberVO loginMember, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		
+
 		//String loginMember = request.getParameter("member");
-		
+
 		System.out.println("loginMember : " + loginMember);
-		
+
 		if(loginMember.getMember().equals("member")) {
 			MemberVO member = memberService.memberLogin(loginMember);
 			session.setAttribute("member", member);
-			
+
 			return "redirect:/";
-			
+
 		} else {
 			HospitalMemberVO hospitalMember = memberService.hospitalMemberLogin(loginMember);
 			//System.out.println("hospitalMember id : " + hospitalMember.getHsptId());
 			//System.out.println("hospitalMember password : " + hospitalMember.getHsptPass());
 			session.setAttribute("hospitalMember", hospitalMember);
-			
+
 			return "redirect:/";
 		}
-		
+
 		/*if(resultMember != null) {
 			session.setAttribute("member", resultMember);
 			return "redirect:/";
 		} else {
 			return "redirect:/member/login";
-		}*/ 
+		}*/
 	}
 
 	@GetMapping("/memberSignUp")
@@ -94,7 +93,7 @@ public class MemberController {
 
 	@PostMapping("/hospitalSignUp")
 	public String sign(HospitalMemberVO hospitalMemberVO, HospitalOperationDTO oper,MultipartFile uploadFile) {
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
@@ -105,10 +104,10 @@ public class MemberController {
 		}
 		String uploadFileName = uploadFile.getOriginalFilename();
 		File saveFile = new File(uploadPath,uploadFileName);
-		
+
 		try {
 			uploadFile.transferTo(saveFile);
-			
+
 		} catch (Exception e) {
 			System.out.println("파일첨부에러");
 			e.printStackTrace();
@@ -118,7 +117,7 @@ public class MemberController {
 		//System.out.println("member :" + member);
 		//System.out.println("oper :" + oper);
 		HospitalOperationVO hospitalOperationVO = new HospitalOperationVO();
-		
+
 		hospitalOperationVO.setSunOper(oper.getSunOpenOper() + "~" + oper.getSunCloseOper());
 		hospitalOperationVO.setMonOper(oper.getMonOpenOper() + "~" + oper.getMonCloseOper());
 		hospitalOperationVO.setTueOper(oper.getTueOpenOper() + "~" + oper.getTueCloseOper());
@@ -126,24 +125,24 @@ public class MemberController {
 		hospitalOperationVO.setThuOper(oper.getThuOpenOper() + "~" + oper.getThuCloseOper());
 		hospitalOperationVO.setFriOper(oper.getFriOpenOper() + "~" + oper.getFriCloseOper());
 		hospitalOperationVO.setSatOper(oper.getSatOpenOper() + "~" + oper.getSatCloseOper());
-		
+
 		hospitalOperationVO.setHsptId(hospitalMemberVO.getHsptId());
-		
+
 		System.out.println("�씪�슂�씪 �슫�쁺�떆媛� : " + hospitalOperationVO.getSunOper());
-		
+
 		//String hsptAddr = hospitalMemberVO.getHsptAddr();
 		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr().substring(3));
 		String realPath = uploadPath.getPath().substring(54);
 		hospitalMemberVO.setHsptFilePath(realPath);
 		hospitalMemberVO.setHsptFile(uploadFileName);
 		memberService.hospitalMemberSignUp(hospitalMemberVO, hospitalOperationVO);
-		
-		
+
+
 		return "redirect:/member/login";
 	}
-	
-	
-	
+
+
+
 	/*
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -154,5 +153,5 @@ public class MemberController {
    }
    */
 
-	
+
 }
