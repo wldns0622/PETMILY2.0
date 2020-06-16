@@ -7,20 +7,19 @@ import org.springframework.stereotype.Service;
 import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.admin.persistence.AdminMapper;
 import com.petmily.common.domain.CodeVO;
+import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.pettalk.domain.ReportVO;
 import com.petmily.pettalk.domain.SearchVO;
 
 import lombok.AllArgsConstructor;
 
-
 @AllArgsConstructor
 @Service
 public class AdminServiceImpl implements AdminService {
-	
-	
+
 	private AdminMapper mapper;
-	
+
 	@Override
 	public List<ReportVO> reportList() {
 		return mapper.reportList();
@@ -29,6 +28,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void reportCommit(int rptNo) {
 		mapper.reportCommit(rptNo);
+		mapper.reportReject(rptNo);
 	}
 
 	@Override
@@ -68,13 +68,30 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<StatisticsVO> memberTotalData() {
+
 		return mapper.memberTotalData();
 	}
-	
-	
-	
-	
 
-	
-	
+	@Override
+	public List<StatisticsVO> pettalkTotalData(SearchVO searchVO) {
+
+		List<StatisticsVO> list = mapper.pettalkTotalData(searchVO);
+		List<StatisticsVO> replyCnt = mapper.replyCnt();
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setReplyCnt(replyCnt.get(i).getReplyCnt());
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<HospitalMemberVO> approveList(String approveYn) {
+		return mapper.approveList(approveYn);
+	}
+
+	@Override
+	public void approveUpdate(String hsptId) {
+		mapper.approveUpdate(hsptId);
+	}
+
 }

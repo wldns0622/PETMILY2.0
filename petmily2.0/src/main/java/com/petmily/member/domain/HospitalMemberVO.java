@@ -11,6 +11,10 @@ public class HospitalMemberVO {
 	private String hsptAddr;
 	private String hsptTel;
 	private String hsptLicenseNum;
-	//private String hsptBusinessDay; //병원 운영일 테이블 참조
-	//private String hsptBusinessHours; //병원 운영시간 테이블 참조
+	private String hsptApprove;
+	private String hsptFile;
+	private String hsptFilePath;
+	
+	//private String hsptBusinessDay; //蹂묒썝 �슫�쁺�씪 �뀒�씠釉� 李몄“
+	//private String hsptBusinessHours; //蹂묒썝 �슫�쁺�떆媛� �뀒�씠釉� 李몄“
 }

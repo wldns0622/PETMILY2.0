@@ -29,6 +29,7 @@ import com.google.gson.JsonObject;
 import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.admin.service.AdminService;
 import com.petmily.common.domain.CodeVO;
+import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.pettalk.domain.SearchVO;
 
@@ -137,9 +138,9 @@ public class AdminController {
 
 	@GetMapping("/userManager")
 	public void userManager(SearchVO searchVO, Model model) {
-		
+
 		System.out.println(searchVO);
-		if(searchVO.getCodeSelect() == null){
+		if (searchVO.getCodeSelect() == null) {
 			searchVO.setCodeSelect("3003");
 		}
 		System.out.println(searchVO);
@@ -149,6 +150,7 @@ public class AdminController {
 		model.addAttribute("userCodeList", adminService.adminCodeList());
 
 	}
+
 	@ResponseBody
 	@PostMapping("/userCodeUpdate")
 	public String userCodeUpdate(@RequestBody List<MemberVO> updateMemberList) {
@@ -157,26 +159,52 @@ public class AdminController {
 
 			adminService.memberCodeUpdate(updateMemberList.get(i));
 		}
-		
+
 		return "ok";
 	}
 
-	
 	@GetMapping("/statistics")
-	public void statistics(){
-		
+	public void statistics() {
+
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/statisticsData")
-	public String statisticsData(){
+	public String statisticsData() {
 		Gson g = new Gson();
 		List<StatisticsVO> list = adminService.memberTotalData();
-			
-		
+
 		return g.toJson(list);
 	}
-	
-	
-	
+
+	@ResponseBody
+	@PostMapping("/pettalkData")
+	public String pettalkData() {
+		SearchVO searchVO = new SearchVO();
+		Gson g = new Gson();
+		List<StatisticsVO> list = adminService.pettalkTotalData(searchVO);
+
+		return g.toJson(list);
+	}
+
+	@GetMapping("/approveList")
+	public void approveList(@RequestParam(value = "approveYn", required = false) String approveYn, Model model) {
+		if (approveYn == null) {
+			approveYn = "N";
+		}
+
+		model.addAttribute("approveList", adminService.approveList(approveYn));
+	}
+
+	@PostMapping("/approveUpdate")
+	public String approveUpdate(@RequestParam("hsptId")List<String> seq) {
+		for (int i = 0; i < seq.size(); i++) {
+			System.out.println(seq);
+			adminService.approveUpdate(seq.get(i));
+		}
+		
+		return "redirect:/admin/approveList";
+		
+	}
+
 }

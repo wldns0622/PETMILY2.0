@@ -33,7 +33,7 @@
 	</select>
 	
 	<insert id="hospitalMemberSignUp" parameterType="com.petmily.member.domain.HospitalMemberVO">
-		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum})
+		insert into hospital_member_tb values (#{hsptId}, #{hsptPass}, #{hsptName}, #{hsptAddr}, #{hsptTel}, #{hsptLicenseNum}, 'N',#{hsptFile},#{hsptFilePath})
 	</insert>
 	
 	<insert id="hospitalOperationInsert" parameterType="com.petmily.hospital.domain.HospitalOperationVO">

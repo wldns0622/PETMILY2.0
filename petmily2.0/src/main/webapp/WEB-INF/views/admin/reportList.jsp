@@ -22,7 +22,7 @@ zoom: 2;
              </div>
 			<div class="col-lg-12">
 				<div>
-					<form>
+					<form onsubmit="return confirm('선택된 게시물을 처리합니다.')">
 					<table class="table table-hover border-bottom border-top">
 						<thead>
 							<tr>
@@ -35,11 +35,10 @@ zoom: 2;
 							</tr>
 						</thead>
 						<tbody>
-						
 						<c:forEach var="list" items="${reportList}">
 							<tr>
 								<td>${list.rptNo}</td>
-								<td scope="row"><a href="detailAction.do?seq=${list.boardNo }">${list.boardNo }</a> <span class="card-subtitle mb-2 text-muted"></span></td>
+								<td scope="row"><a target="_blank" href="/pettalk/detail?seq=${list.boardNo }">${list.boardNo }</a> <span class="card-subtitle mb-2 text-muted"></span></td>
 								<td>${list.memId}</td>
 								<td>${list.rptContents}</td>
 								<td>${list.rptDt }</td>

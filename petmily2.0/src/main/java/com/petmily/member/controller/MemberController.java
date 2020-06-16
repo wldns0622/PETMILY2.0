@@ -1,5 +1,11 @@
 package com.petmily.member.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petmily.hospital.domain.HospitalOperationVO;
 import com.petmily.member.domain.HospitalMemberVO;
@@ -86,7 +93,28 @@ public class MemberController {
 	}
 
 	@PostMapping("/hospitalSignUp")
-	public String sign(HospitalMemberVO hospitalMemberVO, HospitalOperationDTO oper) {
+	public String sign(HospitalMemberVO hospitalMemberVO, HospitalOperationDTO oper,MultipartFile uploadFile) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		//make folder
+		File uploadPath = new File("C:\\Users\\Eun\\git\\PETMILY2.0\\petmily2.0\\src\\main\\webapp\\resources\\pdfUpload",str.replace("-", File.separator));
+		if(uploadPath.exists() == false){
+			uploadPath.mkdirs();
+		}
+		String uploadFileName = uploadFile.getOriginalFilename();
+		File saveFile = new File(uploadPath,uploadFileName);
+		
+		try {
+			uploadFile.transferTo(saveFile);
+			
+		} catch (Exception e) {
+			System.out.println("파일첨부에러");
+			e.printStackTrace();
+		}
+		System.out.println("uploadFile:::::"+uploadFile);
+		System.out.println("uploadFileOrN:::::"+uploadFileName);
 		//System.out.println("member :" + member);
 		//System.out.println("oper :" + oper);
 		HospitalOperationVO hospitalOperationVO = new HospitalOperationVO();
@@ -101,11 +129,13 @@ public class MemberController {
 		
 		hospitalOperationVO.setHsptId(hospitalMemberVO.getHsptId());
 		
-		System.out.println("일요일 운영시간 : " + hospitalOperationVO.getSunOper());
+		System.out.println("�씪�슂�씪 �슫�쁺�떆媛� : " + hospitalOperationVO.getSunOper());
 		
 		//String hsptAddr = hospitalMemberVO.getHsptAddr();
-		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr().substring(3));
-		
+		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr());
+		String realPath = uploadPath.getPath().substring(54);
+		hospitalMemberVO.setHsptFilePath(realPath);
+		hospitalMemberVO.setHsptFile(uploadFileName);
 		memberService.hospitalMemberSignUp(hospitalMemberVO, hospitalOperationVO);
 		
 		

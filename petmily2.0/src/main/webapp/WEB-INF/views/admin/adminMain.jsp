@@ -38,7 +38,7 @@
 						</a>
 						</div>
 						<div class="col-lg-4">
-						<a href="#">
+						<a href="/admin/approveList">
 							<div class="widget red-bg p-lg text-center">
 								<div class="m-b-md">
 									<i class="fa fa-user-md fa-4x"></i>
@@ -62,7 +62,7 @@
 						</a>
 						</div>
 						<div class="col-lg-6">
-						<a href="/admin/reportList">
+						<a href="/admin/statistics">
 							<div class="widget blue-bg p-lg text-center">
 								<div class="m-b-md">
 									<i class="fa fa-line-chart fa-4x"></i>

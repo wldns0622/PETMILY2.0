@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
 <style>
+
+#preview{
+position:absolute;
+border:1px solid #eee;
+background:#eee;
+padding:2px;
+display:none;
+color:#fff;
+}
+
+
 input[type=checkbox] {
 	zoom: 2;
 }
@@ -18,7 +29,7 @@ input[type=checkbox] {
 			<div class="row">
 				<div class="container-fluid i-box border-bottom">
 					<div class="ibox-title">
-						<h2>사용자 관리</h2>
+						<h2>병원 계정 승인 관리</h2>
 					</div>
 						<div class="row">
 					<div id="select" class="col-lg-12 col-md-12 m-b border-top">
@@ -31,9 +42,9 @@ input[type=checkbox] {
 										class="form-control col-sm-10" name="codeSelect"
 										onchange="changeSubmit()">
 										<option value="" selected disabled hidden>관리자</option>
-										<c:forEach var="item" items="${userCodeList}">
+									<%-- 	<c:forEach var="item" items="${userCodeList}">
 											<option value="${item.code}">${item.codeNm}</option>
-										</c:forEach>
+										</c:forEach> --%>
 									</select>
 						</div>
 						<div class="col-lg-9 ">
@@ -47,42 +58,41 @@ input[type=checkbox] {
 					</div>
 					<div class="col-lg-12">
 						<div>
-							<form>
+							<form onsubmit="return confirm('선택된 계정 신청을 승인하시겠습니까?')">
+							
 								<table
 									class="table table-striped table-hover border-bottom border-top">
 									<thead>
 										<tr>
 											<th>이름</th>
 											<th>아이디</th>
-											<th>닉네임</th>
-											<th>이메일</th>
-											<th style="width: 15%">권한</th>
+											<th>주소</th>
+											<th>전화번호</th>
+											<th>면허번호</th>
+											<th>첨부파일</th>
+											<th style="width: 8%">승인</th>
 										</tr>
 
 									</thead>
 									<tbody id="tbodyRow">
-										<c:forEach var="list" items="${userList}">
+										<c:forEach var="list" items="${approveList}" varStatus="status">
 											<tr>
-												<td>${list.name }</td>
-												<td>${list.id }</td>
-												<td>${list.nicknm }</td>
-												<td>${list.email }</td>
-												<td><select class="form-control m-n" name="codeSelect">
-														<option value="" selected disabled hidden>${list.codeNm }</option>
-														<c:forEach var="item" items="${userCodeList }">
-															<option value="${item.code}">${item.codeNm}</option>
-														</c:forEach>
-												</select></td>
+												<td>${list.hsptName }</td>
+												<td>${list.hsptId }</td>
+												<td>${list.hsptAddr }</td>
+												<td>${list.hsptTel }</td>
+												<td>${list.hsptLicenseNum }</td>
+												<td><img  style="width: 12px" src="${list.hsptFilePath}/${list.hsptFile}" align="center" id="100${status.index}" class="preview" alt="" /><input type="hidden" id="pics100${status.index}" value="${list.hsptFilePath}/${list.hsptFile}" /></td>
+												<td><input type="checkbox" name="hsptId" value="${list.hsptId }"></td>
 											</tr>
-											<input id="code" type="hidden" value="${list.code }">
 										</c:forEach>
 									</tbody>
 								</table>
 								<div class="row">
 									<div class="col text-right m-r-lg ">
-										<input class="btn btn-w-m btn-warning" type="button"
-											value="정보 변경" onclick="updateSubmit()" formmethod="post"
-											formaction="#">
+										<input class="btn btn-w-m btn-warning"  type="submit"
+											value="계정 승인" formmethod="post"
+											formaction="approveUpdate">
 									</div>
 								</div>
 							</form>
@@ -101,7 +111,6 @@ input[type=checkbox] {
 	var tmpArr = []
 
 	function changeSubmit() {
-		$(this).onsubmit="return confirm('선택된 게시물을 처리합니다.')";
 		$('#sortingForm').submit()
 	}
 
@@ -129,40 +138,38 @@ input[type=checkbox] {
 					$("#selectCd").val(selectCd).prop("selected", true);
 				}
 
+				
+				
+				
+				
+				
+					/* CONFIG */
+
+					var xOffset = 200;
+					var yOffset = -600;
+
+					/* END CONFIG */
+					$("img.preview").hover(function(e){
+					this.t = this.title;
+					this.title = "";
+					var c = (this.t != "") ? "<br/>" + this.t : "";
+					$("body").append("<p id='preview'><img src='"+ $("#pics"+this.id).val() +"' alt='Image preview' width='499px' />"+ c +"</p>");
+					$("#preview")
+					.css("top",(e.pageY - xOffset) + "px")
+					.css("left",(e.pageX + yOffset) + "px")
+					.fadeIn("fast");
+					},
+					function(){
+					this.title = this.t;
+					$("#preview").remove();
+					});
+					$("img.preview").mousemove(function(e){
+					$("#preview")
+					.css("top",(e.pageY - xOffset) + "px")
+					.css("left",(e.pageX + yOffset) + "px");
+					});
 			})
-	$('#tbodyRow').find('select').on('change', function() {
-		jsonObj = {
-			"code" : $(this).val(),
-			"id" : $(this).parents('tr').children().eq(1).text()
-		}
 
-		tmpArr.push(jsonObj)
-	})
-
-	function updateSubmit() {
-		console.log(tmpArr);
-		if (tmpArr.length != 0) {
-			$.ajax({
-				url : "/admin/userCodeUpdate",
-				type : "POST",
-				dataType : "text",
-				contentType : "application/json",
-				data : JSON.stringify(tmpArr),
-				success : function(data) {
-					alert("반영되었습니다.")
-					location.reload(true);
-
-				},
-				error : function() {
-					alert("에러발생")
-				}
-			})
-
-		} else {
-			alert("변경 사항이 업습니다.")
-		}
-
-	}
 </script>
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="false" />
 

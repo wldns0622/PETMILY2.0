@@ -32,7 +32,7 @@
 		</div>
 		<hr />
 		
-		<form class="form-horizontal" role="form" method="post" action="/member/hospitalSignUp">
+		<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="/member/hospitalSignUp">
 			<div class="form-group">
 				<label for="provision" class="col-lg-2 control-label">회원가입약관</label>
 				<div class="col-lg-10" id="provision">
@@ -134,6 +134,12 @@
 				<label for="inputLicenseNum" class="col-lg-2 control-label">병원먼허번호</label>
 				<div class="col-lg-10">
 					<input type="tel" class="form-control onlyNumber" name="hsptLicenseNum" id="hsptLicense-num" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+				</div>
+			</div>
+			<div class="form-group upload-btn-wrapper" id="divLicenseNum">
+				<label for="inputLicenseNum" class="col-lg-2 control-label">사업자등록증</label>
+				<div class="col-lg-10">
+					<input type="file" name="uploadFile">
 				</div>
 			</div>
 			<br>

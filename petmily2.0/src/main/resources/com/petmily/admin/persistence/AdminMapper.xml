@@ -69,4 +69,30 @@
 		ORDER BY TO_CHAR (register_date, 'YYYY-MM')
 	</select>
 	
+	<select id="pettalkTotalData" parameterType="com.petmily.pettalk.domain.SearchVO" resultType="com.petmily.admin.domain.StatisticsVO">
+	select  TO_CHAR (CREATE_DT, 'YYYY-MM') AS "create_date",
+		COUNT(*) as "CREATE_CNT",
+		SUM (COUNT (1)) OVER (ORDER BY TO_CHAR (CREATE_DT, 'YYYY-MM')) as "cre_total" 
+	from board_community_tb where 1=1
+	<if test="keyword != null and keyword !=''">
+	AND BOARD_CD = #{keyword}
+	</if>
+        GROUP BY TO_CHAR (CREATE_DT, 'YYYY-MM')
+		ORDER BY TO_CHAR (CREATE_DT, 'YYYY-MM')
+	</select>
+	
+	
+	<select id="replyCnt" resultType="com.petmily.admin.domain.StatisticsVO">
+	select TO_CHAR (CREATE_DT, 'YYYY-MM') as reply_date,count(*) as reply_cnt from reply_tb GROUP BY TO_CHAR (CREATE_DT, 'YYYY-MM') order by REPLY_DATE
+	</select>	
+	
+	<select id="approveList" resultType="com.petmily.member.domain.HospitalMemberVO" parameterType="String">
+		select * from HOSPITAL_MEMBER_TB where hspt_approve=#{approveYn}
+	</select>
+	
+	<update id="approveUpdate" parameterType="String">
+		update HOSPITAL_MEMBER_TB set hspt_approve = 'Y' where HSPT_ID = #{hsptId}
+	</update>
+	
+	
 </mapper>

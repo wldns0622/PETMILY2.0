@@ -10,7 +10,7 @@
                             <ul class="folder-list m-b-md" style="padding: 0">
                                 <li><a href="/admin/userManager"> <i class="fa fa-inbox "></i> 사용자 관리 <span class="label label-warning float-right">16</span> </a></li>
                                 <li><a href="/admin/codeList"> <i class="fa fa-envelope-o"></i> 코드 관리 </a></li>
-                                <li><a href="#"> <i class="fa fa-certificate"></i> 승인 관리 </a></li>
+                                <li><a href="/admin/approveList"> <i class="fa fa-certificate"></i> 승인 관리 </a></li>
                                 <li><a href="/admin/reportList"> <i class="fa fa-file-text-o"></i> 신고 관리 <span class="label label-danger float-right">2</span></a></li>
                                 <li><a href="/admin/statistics"> <i class="fa fa-trash-o"></i> 통계 </a></li>
                             </ul>

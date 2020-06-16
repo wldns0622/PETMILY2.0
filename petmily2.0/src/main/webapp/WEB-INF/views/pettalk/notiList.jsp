@@ -160,11 +160,12 @@ body, input, textarea, select, button, table {
 						if (parameterTmp == 'Y') {
 							$('#Y').removeClass("text-muted small").css("font-weight","bold")
 							$('#N').addClass("text-muted small").css("font-weight","normal")
-
+							$('#removeAll').hide();
 						} else {
 
 							$('#N').removeClass("text-muted small").css("font-weight","bold")
 							$('#Y').addClass("text-muted small").css("font-weight","normal")
+							$('#removeAll').show();
 						}
 
 						for (var i = 0; i < data.length; i++) {
