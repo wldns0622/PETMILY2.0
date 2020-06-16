@@ -11,7 +11,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.stax2.ri.typed.ValueDecoderFactory.FloatArrayDecoder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -31,95 +30,22 @@ import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.PetVO;
 import com.petmily.mypet.domain.RsvnVO;
-import com.petmily.mypet.domain.WeightVO;
 import com.petmily.mypet.service.HealthService;
 import com.petmily.mypet.service.MypetService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/health/")
+@RequestMapping("/hospitalAdmin/")
 @RestController
 @Log4j
 @AllArgsConstructor
-public class HealthRestController {
+public class YourPetHealthRestController {
 	private MypetService myService;
 	private HealthService service;
 	
 	
-	private String getFolder(){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		String str = sdf.format(date);
-		
-		return str.replace("-", File.separator);
-	}
 	
-	
-	@PostMapping("/uploadAjaxAction")
-	public String uploadFile(MultipartFile[] fileOriginalNm, int petNo, Model model, HttpServletRequest request, RedirectAttributes rttr) {
-		//폼에서 Date 값 받을 때 변환 주의!!!
-		HttpSession session = request.getSession();
-		MemberVO member =  (MemberVO) session.getAttribute("member");
-		
-		PetVO petVO = new PetVO();
-		petVO.setPetNo(petNo);
-		petVO.setMemId(member.getId());
-		
-		System.out.println("파일 업로드");
-		
-		String uploadFolder = "C:\\Users\\user\\git\\PETMILY2.0\\petmily2.0\\src\\main\\webapp\\resources\\uploadfiles";
-		//String uploadFolder = request.getServletContext().getRealPath("/resources/uploadfiles");
-		
-		String cutPath = "C:\\Users\\user\\git\\PETMILY2.0\\petmily2.0\\src\\main\\webapp";
-		// make folder -----------
-		File uploadPath = new File(uploadFolder, getFolder());
-		
-		if(uploadPath.exists() == false){
-			uploadPath.mkdirs();
-		}
-		//make yyyy/MM/dd folder
-		
-		for(MultipartFile multipartFile : fileOriginalNm){
-			
-			System.out.println("-----------------------------");
-			System.out.println("Upload File Name: " + multipartFile.getOriginalFilename());
-			System.out.println("Upload File Size: " + multipartFile.getSize());
-			
-			String uploadFileName = multipartFile.getOriginalFilename();
-			
-			// IE has file path
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-			System.out.println("only file name: " + uploadFileName);
-			
-			System.out.println("Real Path: " + uploadFolder);
-			System.out.println("Upload Path " + uploadPath);
-				
-			
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString() + "-" + uploadFileName;
-			File saveFile = new File(uploadPath, uploadFileName);
-			System.out.println("saveFile " + saveFile);
-			
-			String readyPath = saveFile.getPath().substring(cutPath.length());
-			String storedPath = readyPath.replace("\\", "/");
-			System.out.println(readyPath.replace("\\", "/"));
-			
-			petVO.setFileOriginalNm(saveFile.getPath());
-			petVO.setFileStoredNm(storedPath);
-			
-			myService.insertFile(petVO);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-				
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			} // try-catch End
-		}// for End
-		
-		return petVO.getFileStoredNm();
-	}
 	
 	@PostMapping("/insertBasicImmu")
 	public String insertBasicImmu(@RequestBody ImmuVO immuVO, HttpServletRequest request){
@@ -239,6 +165,8 @@ public class HealthRestController {
 	@GetMapping("/selectRSVN")
     public @ResponseBody RsvnVO selectRSVN(@RequestParam("reservationPetNo") int reservationPetNo, @RequestParam("reservationNo") int reservationNo){
 		RsvnVO rsvnVO = new RsvnVO();
+		System.out.println(reservationPetNo);
+		System.out.println(reservationNo);
 		rsvnVO.setReservationPetNo(reservationPetNo);
 		rsvnVO.setReservationNo(reservationNo);
 		System.out.println("reservationPetNo"+reservationPetNo);
@@ -277,39 +205,4 @@ public class HealthRestController {
 		
 		return "";
 	}
-	
-	@PostMapping("/insertWt")
-	public String insertWt(@RequestBody WeightVO weightVO){
-		service.insertWt(weightVO);
-		
-		return "";
-	}
-	
-	@GetMapping("/allWt")
-    public @ResponseBody List<WeightVO> allWt(@RequestParam("petNo") int petNo, @RequestParam("wtDtStart") String wtDtStart, @RequestParam("wtDtEnd") String wtDtEnd){
-		System.out.println("전체 체중");
-		WeightVO weightVO = new WeightVO();
-		weightVO.setPetNo(petNo);
-		weightVO.setWtDtStart(wtDtStart);
-		weightVO.setWtDtEnd(wtDtEnd);
-		List<WeightVO> weightList = service.allWt(weightVO);
-		System.out.println(weightList);
-		return weightList;
-    }
-	
-	@GetMapping("/latelyWt")
-    public @ResponseBody String diffWt(@RequestParam("petNo") int petNo){
-		
-		List<WeightVO> weightList = service.letelyWt(petNo);
-		float diff = 0f;
-		if(weightList != null){
-			diff = weightList.get(0).getWt()-weightList.get(1).getWt();
-		}else{
-			diff= 100;
-			
-		}
-		
-		System.out.println(String.format("%.3f", diff));
-		return String.format("%.2f", diff);
-    }
 }

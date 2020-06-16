@@ -5,6 +5,7 @@ import java.util.List;
 import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.RsvnVO;
+import com.petmily.mypet.domain.WeightVO;
 
 public interface HealthMapper {
 	int insertBasicImmu(ImmuVO immuVO);
@@ -25,4 +26,10 @@ public interface HealthMapper {
 	List<MedVO> allMed(MedVO medVO);
 	int insertMemMed(MedVO medVO);
 	int deleteMemMed(int memMedRecordNo);
+	
+	RsvnVO latelyRSVN (int reservationNo);
+	
+	int insertWt(WeightVO weightVO);
+	List<WeightVO> allWt(WeightVO weightVO);
+	List<WeightVO> letelyWt(int petNo);
 }

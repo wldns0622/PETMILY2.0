@@ -140,6 +140,7 @@
 		delete from IMMUNIZATION_TB where pet_no = #{petNo} and immu_nm = #{immuNm} and pet_month = #{petMonth} and di_year = #{diYear} and immu_sort = 'di'
 	</delete>
 	
+	<!-- Reservation -->
 	<select id="allRSVN" resultType="com.petmily.mypet.domain.RsvnVO">
 		select * from RESERVATION_TB r JOIN HOSPITAL_MEMBER_TB h ON r.RESERVATION_HOSPITAL_ID = h.HSPT_ID where RESERVATION_PET_NO = #{reservationPetNo} order by RESERVATION_NO
 	</select>
@@ -150,6 +151,10 @@
 					JOIN HOSPT_MED_RECORDS_TB m 
 					ON r.RESERVATION_NO = m.RESERVATION_NO
 					where r.RESERVATION_PET_NO = #{reservationPetNo} and r.RESERVATION_NO = #{reservationNo}
+	</select>
+	<select id="latelyRSVN" resultType="com.petmily.mypet.domain.RsvnVO">
+		select * from RESERVATION_TB 
+					where RESERVATION_NO = #{reservationNo}
 	</select>
 	<select id="allMed" resultType="com.petmily.mypet.domain.MedVO">
 		<!-- <bind name="dtStart" value="_parameter.dtStart"/>
@@ -182,6 +187,33 @@
 	<delete id="deleteMemMed">
 		delete from MEM_MED_RECORDS_TB where MEM_MED_RECORD_NO = #{memMedRecordNo}
 	</delete>
+	
+	<!-- Weight -->
+	<insert id="insertWt">
+		insert into WEIGHT_TB values(
+									WEIGHT_TB_SEQ.nextval,
+									#{petNo},
+									TO_DATE(#{wtDt},'MM/dd/yyyy'),
+									#{wt},
+									TO_DATE(#{wtTm},'hh24:mi'))
+	</insert>
+	<select id="allWt" resultType="com.petmily.mypet.domain.WeightVO">
+		select WT_NO, PET_NO, TO_CHAR(WT_DT,'YYYY-MM-DD') AS WT_DT, WT, TO_CHAR(WT_TM,'hh24:mi') AS WT_TM from WEIGHT_TB where pet_no = #{petNo} and 
+			<![CDATA[wt_dt >= TO_DATE(#{wtDtStart},'yyyy-mm-dd') and wt_dt <= TO_DATE(#{wtDtEnd},'yyyy-mm-dd') ]]>
+				order by wt_dt, wt_tm
+	</select>
+	<select id="letelyWt" resultType="com.petmily.mypet.domain.WeightVO">
+		
+		select A.* from 
+			(select 
+				WT_NO, PET_NO, TO_CHAR(WT_DT,'YYYY-MM-DD') AS WT_DT, WT, TO_CHAR(WT_TM,'hh24:mi') AS WT_TM 
+					from WEIGHT_TB 
+						where pet_no = #{petNo} 
+							order by wt_dt desc, wt_tm desc) A
+								<![CDATA[where rownum <3]]>
+			
+				
+	</select>
 </mapper>
 
 

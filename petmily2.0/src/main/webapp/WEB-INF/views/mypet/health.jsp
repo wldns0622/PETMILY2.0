@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ page session="false"%>
-
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
 
 <style>
@@ -209,7 +207,7 @@
 	</div>
 
 	<div class="row">
-		<h1>마이 펫페이지</h1>
+		<h1>마이펫 페이지</h1>
 	</div>
 
 
@@ -221,6 +219,8 @@
 							진료</a></li>
 					<li><a class="nav-link nav-li-a-list" id="tablist-2" data-toggle="tab" href="#tab-2">
 							접종</a></li>
+					<li><a class="nav-link nav-li-a-list" id="tablist-3" data-toggle="tab" href="#tab-3">
+							체중</a></li>
 					
 				</ul>
 				<div class="tab-content">
@@ -240,15 +240,14 @@
 
 						</div>
 					</div>
-					<!-- 체중 기능이 삭제되었습니다. -->
-					<%-- <!-- Tab 3 -->
+					<!-- Tab 3 -->
 					<div role="tabpanel" id="tab-3" class="tab-pane">
 						<div class="panel-body animated fadeInDown">
 
 							<%@include file="/WEB-INF/views/mypet/weight.jsp"%>
 
 						</div>
-					</div> --%>
+					</div> 
 				</div>
 
 

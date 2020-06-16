@@ -28,7 +28,7 @@
 	</insert>
 
 	<select id="selectPetByNo" resultType="com.petmily.mypet.domain.PetVO">
-		select * from pets_tb p join breed_tb b on p.breed_no = b.breed_no where pet_no = #{petNo} and mem_id = #{memId}
+		select * from pets_tb p join breed_tb b on p.breed_no = b.breed_no where pet_no = #{petNo} 
 	</select>
 	
 	<insert id="insertFile">

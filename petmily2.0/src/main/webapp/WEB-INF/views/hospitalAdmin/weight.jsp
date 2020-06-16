@@ -19,26 +19,6 @@
 </style>
 <div>
 	
-	<div class="row">
-		<div class="col-lg-3">
-			<img src="/resources/img/mypet/dogdoc_smile.jpg"
-				class="rounded-circle circle-border m-b-md" alt="독닥">
-		</div>
-
-		<div class="col-lg-9">
-			<div class="row dogdoc-box">
-				<div class="col-12">
-					<span class="dogdoc-h1">
-						독닥의 조언!
-					</span>
-					<br><br>
-					<span id="dogdoc-wt-explain">현재 비교가 어려워요! <br>체중 데이터를 입력해주시면 독닥이 노력해볼게요!</span>
-				</div>
-				
-			</div>
-		</div>
-
-	</div>
 	<div class="row mt-4">
 		<div class="col-lg-2">
 		</div>
@@ -58,9 +38,7 @@
 				<strong>체중 기록</strong>
 			</h2>
 		</div>
-		<div class="col-lg-2">
-			<button type="button" class="btn btn-outline btn-info mt-3 insert-wt-modal-btn">체중 입력하기</button>
-		</div>
+		
 	</div>
 	
 	<!-- 심장사상충 Modal Start -->
@@ -234,11 +212,11 @@ $(function () {
 				if(result==null){
 					$('#dogdoc-wt-explain').append('현재 비교가 어려워요! <br>체중 데이터를 입력해주시면 독닥이 노력해볼게요!');
 				}else if(result<0){
-					$('#dogdoc-wt-explain').append('최근 체중이 이전 체중보다 '+result+'kg 차이나요.<br>식사량을 다시 한번 확인해주세요!');
+					$('#dogdoc-wt-explain').append('최근 체중이 그 이전 체중보다 '+result+'kg 차이나요.<br>식사량을 다시 한번 확인해주세요!');
 				}else if(result==0){
 					$('#dogdoc-wt-explain').append('최근 체중의 변화가 없어요!<br>앞으로도 더욱 열심히 기록해주세요!');
 				}else if(0<result<100){
-					$('#dogdoc-wt-explain').append('최근 체중이 이전 체중보다 '+result+'kg 차이나요.<br>식사량을 다시 한번 확인해주세요!');
+					$('#dogdoc-wt-explain').append('최근 체중이 그 이전 체중보다 '+result+'kg 차이나요.<br>식사량을 다시 한번 확인해주세요!');
 				}
 			},
 			error: function(xhr,status,er) {

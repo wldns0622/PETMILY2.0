@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.petmily.mypet.domain.ImmuVO;
 import com.petmily.mypet.domain.MedVO;
 import com.petmily.mypet.domain.RsvnVO;
+import com.petmily.mypet.domain.WeightVO;
 import com.petmily.mypet.persistence.HealthMapper;
 
 import lombok.AllArgsConstructor;
@@ -95,6 +96,30 @@ public class HealthServiceImpl implements HealthService {
 	public int deleteMemMed(int memMedRecordNo) {
 		
 		return mapper.deleteMemMed(memMedRecordNo);
+	}
+
+	@Override
+	public RsvnVO latelyRSVN(int reservationNo) {
+		
+		return mapper.latelyRSVN(reservationNo);
+	}
+
+	@Override
+	public int insertWt(WeightVO weightVO) {
+		
+		return mapper.insertWt(weightVO);
+	}
+
+	@Override
+	public List<WeightVO> allWt(WeightVO weightVO) {
+		
+		return mapper.allWt(weightVO);
+	}
+
+	@Override
+	public List<WeightVO> letelyWt(int petNo) {
+		// TODO Auto-generated method stub
+		return mapper.letelyWt(petNo);
 	}
 
 

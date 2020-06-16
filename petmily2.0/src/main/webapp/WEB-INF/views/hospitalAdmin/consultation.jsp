@@ -30,9 +30,7 @@
 				<strong>동물 병원 예약 목록</strong>
 			</h2>
 		</div>
-		<div class="col-lg-2">
-			<button type="button" class="btn btn-outline btn-warning mt-3" onclick = "location.href = '/reservation/reservationList' ">예약 전체 바로가기</button>
-		</div>
+		
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
@@ -133,7 +131,7 @@
 		</div>
 		<div class="col-lg-8 text-center">
 			<div class="form-group" id="data_5">
-                <div class="input-daterange input-group co-page" id="datepicker">
+                <div class="input-daterange input-group" id="datepicker">
                     <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtStart" value="">
                     <span class="input-group-addon">-</span>
                     <input type="text" class="input-sm form-control-sm form-control med-select-date" name="dtEnd" value="">
@@ -147,9 +145,7 @@
 				<strong>진료 기록 타임 라인</strong>
 			</h2>
 		</div>
-		<div class="col-lg-2">
-			<button type="button" class="btn btn-outline btn-info mt-3 insert-modal-btn">진료 직접 입력하기</button>
-		</div>
+		
 	</div>
 	<div class="row">
 	<div class="col-lg-12">
@@ -170,123 +166,7 @@
 </div>
 <!-- 타임라인 End -->
 
-<!-- 진료 직접 등록 Modal Start -->
 
-<div class="modal inmodal" id="insert-mem" tabindex="-1"
-	role="dialog" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog">
-		<div class="modal-content animated fadeIn">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-				</button>
-				<i class="fa fa-hospital-o modal-icon ml-4 mb-4"></i>
-				<h4 class="modal-title">진료 기록 직접 등록</h4>
-			</div>
-			<div class="modal-body">
-					<form action="" id="insert-mem-form" class="insert-mem-form">
-
-						<input type="hidden" value="${pet.petNo }" name="petNo"
-							class="form-control">
-						<!-- petMonth는 해당 년도로 -->
-
-
-						<label>병원명</label> <input type="text" value="" name="hosptNm"
-							class="form-control">
-
-						<div class="form-group" id="data_1">
-							<label class="font-normal">진료 일자</label>
-							<div class="input-group date">
-								<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-									type="date" id="insert-mem-date" name="memTmtDt"
-									class="form-control" value="">
-							</div>
-						</div>
-
-						<label class="font-normal">진료 종류</label> <select
-							class="form-control m-b" name="memTmtSort">
-							<option>일반진료</option>
-							<option>건강검진</option>
-							<option>예방접종</option>
-						</select> <label class="font-normal">진료 메모</label> <input type="text"
-							name="memTmtContents" class="form-control">
-
-					</form>
-				</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-white" data-dismiss="modal">취소</button>
-
-				<input id="pet-no" type="hidden" name="petNo" value="${pet.petNo }">
-				<button type="submit" id="insert-mem-btn"
-					class="btn btn-info" data-dismiss="modal">입력</button>
-
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- 진료 직접 등록 Modal End -->
-
-<!-- 진료 직접 수정 Modal Start -->
-
-
-<div class="modal inmodal" id="update-mem" tabindex="-1"
-	role="dialog" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog">
-		<div class="modal-content animated fadeIn">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-				</button>
-				<i class="fa fa-hospital-o modal-icon ml-4 mb-4"></i>
-				<h4 class="modal-title">진료 기록 직접 등록</h4>
-			</div>
-			<div class="modal-body">
-					<form action="" id="update-mem-form" class="update-mem-form">
-
-						<input type="hidden" value="${pet.petNo }" name="petNo"
-							class="form-control">
-						<!-- petMonth는 해당 년도로 -->
-
-
-						<label>병원명</label> <input type="text" value="" name="hosptNm"
-							class="form-control">
-
-						<div class="form-group" id="data_1">
-							<label class="font-normal">진료 일자</label>
-							<div class="input-group date">
-								<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-									type="date" id="update-mem-date" name="memTmtDt"
-									class="form-control" value="">
-							</div>
-						</div>
-
-						<label class="font-normal">진료 종류</label> <select
-							class="form-control m-b" name="memTmtSort">
-							<option>일반진료</option>
-							<option>건강검진</option>
-							<option>예방접종</option>
-						</select> <label class="font-normal">진료 메모</label> <input type="text"
-							name="memTmtContents" class="form-control">
-
-					</form>
-				</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-white" data-dismiss="modal">취소</button>
-
-				<input id="pet-no" type="hidden" name="petNo" value="${pet.petNo }">
-				<button type="submit" id="update-mem-btn"
-							class="btn btn-info" data-dismiss="modal">수정</button>
-
-				<button type="submit" id="delete-mem-btn"
-					class="btn btn-danger" data-dismiss="modal">삭제</button>
-				<input id="delete-mem-med-no" type="hidden" name="memMedRecordNo" value="">
-
-			</div>
-		</div>
-	</div>
-</div>
-<!-- 진료 직접 수정 Modal End -->
 </div>
 <script src="/resources/js/plugins/dataTables/datatables.min.js"></script>
 <script
@@ -414,11 +294,11 @@ var lang_kor = {
        	var allMedNow = function (callback) {
 			var nowDate = new Date();
 			var nowDateCon = nowDate.yyyymmdd();
-			$('.co-page input[name="dtEnd"]').val(nowDateCon);		
+			$('input[name="dtEnd"]').val(nowDateCon);		
 			
 			var preDate = lastWeek();
 			var preDateCon = preDate.yyyymmdd();
-			$('.co-page input[name="dtStart"]').val(preDateCon);	
+			$('input[name="dtStart"]').val(preDateCon);	
 			
 			callback(); //allMed 콜백
 		}
@@ -492,7 +372,7 @@ var lang_kor = {
 							memHtml +='	<h2>진료 일자: '+resultDate+' </h2>';
 							memHtml +='	<h2>진료 종류: '+result[i].hosptTmtSort+'</h2>';
 							memHtml +='	<p>'+result[i].hosptTmtContents+'</p>';							
-							memHtml +='<button type="button" class="btn btn-outline btn-primary mem-med-detail">수정 및 삭제</button>';
+							
 							memHtml +='	<input type="hidden" value="'+result[i].hosptMedRecordsNo+'">';
 							memHtml +='	<span class="vertical-date"> 직접 입력 기록 <br> <small>'+resultDate+'</small>';
 							memHtml +='	</span>';
@@ -585,59 +465,8 @@ var lang_kor = {
 		})
         
 		
-		//회원 입력 진료 기록 insert
-		$('#insert-mem-btn').click(function () {
-			var memTmt = {
-				petNo: 	$('.insert-mem-form input[name="petNo"]').val(),
-				hosptNm: $('.insert-mem-form input[name="hosptNm"]').val(),
-				memTmtDt: $('.insert-mem-form input[name="memTmtDt"]').val(),
-				memTmtSort: $('.insert-mem-form select[name="memTmtSort"]').val(),				
-				memTmtContents: $('.insert-mem-form input[name="memTmtContents"]').val()
-			}
 		
-			$.ajax({
-				type: 'post',
-				url: '/health/insertMemTmt',
-				data: JSON.stringify(memTmt),
-				contentType: "application/json; charset=utf-8",
-				success: function(result,status,xhr) {
-					allMed();
-				},
-				error: function(xhr,status,er) {
-					if(error){
-						error(er);
-					}
-				}
-			})
-			
-		})
-	
-		//회원 입력 진료 기록 delete
-       $(document).on('click', '.mem-med-detail', function(){
-    	   $('#update-mem').modal('show');
-    	   var memMedRecordNo = $(this).next().val();
-    	   $('#delete-mem-med-no').val(memMedRecordNo);
-       })
-        
-       $('#delete-mem-btn').click(function () {
-    	   var memMedRecordNo = $(this).next().val();
-    	   console.log(memMedRecordNo);
-    	   $.ajax({
-				type: 'post',
-				url: '/health/deleteMemTmt',
-				data: JSON.stringify(memMedRecordNo),
-				contentType: "application/json; charset=utf-8",
-				success: function(result,status,xhr) {
-					alert('삭제가 완료되었습니다.'); 
-					allMed();
-				},
-				error: function(xhr,status,er) {
-					if(error){
-						error(er);
-					}
-				}
-			})
-       })
+		
     });
 
 </script>

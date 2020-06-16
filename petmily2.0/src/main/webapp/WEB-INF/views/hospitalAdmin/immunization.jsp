@@ -10,7 +10,7 @@
 		height: 12rem;
     	padding: 1rem;
 	}
-	#dogdoc-immu-explain{
+	#dogdoc-explain{
 		font-size: x-large;
 	}
 
@@ -66,33 +66,7 @@
 	}
 </style>
 <div>
-	<div class="row">
-		<div class="col-lg-3">
-			<img src="/resources/img/mypet/dogdoc_inj.jpg"
-				class="rounded-circle circle-border m-b-md" alt="독닥">
-		</div>
 
-		<div class="col-lg-9">
-			<div class="row dogdoc-box">
-				<div class="col-7">
-					<span class="dogdoc-h1">
-						독닥의 조언!
-					</span>
-					<br><br>
-					<span id="dogdoc-immu-explain"></span>
-				</div>
-				<div class="col-2 mt-3">
-					<i class="fa fa-hand-o-right"></i>
-				</div>
-				<div class="col-3">
-					<button onclick="location.href='/hospital/hospital'" class="btn btn-warning dim btn-large-dim mt-4" type="button">
-						<i class="fa fa-user-md"></i>
-					</button>
-				</div>
-			</div>
-		</div>
-
-	</div>
 	
 	<!-- 기초 예방 접종 기록 -->
 	<div class="row">
@@ -899,11 +873,11 @@
 												}
 												
 												//진료 안내
-												$('#dogdoc-immu-explain').empty();
+												$('#dogdoc-explain').empty();
 												if(redCount>0){
-													$('#dogdoc-immu-explain').append("아직 미접종한 항목이 남아있어요!<br>접종을 위한 건강상담 어떠세요?");
+													$('#dogdoc-explain').append("아직 미접종한 항목이 남아있어요!<br>접종을 위한 건강상담 어떠세요?");
 												}else if(redCount == 0){
-													$('#dogdoc-immu-explain').append("전부 접종 완료되었어요!<br>더 행복한 우리 아이를 위한 검진 어떠세요?");
+													$('#dogdoc-explain').append("전부 접종 완료되었어요!<br>더 행복한 우리 아이를 위한 검진 어떠세요?");
 												}
 												
 												//과정 End
