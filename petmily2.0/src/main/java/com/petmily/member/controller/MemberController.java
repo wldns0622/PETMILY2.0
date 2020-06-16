@@ -132,7 +132,7 @@ public class MemberController {
 		System.out.println("�씪�슂�씪 �슫�쁺�떆媛� : " + hospitalOperationVO.getSunOper());
 		
 		//String hsptAddr = hospitalMemberVO.getHsptAddr();
-		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr());
+		hospitalMemberVO.setHsptAddr(hospitalMemberVO.getHsptAddr().substring(3));
 		String realPath = uploadPath.getPath().substring(54);
 		hospitalMemberVO.setHsptFilePath(realPath);
 		hospitalMemberVO.setHsptFile(uploadFileName);
