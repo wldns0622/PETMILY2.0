@@ -3,7 +3,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 
 <%@include file="/WEB-INF/views/includes/header.jsp"%>
 <style>
@@ -25,9 +24,11 @@
 
 		<h1>반려동물 정보</h1>
 
-
-
-		<div class="col-lg-12">
+		<div class="row mt-3">
+		<div class="col-lg-5">
+			<p>내 반려동물을 등록해서 관리해보세요.</p>
+		</div>
+		<div class="col-lg-7  text-right pr-0">
 
 			<button type="button" class="btn btn-primary" data-toggle="modal"
 				data-target="#myModal">반려동물 등록</button>
@@ -165,7 +166,8 @@
 		<!-- Modal -->
 
 		<!-- Modal END -->
-
+		</div>
+		
 		<div class="row animated fadeInDown">
 			<!-- Pet detail Start -->
 			<c:forEach items="${petList }" var="pet">

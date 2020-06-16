@@ -270,8 +270,8 @@ public class HealthRestController {
 	}
 	
 	@PostMapping("/deleteMemTmt")
-	public String deleteMemTmt(@RequestBody ImmuVO immuVO, HttpServletRequest request){
-		
+	public String deleteMemTmt(@RequestBody int memMedRecordNo){
+		service.deleteMemMed(memMedRecordNo);
 		
 		return "";
 	}

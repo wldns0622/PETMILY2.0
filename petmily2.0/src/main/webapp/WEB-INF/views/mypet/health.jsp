@@ -18,14 +18,35 @@
 	box-shadow: rgba(0, 0, 0, 0.227451) 3px 3px 8px 0px;
 	background-color: rgb(250, 250, 250);
 }
+.pet-info-btn{
+	width: 7rem;
+    height: 5rem;
+    font-size: x-large;
+}
+.profile-image img {
+    width: 6.8rem;
+    height: 6.8rem;
+    position: relative;
+}
+.profile-image a{
+	position: absolute;
+	top: 135px;
+    left: 55px;
+    color: gray;
+}
+.nav-li-a-list{
+	width: 10rem;
+    text-align: center;
+    font-size: x-large;
+}
 </style>
 
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row m-b-lg m-t-lg" id="pet-info-box">
-		<div class="col-md-3">
+		<div class="col-md-3 ml-2">
 
 			
-			<div class="profile-image" data-toggle="modal" data-target="#update-profile">
+			<div class="profile-image mt-4" data-toggle="modal" data-target="#update-profile">
 				<img id="" src="
 					<c:choose>
 						<c:when test="${pet.fileNo == 0}">/resources/img/mypet/default_dog.jpg</c:when>
@@ -72,7 +93,7 @@
 
 			<!-- Image Modal End -->
 			
-			<div class="profile-info">
+			<div class="profile-info mt-5">
 				<div class="">
 					<div>
 						<h2 class="font-bold no-margins">
@@ -99,7 +120,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
+		
+		<div class="col-md-3 mt-5">
 			<table class="table m-b-xs">
 				<tbody>
 					<tr>
@@ -129,7 +151,7 @@
 				<div class="m-b-md">
 					<i class="fa fa-rocket fa-4x"></i>
 					<h3 class="font-bold no-margins">지구별 여행</h3>
-					<h1 class="font-bold m-xs">
+					<h1 class="font-bold m-xs mt-0">
 						D+<span id="d-day-no"></span>
 					</h1>
 				</div>
@@ -137,20 +159,20 @@
 
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-2 ">
 			<div class="widget yellow-bg p-lg text-center">
 				<div class="m-b-md">
 					<i class="fa fa-paw fa-4x"></i>
 					<h3 class="font-bold no-margins">등록 일자</h3>
-					<h3 class="font-bold"><fmt:formatDate pattern="yyyy / MM / dd"
+					<h3 class="font-bold mt-3"><fmt:formatDate pattern="yyyy / MM / dd"
 										value="${pet.petRegdt }" /></h3>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-md-2">
-			<button type="button" class="btn btn-w-m btn-info">수정</button>
-			<button type="button" class="delete-btn btn btn-w-m btn-danger" data-toggle="modal" data-petno="${pet.petNo }" data-target="#deleteModal">삭제</button>
+		<div class="col-md-1 mt-3">
+			<button type="button" class="btn pet-info-btn btn-info">수정</button>
+			<button type="button" class="delete-btn btn pet-info-btn btn-danger mt-3" data-toggle="modal" data-petno="${pet.petNo }" data-target="#deleteModal">삭제</button>
 		</div>
 		
 			<!-- Delete Modal Start -->
@@ -195,12 +217,11 @@
 		<div class="col-lg-12">
 			<div class="tabs-container">
 				<ul class="nav nav-tabs" role="tablist">
-					<li><a class="nav-link a" id="tablist-1" data-toggle="tab" href="#tab-1" >
+					<li><a class="nav-link a nav-li-a-list" id="tablist-1" data-toggle="tab" href="#tab-1" >
 							진료</a></li>
-					<li><a class="nav-link" id="tablist-2" data-toggle="tab" href="#tab-2">
+					<li><a class="nav-link nav-li-a-list" id="tablist-2" data-toggle="tab" href="#tab-2">
 							접종</a></li>
-					<li><a class="nav-link" id="tablist-3" data-toggle="tab" href="#tab-3">
-							체중</a></li>
+					
 				</ul>
 				<div class="tab-content">
 					<!-- Tab 1 -->
@@ -219,14 +240,15 @@
 
 						</div>
 					</div>
-					<!-- Tab 3 -->
+					<!-- 체중 기능이 삭제되었습니다. -->
+					<%-- <!-- Tab 3 -->
 					<div role="tabpanel" id="tab-3" class="tab-pane">
 						<div class="panel-body animated fadeInDown">
 
 							<%@include file="/WEB-INF/views/mypet/weight.jsp"%>
 
 						</div>
-					</div>
+					</div> --%>
 				</div>
 
 
