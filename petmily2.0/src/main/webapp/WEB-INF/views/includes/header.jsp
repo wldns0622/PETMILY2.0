@@ -14,7 +14,7 @@
     <!-- Add Your favicon here -->
     <!--<link rel="icon" href="img/favicon.ico">-->
 
-    <title>INSPINIA - Landing Page</title>
+    <title>PETMILY - KOSTA Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
 <div class="navbar-wrapper">
     <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
         <div class="container">
-            <a class="navbar-brand" href="#">PETMILY</a>
+            <a class="navbar-brand" href="#"><i class="fa fa-paw "></i>&nbsp;PETMILY</a>
             <div class="navbar-header page-scroll">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                     <i class="fa fa-bars"></i>
@@ -93,7 +93,7 @@
 
 
 
-<section id="title" style="background-image: url('/resources/img/sansam02.jpg'); background-size: cover; justify-content: center; display: flex; height: auto; min-height: 270px; background-position: center;"></section>
+<section id="title" style="background-image: url('/resources/img/sansam02.jpg'); background-size: cover; justify-content: center; display: flex; height: auto; min-height: 250px; background-position: center;"></section>
 
 <script type="text/javascript">
 $(document).ready(function() {

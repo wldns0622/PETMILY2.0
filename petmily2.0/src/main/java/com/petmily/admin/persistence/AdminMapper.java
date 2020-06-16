@@ -31,7 +31,9 @@ public interface AdminMapper {
 	public List<StatisticsVO> replyCnt();
 	public List<HospitalMemberVO> approveList(@Param("approveYn")String approveYn);
 	public void approveUpdate(@Param("hsptId")String hsptId);
-	
+	public void approveDelete(@Param("hsptId")String memberId);
+	public int approveCnt();
+	public int reportCnt();
 	/*
 	codeListService
 	detailBoard

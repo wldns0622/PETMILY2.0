@@ -79,7 +79,16 @@ input[type=checkbox] {
 									</tbody>
 								</table>
 								<div class="row">
-									<div class="col text-right m-r-lg ">
+								<div class="col text-right float-right m-r-s ">
+								<div class="btn-group ">
+	                                <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+	                                <button class="btn btn-white active">1</button>
+	                                <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+	                            </div>
+								</div>
+								</div>
+								<div class="row">
+									<div class="col text-right m-r-lg m-t-lg ">
 										<input class="btn btn-w-m btn-warning" type="button"
 											value="정보 변경" onclick="updateSubmit()" formmethod="post"
 											formaction="#">

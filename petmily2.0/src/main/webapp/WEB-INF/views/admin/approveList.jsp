@@ -82,7 +82,7 @@ input[type=checkbox] {
 												<td>${list.hsptAddr }</td>
 												<td>${list.hsptTel }</td>
 												<td>${list.hsptLicenseNum }</td>
-												<td><img  style="width: 12px" src="${list.hsptFilePath}/${list.hsptFile}" align="center" id="100${status.index}" class="preview" alt="" /><input type="hidden" id="pics100${status.index}" value="${list.hsptFilePath}/${list.hsptFile}" /></td>
+												<td><img  style="width: 14px" src="${list.hsptFilePath}/${list.hsptFile}" align="center" id="100${status.index}" class="preview" alt="" /><input type="hidden" id="pics100${status.index}" value="${list.hsptFilePath}/${list.hsptFile}" /></td>
 												<td><input type="checkbox" name="hsptId" value="${list.hsptId }"></td>
 											</tr>
 										</c:forEach>
@@ -91,6 +91,9 @@ input[type=checkbox] {
 								<div class="row">
 									<div class="col text-right m-r-lg ">
 										<input class="btn btn-w-m btn-warning"  type="submit"
+											value="반려" formmethod="post"
+											formaction="approveDelete">
+										<input class="btn btn-w-m btn-success"  type="submit"
 											value="계정 승인" formmethod="post"
 											formaction="approveUpdate">
 									</div>

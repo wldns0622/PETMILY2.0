@@ -93,5 +93,25 @@ public class AdminServiceImpl implements AdminService {
 	public void approveUpdate(String hsptId) {
 		mapper.approveUpdate(hsptId);
 	}
+	
+	@Override
+	public void approveDelete(String memberId) {
+		
+		mapper.approveDelete(memberId);
+		
+	}
+
+	@Override
+	public int approveCnt() {
+		// TODO Auto-generated method stub
+		return mapper.approveCnt();
+	}
+
+	@Override
+	public int reportCnt() {
+		// TODO Auto-generated method stub
+		return mapper.reportCnt();
+	}
+	
 
 }

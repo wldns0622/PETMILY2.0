@@ -94,5 +94,17 @@
 		update HOSPITAL_MEMBER_TB set hspt_approve = 'Y' where HSPT_ID = #{hsptId}
 	</update>
 	
+	<delete id="approveDelete" parameterType="String">
+		delete from HOSPITAL_MEMBER_TB where HSPT_ID = #{hsptId}
+	</delete>
+	
+	<select id="approveCnt" resultType="int">
+		select count(*) from HOSPITAL_MEMBER_TB where hspt_approve = 'N'
+	</select>
+
+	<select id="reportCnt" resultType="int">
+		select count(*) from REPORT_TB
+	</select>
+		
 	
 </mapper>

@@ -1,15 +1,13 @@
 package com.petmily.admin.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.petmily.admin.domain.StatisticsVO;
 import com.petmily.admin.service.AdminService;
 import com.petmily.common.domain.CodeVO;
-import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.member.domain.MemberVO;
 import com.petmily.pettalk.domain.SearchVO;
 
@@ -204,7 +196,33 @@ public class AdminController {
 		}
 		
 		return "redirect:/admin/approveList";
+	}
+	
+	@PostMapping("/approveDelete")
+	public String approveDelete(@RequestParam("hsptId")List<String> seq) {
+		for (int i = 0; i < seq.size(); i++) {
+			adminService.approveDelete(seq.get(i));
+		}
+		return "redirect:/admin/approveList";
+	}
+	
+	@ResponseBody
+	@PostMapping("/adminCount")
+	public Map<String, Integer>adminCount() {
+		
+		int approveCnt = adminService.approveCnt();
+		int reportCnt = adminService.reportCnt();
+		
+		Map<String, Integer> cnt = new HashMap<String, Integer>();
+		
+		cnt.put("approveCnt", approveCnt);
+		cnt.put("reportCnt", reportCnt);
+		
+		
+		return cnt;
+
 		
 	}
+	
 
 }

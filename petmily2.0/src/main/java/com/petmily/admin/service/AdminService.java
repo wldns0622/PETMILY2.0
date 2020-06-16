@@ -28,6 +28,9 @@ public interface AdminService {
 	public List<StatisticsVO> pettalkTotalData(SearchVO searchVO);
 	public List<HospitalMemberVO> approveList(String approveYn);
 	public void approveUpdate(String hsptId);
+	public void approveDelete(String memberId);
+	public int approveCnt();
+	public int reportCnt();
 	
 	/*
 	codeListService
