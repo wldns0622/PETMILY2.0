@@ -8,7 +8,6 @@
                             <div class="space-25"></div>
                             <h5>메뉴</h5>
                             <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="#"> <i class="fa fa-plus"></i> 기본 정보 변경 </a></li>
                                 <li><a href="/hospitalAdmin/reservation"> <i class="fa fa-file-text-o"></i> 예약 관리 </a></li>
                             </ul>
 
