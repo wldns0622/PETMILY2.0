@@ -160,9 +160,13 @@
 		<!-- <bind name="dtStart" value="_parameter.dtStart"/>
 		<bind name="dtEnd" value="_parameter.dtEnd"/> -->
 		select * from(
-			SELECT HOSPT_MED_RECORDS_TB.HOSPT_MED_RECORDS_NO,HOSPT_MED_RECORDS_TB.PET_NO,HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT as dt,HOSPT_MED_RECORDS_TB.HOSPT_TMT_SORT,HOSPT_MED_RECORDS_TB.HOSPT_TMT_CONTENTS, HOSPT_MED_RECORDS_TB.HSPT_NAME, 'hospt' AS SORT FROM HOSPT_MED_RECORDS_TB WHERE pet_no = #{petNo}
+			SELECT H.HOSPT_MED_RECORDS_NO,H.PET_NO,H.HOSPT_TMT_DT as dt,H.HOSPT_TMT_SORT,H.HOSPT_TMT_CONTENTS, HM.HSPT_NAME, 'hospt' AS SORT 
+				FROM HOSPT_MED_RECORDS_TB H 
+					JOIN HOSPITAL_MEMBER_TB HM 
+						ON H.HSPT_ID = HM.HSPT_ID 
+							WHERE pet_no = #{petNo}
 			<![CDATA[
-       			 and HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT >=TO_DATE(#{dtStart},'yyyy-mm-dd') AND HOSPT_MED_RECORDS_TB.HOSPT_TMT_DT <= TO_DATE(#{dtEnd},'yyyy-mm-dd')+(INTERVAL '1' DAY)  
+       			 and H.HOSPT_TMT_DT >=TO_DATE(#{dtStart},'yyyy-mm-dd') AND H.HOSPT_TMT_DT <= TO_DATE(#{dtEnd},'yyyy-mm-dd')+(INTERVAL '1' DAY)  
     		]]>
 
 			

@@ -126,7 +126,16 @@
 						<i class="fa fa-warning fa-3x"></i>
 						<h3 class="font-bold mt-2">증상</h3>
 						<h3 class="font-bold mt-2">
-							<span>${rsvn.reservationSymptom } / ${rsvn.reservationPeriod}</span>
+							<span>
+								<c:choose>
+								    <c:when test="${empty rsvn.reservationSymptom }">
+										${rsvn.reservationKind}
+								    </c:when>
+								    <c:otherwise>
+										${rsvn.reservationSymptom } / ${rsvn.reservationPeriod}
+								    </c:otherwise>
+								</c:choose> 
+							</span>
 						</h3>
 					</div>
 				</div>
