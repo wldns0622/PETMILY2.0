@@ -14,7 +14,7 @@ public class HospitalMemberVO {
 	private String hsptApprove;
 	private String hsptFile;
 	private String hsptFilePath;
-	
+
 	//private String hsptBusinessDay; //蹂묒썝 �슫�쁺�씪 �뀒�씠釉� 李몄“
 	//private String hsptBusinessHours; //蹂묒썝 �슫�쁺�떆媛� �뀒�씠釉� 李몄“
 }
