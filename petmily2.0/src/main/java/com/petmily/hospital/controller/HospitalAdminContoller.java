@@ -6,8 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.petmily.hospital.domain.HospitalMedRecordsVO;
 import com.petmily.hospital.service.HospitalAdminService;
 import com.petmily.member.domain.HospitalMemberVO;
 
@@ -36,5 +38,13 @@ public class HospitalAdminContoller {
 		HospitalMemberVO hospitalMember = (HospitalMemberVO) session.getAttribute("hospitalMember");
 		model.addAttribute("list", service.getReservation(hospitalMember.getHsptId()));
 		return "/hospitalAdmin/hospitalAdminReservation";
+	}
+
+	@PostMapping("/reservationInputMedInfo")
+	public String reservationInputMedInfo(HospitalMedRecordsVO record) {
+		System.out.println(record);
+		service.insertMedRecords(record);
+		service.statusMedUpdate(record.getReservationNo());
+		return "redirect:/hospitalAdmin//reservation";
 	}
 }

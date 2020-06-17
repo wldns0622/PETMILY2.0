@@ -10,6 +10,6 @@ public class HospitalMedRecordsVO {
 	private String HosptTmtDt;
 	private String hosptTmtSort;
 	private String hosptTmtContents;
-	private String hosptNo;
-	private String reservationNo;
+	private int reservationNo;
+	private String hsptId;
 }

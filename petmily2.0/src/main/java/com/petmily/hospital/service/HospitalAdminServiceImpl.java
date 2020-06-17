@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.petmily.hospital.domain.HospitalMedRecordsVO;
 import com.petmily.hospital.domain.HospitalOperationVO;
 import com.petmily.hospital.persistence.HospitalAdminMapper;
-import com.petmily.member.domain.HospitalMemberVO;
 import com.petmily.reservation.domain.ReservationVO;
 
 import lombok.AllArgsConstructor;
@@ -33,4 +33,13 @@ public class HospitalAdminServiceImpl implements HospitalAdminService {
 		mapper.statusUpdate(reservationNo);
 	}
 
+	@Override
+	public void insertMedRecords(HospitalMedRecordsVO records) {
+		mapper.insertMedRecords(records);
+	}
+
+	@Override
+	public void statusMedUpdate(int reservationNo) {
+		mapper.statusMedUpdate(reservationNo);
+	}
 }

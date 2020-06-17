@@ -10,6 +10,14 @@
 	</select>
 
 	<update id="statusUpdate">
-		update into reservation_tb set reservation_status = '1' where RESERVATION_NO = #{reservationNo}
+		update reservation_tb set reservation_status = '예약완료' where reservation_no = #{reservationNo}
+	</update>
+
+	<insert id="insertMedRecords" parameterType="com.petmily.hospital.domain.HospitalMedRecordsVO">
+		insert into HOSPT_MED_RECORDS_TB values(HOSPT_MED_RECORDS_NO_SEQ.nextval, #{petNo}, #{memId}, SYSDATE, #{hosptTmtSort}, #{hosptTmtContents}, #{reservationNo}, #{hsptId})
+	</insert>
+
+	<update id="statusMedUpdate">
+		update reservation_tb set reservation_status = '진료완료' where reservation_no = #{reservationNo}
 	</update>
 </mapper>
