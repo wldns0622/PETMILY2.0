@@ -25,6 +25,4 @@ public class HospitalAdminRestController {
 		service.statusUpdate(reservationNo);
 	}
 
-	
-
 }

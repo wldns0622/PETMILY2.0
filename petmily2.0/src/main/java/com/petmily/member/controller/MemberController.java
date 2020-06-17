@@ -32,8 +32,14 @@ public class MemberController {
 	private MemberService memberService;
 
 	@GetMapping("/login")
-	public String login() {
-
+	public String login(HttpServletRequest request) {
+		if((MemberVO)request.getSession().getAttribute("member") != null) {
+			request.getSession().invalidate();
+			return "redirect:/";
+		} else if((HospitalMemberVO)request.getSession().getAttribute("hospitalMember") != null) {
+			request.getSession().invalidate();
+			return "redirect:/";
+		}
 		return "login/login";
 	}
 

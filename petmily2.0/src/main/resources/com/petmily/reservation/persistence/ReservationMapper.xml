@@ -9,7 +9,7 @@
 	</insert>
 
 	<select id="reservationList" resultType="com.petmily.reservation.domain.ReservationVO">
-		select * from reservation_tb where reservation_member_id = #{memId}
+		select * from reservation_tb where reservation_member_id = #{memId} ORDER BY reservation_no DESC
 	</select>
 
 	<delete id="reservationFail">
@@ -22,6 +22,10 @@
 
 	<select id="reservationMedInfo" resultType="com.petmily.hospital.domain.HospitalMedRecordsVO">
 		select * from HOSPT_MED_RECORDS_TB Where RESERVATION_NO=#{reservationNo}
+	</select>
+
+	<select id="checkMedInfo" resultType="com.petmily.hospital.domain.HospitalMedRecordsVO">
+		select * from HOSPT_MED_RECORDS_TB where RESERVATION_NO = #{reservationNo}
 	</select>
 
 </mapper>

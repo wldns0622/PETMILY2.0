@@ -23,7 +23,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/resources/css/style.css" rel="stylesheet">
-    
+
     <style type="text/css">
     #contact{
 	margin-top: 0px;
@@ -41,7 +41,7 @@
       color: black;
     }
     </style>
-    
+
 </head>
 <body id="page-top" class="landing-page no-skin-config">
 <div class="navbar-wrapper">
@@ -72,8 +72,24 @@
                     </ul>
                     </li>
                     <li>
-                    	<a class="nav-link page-scroll" href="/member/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                    	<a class="nav-link page-scroll" href="/member/login"><span class="glyphicon glyphicon-user" aria-hidden="true">
+                    	<c:choose>
+	                    	<c:when test="${not empty member}">
+	                    		<span>${member.id}님 환영합니다</span>
+	                    	</c:when>
+	                    	<c:when test="${not empty hospitalMember}">
+	                    		<span>${hospitalMember.hsptId}님 환영합니다</span>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<span>로그인을 해주세요</span>
+	                    	</c:otherwise>
+	                    </c:choose>
+                    	</span></a>
                     </li>
+                    <c:if test="${not empty member && not empty hospitalMember}">
+						<li><a class="nav-link page-scroll" href="/member/login">로그인</a></li>
+                    </c:if>
+
                 </ul>
 
             </div>
