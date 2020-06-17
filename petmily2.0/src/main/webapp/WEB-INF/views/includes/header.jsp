@@ -56,7 +56,7 @@
 <div class="navbar-wrapper">
     <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fa fa-paw "></i>&nbsp;PETMILY</a>
+            <a class="navbar-brand" href="/"><i class="fa fa-paw "></i>&nbsp;PETMILY</a>
             <div class="navbar-header page-scroll">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                     <i class="fa fa-bars"></i>
@@ -71,7 +71,6 @@
                     <li><a class="nav-link page-scroll" href="/hospitalAdmin/main">병원 페이지</a></li>
                 </c:if>
                     <li><a class="nav-link page-scroll" href="/">Home</a></li>
-                    <li><a class="nav-link page-scroll" href="#features">Features</a></li>
                     <li><a class="nav-link page-scroll" href="/hospital/hospital">동물병원 찾기</a></li>
                     <li><a class="nav-link" href="/mypet/list">마이펫 건강관리</a></li>
                     <li><a class="nav-link" href="/pettalk/list">펫 톡</a></li>
